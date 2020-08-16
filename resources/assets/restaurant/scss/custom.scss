@@ -1,0 +1,26 @@
+.small-image{
+    max-width: 110px !important;
+}
+
+.pagination{
+    justify-content: flex-end;
+    li{
+        a{
+            padding: 7px 14px;
+        }
+    }
+}
+
+// table.dataTable thead tr th {
+//     word-wrap: break-word;
+//     word-break: break-all;
+// }
+
+// table.dataTable tbody td {
+//     word-break: break-word;
+//     vertical-align: top;
+// }
+
+// table.dataTable td {
+//     word-break: break-word;
+//   }

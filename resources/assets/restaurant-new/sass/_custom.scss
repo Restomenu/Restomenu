@@ -1,0 +1,84 @@
+.small-image {
+    width: auto !important;
+    height: auto !important;
+    max-width: 70px !important;
+    border-radius: 5px !important;
+}
+
+.medium-image {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100px !important;
+    border-radius: 5px !important;
+}
+
+.pagination {
+    .page-item {
+        .page-link {
+            color: #727cf5;
+        }
+    }
+    .page-item.active {
+        .page-link {
+            background-color: #727cf5;
+            border-color: #727cf5;
+            color: #fff;
+        }
+    }
+}
+
+label.error {
+    color: red;
+}
+
+// table.dataTable thead tr th {
+//     word-wrap: break-word;
+//     word-break: break-all;
+// }
+
+// table.dataTable tbody td {
+//     word-break: break-word;
+//     vertical-align: top;
+// }
+
+// table.dataTable td {
+//     word-break: break-word;
+//   }
+
+.custom-url-block {
+    display: flex;
+}
+
+.custom-url {
+    word-wrap: break-word;
+}
+
+.custom-url-copy {
+    margin-left: 10px;
+    .copy-btn {
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+.html5buttons {
+    .dt-buttons {
+        a {
+            color: #727cf5;
+            background: #fff;
+            border-color: #727cf5;
+            height: 30px;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: #fff;
+                background: #727cf5 !important;
+                border-color: #727cf5;
+                height: 30px;
+            }
+        }
+    }
+}

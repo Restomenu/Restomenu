@@ -1,0 +1,8 @@
+.rm-category-class {
+    min-width: 100px;
+}
+
+.small-image {
+    max-width: 110px !important;
+    max-height: 110px !important;
+}
