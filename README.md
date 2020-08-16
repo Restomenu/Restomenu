@@ -1,14 +1,14 @@
 # important command
 
-* composer installl
+* composer install
+* npm install
+* create .env from .env.example change db credentials
 * php artisan storage:link
 
 
-# Clear cache ,route,view etc
+# Clear cache, route, view etc.
 
-php artisan route:clear
-php artisan cache:clear
-php artisan view:clear
-php artisan config:clear
-php artisan config:cache
-php artisan route:cache
+* php artisan route:clear
+* php artisan cache:clear
+* php artisan view:clear
+* php artisan config:clear
