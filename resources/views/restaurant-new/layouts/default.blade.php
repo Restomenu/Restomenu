@@ -10,8 +10,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- #FAVICONS -->
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('restaurant-new/images/favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('restaurant-new/images/favicon.png') }}" type="image/x-icon">
 
     <title>{{ config('app.name','Restomenu') }} | @yield('title')</title>
 

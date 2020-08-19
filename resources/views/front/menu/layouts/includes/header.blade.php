@@ -22,7 +22,7 @@ function setActiveMenu($route)
 
         @if($restaurant->setting->language_french)
         <a href="{{route('menu-fr',['slug' => $restaurant->slug])}}"
-            class="language-item {{ setActiveMenu('menu-fr') }}">français</a>
+            class="language-item {{ setActiveMenu('menu-fr') }}">Français</a>
         @endif
 
         @if($restaurant->setting->language_english)
@@ -34,7 +34,7 @@ function setActiveMenu($route)
 
     <!-- Button trigger modal -->
     <div class="text-center">
-        <button type="button" class="btn btn-primary btn-sm mt-4 visitor-modal-btn btn-restomenu-primary shadow-none"
+        <button type="button" class="btn btn-primary mt-4 visitor-modal-btn btn-restomenu-primary shadow-none"
             data-toggle="modal" data-target="#visitorModal">
             <img src="{{asset('front/images/table.svg')}}" alt="table" class="menu-table-img">
             @lang('Register your table')
@@ -86,8 +86,15 @@ function setActiveMenu($route)
                     <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">
                             <input type="checkbox" class="form-check-input" name="is_terms_checked" value="1">
-                            {{-- I agree to the <a href="#" class="t-c-link" target="__blank">terms of service</a>. --}}
-                            @lang('I agree to the terms of service.')
+                            <a href="{{env('TERMS_CONDITIONS_URL')}}" class="t-c-link" target="_blank">@lang('I agree to
+                                the terms of service.')</a>
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-flat form-check-primary">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="is_agreed" value="1">
+                            @lang('Agree with submitting your information to our customers record.')
                         </label>
                     </div>
 

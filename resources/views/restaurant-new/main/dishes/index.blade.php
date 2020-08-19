@@ -22,7 +22,7 @@
                     <table id="dish-table" class="table table-bordered table-hover" width="100%">
                         <thead>
                             <tr>
-                                <th>{{__('No.')}}</th>
+                                {{-- <th>{{__('No.')}}</th> --}}
                                 <th>{{__('Name')}}</th>
                                 {{-- <th>{{__('Description')}}</th> --}}
                                 <th>{{__('Price')}} (€)</th>
@@ -74,12 +74,13 @@
         },
         // scrollX: true,
         ajax: "{!! $module_route.'/datatable' !!}",
-        columns: [{
-                data: 'DT_RowIndex',
-                searchable: false,
-                orderable: false,
-                width: '10%'
-            },
+        columns: [
+            // {
+            //     data: 'DT_RowIndex',
+            //     searchable: false,
+            //     orderable: false,
+            //     width: '10%'
+            // },
             {
                 data: 'name',
                 name: "dishes.name",
@@ -112,9 +113,9 @@
                 render: function(status) {
 
                     if (status) {
-                        return "<span class='badge badge-primary'>Active</span>";
+                        return "<span class='badge badge-primary'>{{__('Active')}}</span>";
                     } else {
-                        return "<span class='badge badge-warning'>Inactive</span>";
+                        return "<span class='badge badge-warning'>{{__('Inactive')}}</span>";
                     }
                 }
             },

@@ -19,7 +19,7 @@
         var primaryColor = '{{$restaurant->setting->menu_primary_color}}';
         document.documentElement.style.setProperty('--primary-color', primaryColor);
     </script>
-    <script src="{{ asset('front/menu/js/menu.js') }}" data-turbolinks-track="reload"></script>
+    {{-- <script src="{{ asset('front/menu/js/menu.js') }}"></script> --}}
 
 </head>
 
@@ -32,6 +32,8 @@
 
     <!-- Footer -->
     @include('front.select-language.layouts.includes.footer')
+    @include('front.menu.layouts.includes.jsfiles')
+    @stack('scripts')
 
 </body>
 

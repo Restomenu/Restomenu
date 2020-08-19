@@ -129,6 +129,8 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'as' => 'restaurant.'], func
   // restaurant.impersonate.destroy
   Route::get('/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('impersonate.destroy');
 
+  Route::get('/auth/lang/{locale}', 'Restaurant\DashboardController@lang')->name('auth.lang');
+
   // Route::get('/test/forgot-password-mail', 'Test\TestController@forgotPasswordMail');
   // Route::get('/test/restaurant-register-mail', 'Test\TestController@restaurantRegisterMail');
 });

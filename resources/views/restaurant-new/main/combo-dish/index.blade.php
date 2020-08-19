@@ -22,7 +22,7 @@
                     <table id="combo-dish-table" class="table table-bordered table-hover" width="100%">
                         <thead>
                             <tr>
-                                <th>{{__('No.')}}</th>
+                                {{-- <th>{{__('No.')}}</th> --}}
                                 <th>{{__('Name')}}</th>
                                 {{-- <th>{{__('Description')}}</th> --}}
                                 <th>{{__('Status')}}</th>
@@ -70,11 +70,11 @@
         },
         ajax: "{!! $module_route.'/datatable' !!}",
         columns: [
-            {
-                data: 'DT_RowIndex',
-                searchable: false,
-                orderable: false,
-            },
+            // {
+            //     data: 'DT_RowIndex',
+            //     searchable: false,
+            //     orderable: false,
+            // },
             {
                 data: 'name',
                 name: "name",
@@ -91,9 +91,9 @@
                 // orderable: false,    
                 render: function(status) {
                     if(status){
-                        return "<span class='badge badge-primary'>Active</span>";
+                        return "<span class='badge badge-primary'>{{__('Active')}}</span>";
                     }else{
-                        return "<span class='badge badge-warning'>Inactive</span>";
+                        return "<span class='badge badge-warning'>{{__('Inactive')}}</span>";
                     }
                 }
             },

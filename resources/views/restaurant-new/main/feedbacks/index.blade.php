@@ -17,7 +17,7 @@
                     <table id="feedback-table" class="table table-bordered table-hover" width="100%">
                         <thead>
                             <tr>
-                                <th>{{__('No.')}}</th>
+                                {{-- <th>{{__('No.')}}</th> --}}
                                 <th>{{__('User Name')}}</th>
                                 <th>{{__('User Email')}}</th>
                                 <th>{{__('Ratings')}}</th>
@@ -64,12 +64,13 @@
             
         },
         ajax: "{!! $module_route.'/datatable' !!}",
-        columns: [{
-                data: 'DT_RowIndex',
-                searchable: false,
-                orderable: false,
-                width: '10%'
-            },
+        columns: [
+            // {
+            //     data: 'DT_RowIndex',
+            //     searchable: false,
+            //     orderable: false,
+            //     width: '10%'
+            // },
             {
                 data: 'user_name',
                 name: "user_name",

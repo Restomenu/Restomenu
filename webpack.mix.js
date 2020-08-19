@@ -136,7 +136,7 @@ mix.copyDirectory(
     ["resources/assets/admin/vendor/font-awesome/fonts"],
     "public/admin/css/fonts"
 );
-mix.copyDirectory(["resources/assets/admin/uploads"], "public/admin/uploads");
+// mix.copyDirectory(["resources/assets/admin/uploads"], "public/admin/uploads");
 
 //************************ restaurant **************************/
 mix.js("resources/assets/restaurant/js/app.js", "public/restaurant/js");

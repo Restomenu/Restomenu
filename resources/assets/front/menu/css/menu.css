@@ -4393,7 +4393,8 @@ i {
     letter-spacing: 0.5px
 }
 
-.language-selection-box-mobile a {
+/* .language-selection-box-mobile a { */
+.language-selection-box-mobile .lang-btn {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -4983,13 +4984,13 @@ i {
     background-color: #f1f1f1
 }
 
-.row {
+/* .row {
     display: flex;
     border: 1px dotted gray;
     width: 800px;
     height: 100px;
     flex-direction: column
-}
+} */
 
 .inline {
     flex-direction: row;

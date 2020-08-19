@@ -27162,7 +27162,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/personal/restomenu-local/resources/assets/admin/vendor/jquery-ui/jquery-ui.js */"./resources/assets/admin/vendor/jquery-ui/jquery-ui.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/admin/vendor/jquery-ui/jquery-ui.js */"./resources/assets/admin/vendor/jquery-ui/jquery-ui.js");
 
 
 /***/ })

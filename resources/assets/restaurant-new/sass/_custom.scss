@@ -15,13 +15,13 @@
 .pagination {
     .page-item {
         .page-link {
-            color: #727cf5;
+            color: theme-color("primary");
         }
     }
     .page-item.active {
         .page-link {
-            background-color: #727cf5;
-            border-color: #727cf5;
+            background-color: theme-color("primary");
+            border-color: theme-color("primary");
             color: #fff;
         }
     }
@@ -66,19 +66,28 @@ label.error {
 .html5buttons {
     .dt-buttons {
         a {
-            color: #727cf5;
+            color: theme-color("primary");
             background: #fff;
-            border-color: #727cf5;
+            border-color: theme-color("primary");
             height: 30px;
 
             &:hover,
             &:focus,
             &:active {
                 color: #fff;
-                background: #727cf5 !important;
-                border-color: #727cf5;
+                background: theme-color("primary") !important;
+                border-color: theme-color("primary");
                 height: 30px;
             }
         }
+    }
+}
+
+.languageDropdownBlock{
+    width: auto;
+    position: absolute;
+    right: 10%;
+    .dropdown-menu{
+        min-width: 1rem;
     }
 }

@@ -177,5 +177,12 @@
     "Loading...": "Laden...",
     "Processing...": "Verwerken...",
     "No matching records found": "Er zijn geen overeenkomende gegevens",
-    "Allergens": "Allergens"
+    "Allergens": "Allergens",
+
+    "Email address": "Email address",
+    "Remember me": "Remember me",
+    "Login": "Login",
+    "Forgot password?": "Forgot password?",
+    "Welcome back! Log in to your account.": "Welcome back! Log in to your account.",
+    "Agree with submitting your information to our customers record.": "Agree with submitting your information to our customers record."
 }

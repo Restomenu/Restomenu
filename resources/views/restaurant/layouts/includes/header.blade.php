@@ -20,7 +20,7 @@
 
                     @if (auth()->guard('restaurant')->user()->setting->admin_language_french==1)
                     <button id="lang-btn-fr"
-                        class="btn btn-primary {{app()->getLocale() == 'fr' ? '' : 'btn-outline'}}">français</button>
+                        class="btn btn-primary {{app()->getLocale() == 'fr' ? '' : 'btn-outline'}}">Français</button>
                     @endif
                 </div>
             </li>

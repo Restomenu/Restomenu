@@ -22,7 +22,7 @@
                     <table id="user-table" class="table table-bordered table-hover" width="100%">
                         <thead>
                             <tr>
-                                <th>{{__('No.')}}</th>
+                                {{-- <th>{{__('No.')}}</th> --}}
                                 <th>{{__('Name')}}</th>
                                 <th>{{__('Email')}}</th>
                                 <th>{{__('Gender')}}</th>
@@ -70,11 +70,11 @@
         },
         ajax: "{!! $module_route.'/datatable' !!}",
         columns: [
-            {
-                data: 'DT_RowIndex',
-                searchable: false,
-                orderable: false,
-            },
+            // {
+            //     data: 'DT_RowIndex',
+            //     searchable: false,
+            //     orderable: false,
+            // },
             {
                 data: 'name',
                 name: "name",

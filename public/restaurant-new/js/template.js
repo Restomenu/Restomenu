@@ -216,7 +216,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/personal/restomenu-local/resources/assets/restaurant-new/js/template.js */"./resources/assets/restaurant-new/js/template.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/restaurant-new/js/template.js */"./resources/assets/restaurant-new/js/template.js");
 
 
 /***/ })

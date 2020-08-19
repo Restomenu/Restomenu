@@ -48,7 +48,7 @@ function show_class($path) {
             <li class="nav-item {{ setActiveMenu('dishes') }}">
                 <a href="{{route('restaurant.dishes.index')}}" class="nav-link">
                     {{-- <i class="mdi mdi-food-fork-drink"></i> --}}
-                    <i class="link-icon" data-feather="list"></i>
+                    <i class="link-icon" data-feather="coffee"></i>
                     {{-- <i class="fa fa-cutlery" aria-hidden="true"></i> --}}
                     <span class="link-title">{{__('Dishes')}}</span>
                 </a>
@@ -57,7 +57,7 @@ function show_class($path) {
             <li class="nav-item {{ setActiveMenu('combo-dishes') }}">
                 <a href="{{route('restaurant.combo-dishes.index')}}" class="nav-link">
                     {{-- <i class="mdi mdi-food"></i> --}}
-                    <i class="link-icon" data-feather="list"></i>
+                    <i class="link-icon" data-feather="file-text"></i>
                     <span class="link-title">{{__('Combo Dishes')}}</span>
                 </a>
             </li>
@@ -80,6 +80,13 @@ function show_class($path) {
                 <a href="{{route('restaurant.visitors.index')}}" class="nav-link">
                     <i class="link-icon" data-feather="user"></i>
                     <span class="link-title">{{__('Customers')}}</span>
+                </a>
+            </li>
+            
+            <li class="nav-item {{ setActiveMenu('settings') }}">
+                <a href="{{route('restaurant.settings-edit')}}" class="nav-link">
+                    <i class="link-icon" data-feather="settings"></i>
+                    <span class="link-title">{{__('Settings')}}</span>
                 </a>
             </li>
 

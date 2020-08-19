@@ -14,14 +14,14 @@
                     <i class="flag-icon flag-icon-fr" title="fr"></i> <span class="ml-1"> Français </span></a>
 
                 @elseif (app()->getLocale() == 'nl')
-                <i class="flag-icon flag-icon-nl" title="nl"></i> <span class="ml-1"> Nederlands </span></a>
+                <i class="flag-icon flag-icon-be" title="nl"></i> <span class="ml-1"> Nederlands </span></a>
                 @endif
                 </a>
                 <div class="dropdown-menu" aria-labelledby="languageDropdown">
 
                     @if (auth()->guard('restaurant')->user()->setting->admin_language_dutch==1)
                     <a href="javascript:;" class="dropdown-item py-2" id="lang-btn-nl">
-                        <i class="flag-icon flag-icon-nl" title="us"></i>
+                        <i class="flag-icon flag-icon-be" title="us"></i>
                         <span class="ml-1"> Nederlands </span>
                     </a>
                     @endif
@@ -77,12 +77,6 @@
                                     <span>Profile</span>
                                 </a>
                             </li> --}}
-                            <li class="nav-item">
-                                <a href="{{route('restaurant.settings-edit')}}" class="nav-link">
-                                    <i data-feather="settings"></i>
-                                    <span>{{__('Settings')}}</span>
-                                </a>
-                            </li>
 
                             @impersonate
                             <li class="nav-item">
