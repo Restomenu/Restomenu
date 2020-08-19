@@ -109,10 +109,7 @@
             @endif
         </div>
     </div>
-</section>
 
-{{-- <h3>Category Description</h3>
-<section>
 <div class="row">
     @if(auth()->guard('restaurant')->user()->setting->admin_language_english==1)
     <div class="col-12 col-sm-4">
@@ -163,7 +160,7 @@
 @endif
 
 </div>
-</section> --}}
+</section>
 
 <h3>{{__('Price')}}/{{__('Take-away')}}</h3>
 <section>
@@ -262,9 +259,9 @@
     </div>
 
 </section>
-<h3>{{__('State')}}/{{__('Status')}}</h3>
+<h3>{{__('Status')}}</h3>
 <section>
-    <div class="form-group row">
+    {{-- <div class="form-group row">
         <label class="col-form-label col-sm-2">{{__('State')}}</label>
         <div class="col-sm-6">
             {{ Form::text('state', null, ['id' => 'state', 'class'=>"form-control"]) }}
@@ -272,7 +269,7 @@
             <p class="text-danger">{{ $errors->first('state') }}</p>
             @endif
         </div>
-    </div>
+    </div> --}}
 
     <div class="form-group row">
         <label class="col-form-label col-sm-2">{{__('Status')}}</label>

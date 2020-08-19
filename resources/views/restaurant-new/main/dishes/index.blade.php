@@ -24,7 +24,7 @@
                             <tr>
                                 {{-- <th>{{__('No.')}}</th> --}}
                                 <th>{{__('Name')}}</th>
-                                {{-- <th>{{__('Description')}}</th> --}}
+                                <th>{{__('Description')}}</th>
                                 <th>{{__('Price')}} (€)</th>
                                 <th>{{__('Category')}}</th>
                                 <th>{{__('Status')}}</th>
@@ -87,12 +87,12 @@
                 defaultContent: "N/A",
                 width: '10%'
             },
-            // {
-            //     data: 'description',
-            //     name: "description",
-            //     defaultContent: "N/A",
-            //     width: '10%'
-            // },
+            {
+                data: 'description',
+                name: "description",
+                defaultContent: "N/A",
+                width: '10%'
+            },
             {
                 data: 'price',
                 name: "price",
