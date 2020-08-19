@@ -262,6 +262,12 @@ a.remove-from-cart-button:hover {
     margin-bottom: 2rem !important;
 }
 
+@media (max-width: 480px) {
+    .yes-btn {
+        margin-bottom: 10px !important;
+    }
+}
+
 @media (min-width: 576px) {
     .main-content-wrapper {
         max-width: 500px !important;

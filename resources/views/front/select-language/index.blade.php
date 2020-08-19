@@ -57,7 +57,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <button class="btn btn-block btn-primary shadow-none btn-restomenu-primary register-en">No,
+                        <button class="btn btn-block btn-primary shadow-none btn-restomenu-primary register-en yes-btn">No,
                             Register</button>
                     </div>
                     <div class="col-md-6">
@@ -140,7 +140,7 @@
             <div class="modal-body que-block">
                 <div class="row">
                     <div class="col-md-6">
-                        <button class="btn btn-block btn-primary shadow-none btn-restomenu-primary register-fr">Non,
+                        <button class="btn btn-block btn-primary shadow-none btn-restomenu-primary register-fr yes-btn">Non,
                             S'inscrire</button>
                     </div>
                     <div class="col-md-6">
@@ -223,7 +223,7 @@
             <div class="modal-body que-block">
                 <div class="row">
                     <div class="col-md-6">
-                        <button class="btn btn-block btn-primary shadow-none btn-restomenu-primary register-nl">Nee,
+                        <button class="btn btn-block btn-primary shadow-none btn-restomenu-primary register-nl yes-btn">Nee,
                             Registreren</button>
                     </div>
                     <div class="col-md-6">
