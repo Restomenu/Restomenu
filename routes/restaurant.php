@@ -9,6 +9,8 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant']
     Route::resource('categories', 'CategoryController');
 
     Route::get('dishes/datatable', 'DishController@getDatatable')->name('dishes-datatable');
+    Route::get('dishes/multiple-create', 'DishController@multipleCreate')->name('dishes-multiple-create');
+    Route::post('dishes/multiple-store', 'DishController@multipleStore')->name('dishes-multiple-store');
     Route::resource('dishes', 'DishController');
 
     Route::get('users/datatable', 'UserController@getDatatable')->name('users-datatable');

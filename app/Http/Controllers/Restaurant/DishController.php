@@ -15,7 +15,7 @@ use App\Repositories\DishRepository;
 
 class DishController extends Controller
 {
-    public function __construct(Dish $model, Category $categoryModel,DishAllergens $dishAllergensModel, Allergens $allergensModel, DishRepository $dishRepository)
+    public function __construct(Dish $model, Category $categoryModel, DishAllergens $dishAllergensModel, Allergens $allergensModel, DishRepository $dishRepository)
     {
         $this->moduleName = "Dish";
         $this->moduleRoute = url('dishes');
@@ -107,7 +107,53 @@ class DishController extends Controller
         // $categories = $this->categoryModel->pluck('name', 'id')->toArray();
         // $default=$this->categoryModel->whereIn('name',config('restomenu.constants.defaultCategory'))->pluck('id')->first();
 
-        return view("restaurant-new.main.general.create", compact('categories', 'default','allergens'));
+        return view("restaurant-new.main.general.create", compact('categories', 'default', 'allergens'));
+    }
+
+    public function multipleCreate()
+    {
+        $sessionLangauge = session()->get('locale');
+        $restaurantId = auth()->guard('restaurant')->user()->id;
+        $allergens = $this->allergensModel->all();
+
+        if ($sessionLangauge == 'en') {
+            $categories = $this->categoryModel->where('restaurant_id', $restaurantId)->pluck('name', 'id')->toArray();
+            $default = $this->categoryModel->whereIn('name', config('restomenu.constants.defaultCategory'))->pluck('id')->first();
+        } elseif ($sessionLangauge == 'nl') {
+            $categories = $this->categoryModel->where('restaurant_id', $restaurantId)->pluck('name_dutch', 'id')->toArray();
+            $default = $this->categoryModel->whereIn('name_dutch', config('restomenu.constants.defaultCategory'))->pluck('id')->first();
+        } elseif ($sessionLangauge == 'fr') {
+            $categories = $this->categoryModel->where('restaurant_id', $restaurantId)->pluck('name_french', 'id')->toArray();
+            $default = $this->categoryModel->whereIn('name_french', config('restomenu.constants.defaultCategory'))->pluck('id')->first();
+        }
+
+        return view("$this->moduleView.multiple-create", compact('categories', 'default', 'allergens'));
+    }
+
+    public function multipleStore(Request $request)
+    {
+        try {
+            $inputs = $request->except('_token');
+            $inputs['restaurant_id'] = auth()->guard('restaurant')->user()->id;
+
+            for ($i = 0; $i < count($inputs['name']); $i++) {
+                $dish = new Dish();
+                $dish->name = $inputs['name'][$i];
+                $dish->name_dutch = $inputs['name_dutch'][$i];
+                $dish->name_french = $inputs['name_french'][$i];
+                $dish->description = $inputs['description'][$i];
+                $dish->description_dutch = $inputs['description_dutch'][$i];
+                $dish->description_french = $inputs['description_french'][$i];
+                $dish->category_id = $inputs['category_id'][$i];
+                $dish->price = $inputs['price'][$i];
+                $dish->status = $inputs['status'][$i];
+                $dish->restaurant_id = $inputs['restaurant_id'];
+                $dish->save();
+            }
+            return redirect($this->moduleRoute)->with("success", __($this->moduleName . ' Added Successfully.'));
+        } catch (\Exception $e) {
+            return redirect($this->moduleRoute)->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -121,7 +167,7 @@ class DishController extends Controller
         // dd($request->allergens_icons[0]);
 
         try {
-            $inputs = $request->except('_token','allergens_icons');
+            $inputs = $request->except('_token', 'allergens_icons');
             $inputs['restaurant_id'] = auth()->guard('restaurant')->user()->id;
 
             if ($request->hasFile('image')) {
@@ -137,18 +183,16 @@ class DishController extends Controller
 
             if ($isSaved) {
 
-                if ($request->allergens_icons) {
+                if ($request->exists('allergens_icons') && $request->allergens_icons) {
 
                     for ($i = 0; $i < count($request->allergens_icons); $i++) {
                         $dishAllergens = new DishAllergens();
                         $dishAllergens->dish_id = $isSaved->id;
                         $dishAllergens->allergen_id = $request->allergens_icons[$i];
-                            $dishAllergens->save();
+                        $dishAllergens->save();
                     }
-                
-
+                }
                 return redirect($this->moduleRoute)->with("success", __($this->moduleName . ' Added Successfully.'));
-                    }
             }
             return redirect($this->moduleRoute)->with("error", __("Something went wrong, please try again later."));
         } catch (\Exception $e) {
@@ -175,12 +219,12 @@ class DishController extends Controller
      */
     public function edit($id)
     {
-        
+
         $restaurantId = auth()->guard('restaurant')->user()->id;
         $allergens = $this->allergensModel->all();
 
         $allergensList = DishAllergens::where('dish_id', $id)->pluck('allergen_id')->toArray();
-        
+
         $result = $this->model->where('restaurant_id', $restaurantId)->find($id);
         if ($result) {
             $sessionLangauge = session()->get('locale');
@@ -192,7 +236,7 @@ class DishController extends Controller
                 $categories = $this->categoryModel->where('restaurant_id', $restaurantId)->pluck('name_french', 'id')->toArray();
             }
 
-            return view("restaurant-new.main.general.edit", compact('result', 'categories','allergens','allergensList'));
+            return view("restaurant-new.main.general.edit", compact('result', 'categories', 'allergens', 'allergensList'));
 
             // return view("restaurant.main.general.edit", compact("result", 'categories'));
         }
@@ -217,10 +261,10 @@ class DishController extends Controller
         try {
             $restaurantId = auth()->guard('restaurant')->user()->id;
             $result = $this->model->where('restaurant_id', $restaurantId)->find($id);
-            
+
 
             if ($result) {
-                $inputs = $request->except('_token','allergens_icons');
+                $inputs = $request->except('_token', 'allergens_icons');
 
 
                 if ($request->hasFile('image')) {
@@ -243,7 +287,7 @@ class DishController extends Controller
                 if ($isSaved) {
                     DishAllergens::where('dish_id', $id)->delete();
 
-                    if ($request->allergens_icons) {
+                    if ($request->exists('allergens_icons') && $request->allergens_icons) {
 
                         for ($i = 0; $i < count($request->allergens_icons); $i++) {
                             $dishAllergens = new DishAllergens();
@@ -251,11 +295,8 @@ class DishController extends Controller
                             $dishAllergens->allergen_id = $request->allergens_icons[$i];
                             $dishAllergens->save();
                         }
-                    
-    
-                        return redirect($this->moduleRoute)->with("success", __($this->moduleName . " updated!"));
-
-                        }
+                    }
+                    return redirect($this->moduleRoute)->with("success", __($this->moduleName . " updated!"));
                 }
             }
             return redirect($this->moduleRoute)->with("error", __("Something went wrong, please try again later."));

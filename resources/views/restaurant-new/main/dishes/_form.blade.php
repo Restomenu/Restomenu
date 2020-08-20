@@ -46,7 +46,7 @@
     }
 </style>
 @endpush
-<h3>{{__('Name')}}/{{__('Category')}}</h3>
+<h3>{{__('Name')}}/{{__('Description')}}</h3>
 <section>
     <div class="row">
         @if(auth()->guard('restaurant')->user()->setting->admin_language_english==1)
@@ -99,6 +99,60 @@
 
     </div>
 
+    <div class="row">
+        @if(auth()->guard('restaurant')->user()->setting->admin_language_english==1)
+        <div class="col-12 col-sm-4">
+            <div class="form-group">
+                <div class="row">
+                    <label class="col-sm-12">{{__('English Description')}}</label>
+                    <div class="col-sm-12">
+                        {{ Form::textarea('description', null, ['id' => 'description', 'class'=>"form-control","rows"=>5]) }}
+                        @if($errors->has('description'))
+                        <p class="text-danger">{{ $errors->first('description') }}</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @if(auth()->guard('restaurant')->user()->setting->admin_language_dutch==1)
+        <div class="col-12 col-sm-4">
+            <div class="form-group">
+                <div class="row">
+                    <label class="col-sm-12">{{__('Dutch Description')}}</label>
+                    <div class="col-sm-12">
+                        {{ Form::textarea('description_dutch', null, ['id' => 'description_dutch', 'class'=>"form-control","rows"=>5]) }}
+                        <p class="text-danger">{{ $errors->first('description_dutch') }}</p>
+                        @if($errors->has('description_dutch'))
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @if(auth()->guard('restaurant')->user()->setting->admin_language_french ==1)
+        <div class="col-12 col-sm-4">
+            <div class="form-group">
+                <div class="row">
+                    <label class="col-sm-12">{{__('French Description')}}</label>
+                    <div class="col-sm-12">
+                        {{ Form::textarea('description_french', null, ['id' => 'description_french', 'class'=>"form-control","rows"=>5]) }}
+                        @if($errors->has('description_french'))
+                        <p class="text-danger">{{ $errors->first('description_french') }}</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
+    </div>
+</section>
+
+<h3>{{__('Price')}}/{{__('Category')}}/{{__('Take-away')}}</h3>
+<section>
     <div class="form-group row">
         <label class="col-form-label col-sm-2">{{__('Category')}}</label>
         <div class="col-sm-6">
@@ -109,61 +163,6 @@
             @endif
         </div>
     </div>
-
-<div class="row">
-    @if(auth()->guard('restaurant')->user()->setting->admin_language_english==1)
-    <div class="col-12 col-sm-4">
-        <div class="form-group">
-            <div class="row">
-                <label class="col-sm-12">{{__('English Description')}}</label>
-<div class="col-sm-12">
-    {{ Form::textarea('description', null, ['id' => 'description', 'class'=>"form-control","rows"=>5]) }}
-    @if($errors->has('description'))
-    <p class="text-danger">{{ $errors->first('description') }}</p>
-    @endif
-</div>
-</div>
-</div>
-</div>
-@endif
-
-@if(auth()->guard('restaurant')->user()->setting->admin_language_dutch==1)
-<div class="col-12 col-sm-4">
-    <div class="form-group">
-        <div class="row">
-            <label class="col-sm-12">{{__('Dutch Description')}}</label>
-            <div class="col-sm-12">
-                {{ Form::textarea('description_dutch', null, ['id' => 'description_dutch', 'class'=>"form-control","rows"=>5]) }}
-                <p class="text-danger">{{ $errors->first('description_dutch') }}</p>
-                @if($errors->has('description_dutch'))
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
-@endif
-
-@if(auth()->guard('restaurant')->user()->setting->admin_language_french ==1)
-<div class="col-12 col-sm-4">
-    <div class="form-group">
-        <div class="row">
-            <label class="col-sm-12">{{__('French Description')}}</label>
-            <div class="col-sm-12">
-                {{ Form::textarea('description_french', null, ['id' => 'description_french', 'class'=>"form-control","rows"=>5]) }}
-                @if($errors->has('description_french'))
-                <p class="text-danger">{{ $errors->first('description_french') }}</p>
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
-@endif
-
-</div>
-</section>
-
-<h3>{{__('Price')}}/{{__('Take-away')}}</h3>
-<section>
     <div class="form-group row">
         <label class="col-form-label col-sm-2">{{__('Price')}}</label>
         <div class="col-sm-6">
@@ -207,7 +206,7 @@
     </div>
 </section>
 
-<h3>{{__('Image')}}</h3>
+<h3>{{__('Image')}}/{{__('Allergens')}}</h3>
 <section>
 
     <div class="form-group row">
@@ -263,12 +262,12 @@
 <section>
     {{-- <div class="form-group row">
         <label class="col-form-label col-sm-2">{{__('State')}}</label>
-        <div class="col-sm-6">
-            {{ Form::text('state', null, ['id' => 'state', 'class'=>"form-control"]) }}
-            @if($errors->has('state'))
-            <p class="text-danger">{{ $errors->first('state') }}</p>
-            @endif
-        </div>
+    <div class="col-sm-6">
+        {{ Form::text('state', null, ['id' => 'state', 'class'=>"form-control"]) }}
+        @if($errors->has('state'))
+        <p class="text-danger">{{ $errors->first('state') }}</p>
+        @endif
+    </div>
     </div> --}}
 
     <div class="form-group row">

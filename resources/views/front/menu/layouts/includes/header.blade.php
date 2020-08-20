@@ -86,8 +86,7 @@ function setActiveMenu($route)
                     <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">
                             <input type="checkbox" class="form-check-input" name="is_terms_checked" value="1">
-                            <a href="{{env('TERMS_CONDITIONS_URL')}}" class="t-c-link" target="_blank">@lang('I agree to
-                                the terms of service.')</a>
+                            <a href="{{env('TERMS_CONDITIONS_URL')}}" class="t-c-link" target="_blank">@lang('I agree to the terms of service.')</a>
                         </label>
                     </div>
 

@@ -14,6 +14,8 @@
                     <div class="ml-auto">
                         <a href="{{ $module_route."/create" }}"
                             class="btn btn-sm btn-primary pull-right">{{__('Add')}}</a>
+                        <a href="{{ $module_route."/multiple-create" }}"
+                        class="btn btn-sm btn-primary pull-right mr-2">{{__('Multiple Add')}}</a>
                     </div>
                 </div>
             </div>
