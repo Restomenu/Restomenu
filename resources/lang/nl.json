@@ -149,7 +149,7 @@
     "Check Out": "Uitschrijven",
     "Check In": "Inschrijven",
     "You want to Checkout visitor?": "Wil je de klant uitschrijven?",
-    "Yes, Checkout it!": "Bevestigen",
+    "Yes, Checkout it!": "Ja, uitschrijven.",
     "Register your table": "Registreer jouw tafel",
 
     "Visitors": "Bezoekers",
@@ -170,7 +170,7 @@
     "Good Afternoon,": "Goeiemiddag,",
     "Good Evening,": "Goeieavond,",
     "Good Night,": "Goedenacht",
-    "You have :numberOfCustomers reservations today.": "er zijn momenteel :numberOfCustomers klanten ingeschreven.",
+    "You have :numberOfCustomers reservations today.": "Er zijn momenteel :numberOfCustomers klanten geregistreerd.",
 
     "No data available in table": "Er zijn nog geen gegevens in deze tabel",
     "filtered from": "Gefilterd op basis van",
@@ -179,10 +179,10 @@
     "No matching records found": "Er zijn geen overeenkomende gegevens",
     "Allergens": "Allergens",
 
-    "Email address": "Email address",
-    "Remember me": "Remember me",
+    "Email address": "Email adres",
+    "Remember me": "Onthouden?",
     "Login": "Login",
-    "Forgot password?": "Forgot password?",
-    "Welcome back! Log in to your account.": "Welcome back! Log in to your account.",
-    "Agree with submitting your information to our customers record.": "Agree with submitting your information to our customers record."
+    "Forgot password?": "Passwoord vergeten?",
+    "Welcome back! Log in to your account.": "Welkom terug! Log aan met jouw account.",
+    "Agree with submitting your information to our customers record.": "Ik ga akkoord dat mijn gegevens opgenomen worden in het klantenbestand."
 }
