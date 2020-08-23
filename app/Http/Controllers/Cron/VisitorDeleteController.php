@@ -11,6 +11,6 @@ class VisitorDeleteController extends Controller
 {
     public function index()
     {
-        Visitor::where('checkout_at', '<', Carbon::now()->subDays(14))->delete();
+        Visitor::where('checkout_at', '<', Carbon::now()->subDays(14))->where('is_agreed', '0')->delete();
     }
 }
