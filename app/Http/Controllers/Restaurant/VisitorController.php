@@ -4,23 +4,30 @@ namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Visitor;
+use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use SpryngApiHttpPhp\Client;
+use SpryngApiHttpPhp\Exception\InvalidRequestException;
 
 class VisitorController extends Controller
 {
-    public function __construct(Visitor $model)
+    public function __construct(Visitor $model,  Setting $settingModel)
     {
         $this->moduleName = "Customer";
         $this->moduleRoute = url('visitors');
         $this->moduleView = "restaurant-new.main.visitors";
         $this->model = $model;
+        $this->settingModel = $settingModel;
 
         View::share('module_name', $this->moduleName);
         View::share('module_route', $this->moduleRoute);
         View::share('moduleView', $this->moduleView);
+
+        $this->statusCodes = config("restomenu.responseCodes");
     }
 
     public function index()
@@ -57,10 +64,16 @@ class VisitorController extends Controller
             if ($isSaved) {
                 return response()->json(['message' => __('Status changed successfully.')]);
             } else {
-                return redirect($this->moduleRoute)->with("error", __("Something went wrong, please try again later."));
+                $data = [
+                    'message' => __("Something went wrong, please try again later.")
+                ];
+                return response()->json($data, $this->statusCodes['serverSide']);
             }
         } catch (\Exception $e) {
-            return redirect($this->moduleRoute)->with('error', $e->getMessage());
+            $data = [
+                'message' => $e->getMessage()
+            ];
+            return response()->json($data, $this->statusCodes['serverSide']);
         }
     }
     /**
@@ -134,6 +147,72 @@ class VisitorController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function statusUpdate(Request $request)
+    {
+        try {
+            $restaurant = auth()->guard('restaurant')->user();
+    
+            $restaurantId = $restaurant->id;
+
+            $result = $this->model->where('restaurant_id', $restaurantId)->find($request->customer_id);
+            $appointment_status = (int) $request->status;
+            $inputs['appointment_status'] = $appointment_status;
+            $isSaved = $result->update($inputs);
+
+            if ($isSaved) {
+
+                $setting = $this->settingModel->where('restaurant_id', $restaurantId)->first();
+
+                // send message to restaurant
+                $isSmsEnabled = config("restomenu.sms.is_enabled");
+                $smsServiceStatus = $setting->sms_service_status;
+                $customerPhoneNumber = $restaurant->phone;
+                $availableSmsCount = (int) $setting->available_sms_count;
+
+                if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount && $availableSmsCount > 0 && $customerPhoneNumber) {
+                    $spryngUsername = config("restomenu.sms.username");
+                    $spryngPassword = config("restomenu.sms.password");
+                    $spryngCompany = config("restomenu.sms.company");
+
+                    if ($appointment_status === 1) {
+                        $message = "Your appointment has been accepted by $restaurant->name.";
+                    } elseif ($appointment_status === -1) {
+                        $message = "Your appointment has been rejected by $restaurant->name.";
+                    } elseif ($appointment_status === 0) {
+                        $message = "Your appointment status has been changed to pending by $restaurant->name.";
+                    }
+
+                    $spryng = new Client($spryngUsername, $spryngPassword, $spryngCompany);
+                    // $balance = $spryng->sms->checkBalance();
+
+                    try {
+                        $spryng->sms->send($customerPhoneNumber, $message, [
+                            'route' => 'business',
+                            'allowlong' => true,
+                        ]);
+
+                        $setting->available_sms_count = $availableSmsCount - 1;
+                        $setting->save();
+                    } catch (InvalidRequestException $e) {
+                        Log::info($e->getMessage());
+                    }
+                }
+
+                return response()->json(['message' => __('Status changed successfully.')]);
+            } else {
+                $data = [
+                    'message' => __("Something went wrong, please try again later.")
+                ];
+                return response()->json($data, $this->statusCodes['serverSide']);
+            }
+        } catch (\Exception $e) {
+            $data = [
+                'message' => $e->getMessage()
+            ];
+            return response()->json($data, $this->statusCodes['serverSide']);
+        }
     }
 
     /**

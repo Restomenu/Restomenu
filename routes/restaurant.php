@@ -33,6 +33,7 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant']
 
     Route::get('visitors/datatable', 'VisitorController@getDatatable')->name('visitors-datatable');
     Route::post('visitors/checkout/{id}', 'VisitorController@editCheckout')->name('visitors-checkout');
+    Route::post('visitors/status-update', 'VisitorController@statusUpdate')->name('visitors-status-update');
     Route::resource('visitors', 'VisitorController');
 
     Route::resource('restaurant-feedbacks', 'RestaurantFeedbackController');

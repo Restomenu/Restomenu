@@ -5,18 +5,19 @@ namespace App\Http\Controllers\Restaurant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Models\RestaurantTime;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 
-
 class SettingController extends Controller
 {
-    public function __construct(Setting $model)
+    public function __construct(Setting $model, RestaurantTime $restaurantTimeModel)
     {
         $this->moduleName = "Setting";
         // $this->moduleRoute = url('settings');
         $this->moduleView = "restaurant-new.main.setting";
         $this->model = $model;
+        $this->restaurantTimeModel = $restaurantTimeModel;
 
         $this->siteLogoStoragePath = config("restomenu.path.storage_logo");
         $this->categoryImageStoragePath = config("restomenu.path.storage_category_img");
@@ -33,6 +34,7 @@ class SettingController extends Controller
     {
         $restaurantId = auth()->guard('restaurant')->user()->id;
         $result = $this->model->where('restaurant_id', $restaurantId)->first();
+        $restaurantTime = $this->restaurantTimeModel->where('restaurant_id', $restaurantId)->first();
         $selectedLanguage = [];
 
         if ($result) {
@@ -45,7 +47,7 @@ class SettingController extends Controller
             if ($result->admin_language_french == 1) {
                 $selectedLanguage['fr'] = 'French';
             }
-            return view($this->moduleView . ".index", compact("result", "selectedLanguage"));
+            return view($this->moduleView . ".index", compact("result", "selectedLanguage", "restaurantTime"));
         }
         // return redirect()->back()->with("error", __("Sorry, $this->moduleName not found!"));
 
@@ -67,7 +69,7 @@ class SettingController extends Controller
         try {
             if ($result) {
 
-                $inputs = $request->except('_token');
+                $inputs = $request->except(['_token', 'morning_start_time', 'morning_end_time', 'evening_start_time', 'evening_end_time']);
 
                 //site logo setting
                 if ($request->site_logo) {
@@ -109,6 +111,19 @@ class SettingController extends Controller
 
                 $isSaved = $result->update($inputs);
                 $sessionLangauge = session()->get('locale');
+
+                $restaurantTime = $this->restaurantTimeModel->where('restaurant_id', $restaurantId)->first();
+                if (!$restaurantTime) {
+                    $restaurantTimings = $request->only(['morning_start_time', 'morning_end_time', 'evening_start_time', 'evening_end_time']);
+                    $restaurantTimings['restaurant_id'] = $restaurantId;
+                    $this->restaurantTimeModel->create($restaurantTimings);
+                } else {
+                    $restaurantTime->morning_start_time = $request->morning_start_time;
+                    $restaurantTime->morning_end_time = $request->morning_end_time;
+                    $restaurantTime->evening_start_time = $request->evening_start_time;
+                    $restaurantTime->evening_end_time = $request->evening_end_time;
+                    $restaurantTime->save();
+                }
 
                 if ($isSaved) {
                     if ($sessionLangauge == 'en') {

@@ -35,11 +35,10 @@ return [
         "site_logo_path" => 'storage/site-logo/',
     ],
     "sms" => [
-        "is_enabled" => env('SPRYNG_STATUS', 0),
+        "is_enabled" => env('SMS_SERVICE_STATUS', 0),
         "username" => env('SPRYNG_USERNAME', 'restomenu'),
         "password" => env('SPRYNG_PASSWORD', 'jaydarryrestomenu'),
         "company" => env('SPRYNG_COMPANY', 'Restomenu'),
-        "registration_message" => env('SPRYNG_REGISTRATION_MESSAGE', 'New Customer Register!')
     ]
 
 ];
