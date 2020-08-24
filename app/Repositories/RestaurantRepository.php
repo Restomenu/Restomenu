@@ -22,7 +22,7 @@ class RestaurantRepository extends BaseRepository
 
     public function getRestaurantFromSlug($slug)
     {
-        $restaurant = $this->model->where("slug", $slug)->with('setting')->first();
+        $restaurant = $this->model->where("slug", $slug)->with(['setting', 'restaurantTime'])->first();
 
         if ($restaurant) {
             return $restaurant;

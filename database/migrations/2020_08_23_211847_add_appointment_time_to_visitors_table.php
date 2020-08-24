@@ -15,7 +15,6 @@ class AddAppointmentTimeToVisitorsTable extends Migration
     {
         Schema::table('visitors', function (Blueprint $table) {
             $table->string('appointment_time')->after('appointment_status')->nullable();
-            
         });
     }
 
@@ -27,7 +26,7 @@ class AddAppointmentTimeToVisitorsTable extends Migration
     public function down()
     {
         Schema::table('visitors', function (Blueprint $table) {
-            //
+            $table->dropColumn('appointment_time');
         });
     }
 }

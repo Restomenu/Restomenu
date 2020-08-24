@@ -47,7 +47,8 @@ mix.combine(
         "resources/assets/front/vendor/sweetalert2/sweetalert2.min.css",
         "resources/assets/front/vendor/toastr/toastr.min.css",
         "resources/assets/front/vendor/select2/select2.min.css",
-        "resources/assets/front/vendor/star-rating/star-rating-svg.css"
+        "resources/assets/front/vendor/star-rating/star-rating-svg.css",
+        "resources/assets/front/vendor/tempusdominus/tempusdominus-bootstrap-4.min.css"
     ],
     "public/front/css/vendor.css"
 );

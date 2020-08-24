@@ -26,58 +26,80 @@ class VisitorController extends Controller
     public function store(Request $request, $slug)
     {
         $restaurant = $this->restaurantRepository->getRestaurantFromSlug($slug);
-        $setting = $this->settingModel->where('restaurant_id', $restaurant->id)->first();
 
-        try {
+        // $currentTime = Carbon::now()->toDateTimeString();
+        $appointmentTime = Carbon::createFromFormat('H:i', $request->appointment_time)->toDateTimeString();
 
-            $inputs = $request->except('_token');
-            $inputs['restaurant_id'] = $restaurant->id;
-            $inputs['checkin_at'] = Carbon::now()->toDateTimeString();
+        $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->morning_start_time)->toDateTimeString();
 
-            $isSaved = $this->model->create($inputs);
+        $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->morning_end_time)->toDateTimeString();
 
-            if ($isSaved) {
+        $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->evening_start_time)->toDateTimeString();
 
-                // send message to restaurant
-                $isSmsEnabled = config("restomenu.sms.is_enabled");
-                $smsServiceStatus = $setting->sms_service_status;
-                $restaurantPhoneNumber = $restaurant->phone;
-                $availableSmsCount = (int) $setting->available_sms_count;
+        $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->evening_end_time)->toDateTimeString();
 
-                if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount && $availableSmsCount > 0 && $restaurantPhoneNumber) {
+        // dd(($morning_start_time <= $appointmentTime) && ($appointmentTime <= $morning_end_time) || ($evening_start_time <= $appointmentTime) && ($appointmentTime <= $evening_end_time));
 
-                    $spryngUsername = config("restomenu.sms.username");
-                    $spryngPassword = config("restomenu.sms.password");
-                    $spryngCompany = config("restomenu.sms.company");
-                    $message = __("New Customer Registered!");
+        if (($morning_start_time <= $appointmentTime) && ($appointmentTime <= $morning_end_time) || ($evening_start_time <= $appointmentTime) && ($appointmentTime <= $evening_end_time)) {
 
-                    $spryng = new Client($spryngUsername, $spryngPassword, $spryngCompany);
-                    // $balance = $spryng->sms->checkBalance();
+            $setting = $this->settingModel->where('restaurant_id', $restaurant->id)->first();
 
-                    try {
-                        $spryng->sms->send($restaurantPhoneNumber, $message, [
-                            'route' => 'business',
-                            'allowlong' => true,
-                        ]);
+            try {
 
-                        $setting->available_sms_count = $availableSmsCount - 1;
-                        $setting->save();
-                    } catch (InvalidRequestException $e) {
-                        Log::info($e->getMessage());
+                $inputs = $request->except('_token');
+                $inputs['restaurant_id'] = $restaurant->id;
+                $inputs['checkin_at'] = Carbon::now()->toDateTimeString();
+
+                $isSaved = $this->model->create($inputs);
+
+                if ($isSaved) {
+
+                    // send message to restaurant
+                    $isSmsEnabled = config("restomenu.sms.is_enabled");
+                    $smsServiceStatus = $setting->sms_service_status;
+                    $restaurantPhoneNumber = $restaurant->phone;
+                    $availableSmsCount = (int) $setting->available_sms_count;
+
+                    if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount && $availableSmsCount > 0 && $restaurantPhoneNumber) {
+
+                        $spryngUsername = config("restomenu.sms.username");
+                        $spryngPassword = config("restomenu.sms.password");
+                        $spryngCompany = config("restomenu.sms.company");
+                        $message = __("New Customer Registered!");
+
+                        $spryng = new Client($spryngUsername, $spryngPassword, $spryngCompany);
+                        // $balance = $spryng->sms->checkBalance();
+
+                        try {
+                            $spryng->sms->send($restaurantPhoneNumber, $message, [
+                                'route' => 'business',
+                                'allowlong' => true,
+                            ]);
+
+                            $setting->available_sms_count = $availableSmsCount - 1;
+                            $setting->save();
+                        } catch (InvalidRequestException $e) {
+                            Log::info($e->getMessage());
+                        }
                     }
-                }
 
+                    $data = [
+                        'message' => __('Registration successful.'),
+                    ];
+                    return response()->json($data, $this->statusCodes['success']);
+                }
+                return response()->json($data, $this->statusCodes['serverSide']);
+            } catch (\Exception $e) {
                 $data = [
-                    'message' => __('Registration successful.'),
+                    'message' => $e->getMessage()
                 ];
-                return response()->json($data, $this->statusCodes['success']);
+                return response()->json($data, $this->statusCodes['serverSide']);
             }
-            return response()->json($data, $this->statusCodes['serverSide']);
-        } catch (\Exception $e) {
+        } else {
             $data = [
-                'message' => $e->getMessage()
+                'message' => __('Please select another time.'),
             ];
-            return response()->json($data, $this->statusCodes['serverSide']);
+            return response()->json($data, $this->statusCodes['formValidation']);
         }
     }
 }

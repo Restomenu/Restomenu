@@ -153,12 +153,17 @@ class VisitorController extends Controller
     {
         try {
             $restaurant = auth()->guard('restaurant')->user();
-    
+
             $restaurantId = $restaurant->id;
 
-            $result = $this->model->where('restaurant_id', $restaurantId)->find($request->customer_id);
+            $result = $this->model->where('restaurant_id', $restaurantId)->find($request->visitor_id);
             $appointment_status = (int) $request->status;
             $inputs['appointment_status'] = $appointment_status;
+            $inputs['appointment_time'] = null;
+
+            if ($appointment_status === 2) {
+                $inputs['appointment_time'] = $request->appointment_time;
+            }
             $isSaved = $result->update($inputs);
 
             if ($isSaved) {
@@ -179,9 +184,14 @@ class VisitorController extends Controller
                     if ($appointment_status === 1) {
                         $message = "Your appointment has been accepted by $restaurant->name.";
                     } elseif ($appointment_status === -1) {
-                        $message = "Your appointment has been rejected by $restaurant->name.";
+                        $message = "Your appointment has been canceled by $restaurant->name.";
                     } elseif ($appointment_status === 0) {
                         $message = "Your appointment status has been changed to pending by $restaurant->name.";
+                    } elseif ($appointment_status === 2) {
+                        $message = "Your appointment has been scheduled by $restaurant->name.";
+                        if ($request->appointment_time) {
+                            $message .= " On " . $request->appointment_time;
+                        }
                     }
 
                     $spryng = new Client($spryngUsername, $spryngPassword, $spryngCompany);

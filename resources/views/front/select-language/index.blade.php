@@ -41,8 +41,7 @@
 </div>
 
 <!-- Visitor Modal en-->
-<div class="modal fade" id="visitorModalEn" tabindex="-1" role="dialog" aria-labelledby="visitorModalTitle"
-    aria-hidden="true">
+<div class="modal fade" id="visitorModalEn" tabindex="-1" role="dialog" aria-labelledby="visitorModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -62,48 +61,62 @@
                             Register</button>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('menu-en',['slug' => $restaurant->slug])}}"
-                            class="btn btn-block btn-primary shadow-none btn-restomenu-primary">Yes, Go to
+                        <a href="{{route('menu-en',['slug' => $restaurant->slug])}}" class="btn btn-block btn-primary shadow-none btn-restomenu-primary">Yes, Go to
                             menu</a>
                     </div>
                 </div>
             </div>
 
-            <form action="{{route('menu-visitor-save',['slug' => $restaurant->slug])}}" method="post" id="visitorFormEn"
-                class="d-none">
+            <form action="{{route('menu-visitor-save',['slug' => $restaurant->slug])}}" method="post" id="visitorFormEn" class="d-none">
                 <div class="modal-body visitor-form-block">
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="first_name"
-                            id="first_name" placeholder="First name">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="first_name" id="first_name" placeholder="First name">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="last_name"
-                            id="last_name" placeholder="Last name">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="last_name" id="last_name" placeholder="Last name">
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control rm-text-input shadow-none" name="email" id="email"
-                            placeholder="Enter your email (optional)">
+                        <input type="email" class="form-control rm-text-input shadow-none" name="email" id="email" placeholder="Enter your email (optional)">
                     </div>
 
                     <div class="form-group">
-                        <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people"
-                            id="number_of_people" placeholder="Number of people" min="1">
+                        <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people" id="number_of_people" placeholder="Number of people" min="1">
                     </div>
-                    
-                    <div class="input-group date timepicker" id="appointmentTimepicker" data-target-input="nearest">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="appointment_time" id="appointment_time"
-                            placeholder="Select Your Time">
 
-                        <div class="input-group-append" data-target="#appointmentTimepicker" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i data-feather="clock"></i></div>
+                    <div class="form-group">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone" placeholder="Phone number">
+                    </div>
+
+                    @if(($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time) || $restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
+                    <div class="mb-2 text-center timing-text">
+                        @if($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time)
+                        <div>
+                            Morning Time: {{$restaurant->restaurantTime->morning_start_time}} To {{$restaurant->restaurantTime->morning_end_time}}
                         </div>
+                        @endif
+
+                        @if($restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
+                        <div>
+                            Evening Time: {{$restaurant->restaurantTime->evening_start_time}} To {{$restaurant->restaurantTime->evening_end_time}}
+                        </div>
+                        @endif
                     </div>
+                    @endif
 
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone"
-                            placeholder="Phone number">
+                        {{-- <input type="text" class="form-control rm-text-input shadow-none" name="appointment_time"
+                            id="appointment_time" placeholder="Select Your Time" data-toggle="datetimepicker"
+                            data-target="#appointment_time"> --}}
+
+                        <div class="input-group date" id="appointment_time_en" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none" name="appointment_time" data-target="#appointment_time_en" placeholder="Select Your Time" />
+                            <div class="input-group-append" data-target="#appointment_time_en" data-toggle="datetimepicker">
+                                <div class="input-group-text input-group-text-no-border"><i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-check form-check-flat form-check-primary">
@@ -124,8 +137,7 @@
                 </div>
                 <div class="modal-footer visitor-modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit"
-                        class="btn btn-primary shadow-none btn-restomenu-primary visitor-submit-btn">Save</button>
+                    <button type="submit" class="btn btn-primary shadow-none btn-restomenu-primary visitor-submit-btn">Save</button>
                 </div>
             </form>
         </div>
@@ -133,8 +145,7 @@
 </div>
 
 <!-- Visitor Modal fr-->
-<div class="modal fade" id="visitorModalFr" tabindex="-1" role="dialog" aria-labelledby="visitorModalTitle"
-    aria-hidden="true">
+<div class="modal fade" id="visitorModalFr" tabindex="-1" role="dialog" aria-labelledby="visitorModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -154,39 +165,58 @@
                             S'inscrire</button>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('menu-fr',['slug' => $restaurant->slug])}}"
-                            class="btn btn-block btn-primary shadow-none btn-restomenu-primary">Oui, aller au menu
+                        <a href="{{route('menu-fr',['slug' => $restaurant->slug])}}" class="btn btn-block btn-primary shadow-none btn-restomenu-primary">Oui, aller au menu
                         </a>
                     </div>
                 </div>
             </div>
 
-            <form action="{{route('menu-visitor-save',['slug' => $restaurant->slug])}}" method="post" id="visitorFormFr"
-                class="d-none">
+            <form action="{{route('menu-visitor-save',['slug' => $restaurant->slug])}}" method="post" id="visitorFormFr" class="d-none">
                 <div class="modal-body visitor-form-block">
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="first_name"
-                            id="first_name" placeholder="Prénom">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="first_name" id="first_name" placeholder="Prénom">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="last_name"
-                            id="last_name" placeholder="Nom de famille">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="last_name" id="last_name" placeholder="Nom de famille">
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control rm-text-input shadow-none" name="email" id="email"
-                            placeholder="Votre e-mail (optionnel)">
+                        <input type="email" class="form-control rm-text-input shadow-none" name="email" id="email" placeholder="Votre e-mail (optionnel)">
                     </div>
 
                     <div class="form-group">
-                        <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people"
-                            id="number_of_people" placeholder="Nombre de personnes (table)" min="1">
+                        <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people" id="number_of_people" placeholder="Nombre de personnes (table)" min="1">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone"
-                            placeholder="Numéro de téléphone">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone" placeholder="Numéro de téléphone">
+                    </div>
+
+                    @if(($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time) || $restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
+                    <div class="mb-2 text-center timing-text">
+                        @if($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time)
+                        <div>
+                            Heure du matin: {{$restaurant->restaurantTime->morning_start_time}} à {{$restaurant->restaurantTime->morning_end_time}}
+                        </div>
+                        @endif
+
+                        @if($restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
+                        <div>
+                            soirée: {{$restaurant->restaurantTime->evening_start_time}} à {{$restaurant->restaurantTime->evening_end_time}}
+                        </div>
+                        @endif
+                    </div>
+                    @endif
+
+                    <div class="form-group">
+                        <div class="input-group date" id="appointment_time_fr" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none" name="appointment_time" data-target="#appointment_time_fr" placeholder="Sélectionnez votre temps" />
+                            <div class="input-group-append" data-target="#appointment_time_fr" data-toggle="datetimepicker">
+                                <div class="input-group-text input-group-text-no-border"><i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-check form-check-flat form-check-primary">
@@ -207,8 +237,7 @@
                 </div>
                 <div class="modal-footer visitor-modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Clôturer</button>
-                    <button type="submit"
-                        class="btn btn-primary shadow-none btn-restomenu-primary visitor-submit-btn">Enregistrer</button>
+                    <button type="submit" class="btn btn-primary shadow-none btn-restomenu-primary visitor-submit-btn">Enregistrer</button>
                 </div>
             </form>
         </div>
@@ -216,8 +245,7 @@
 </div>
 
 <!-- Visitor Modal nl-->
-<div class="modal fade" id="visitorModalNl" tabindex="-1" role="dialog" aria-labelledby="visitorModalTitle"
-    aria-hidden="true">
+<div class="modal fade" id="visitorModalNl" tabindex="-1" role="dialog" aria-labelledby="visitorModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -237,39 +265,58 @@
                             Registreren</button>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('menu-nl',['slug' => $restaurant->slug])}}"
-                            class="btn btn-block btn-primary shadow-none btn-restomenu-primary">Ja, ga naar menu
+                        <a href="{{route('menu-nl',['slug' => $restaurant->slug])}}" class="btn btn-block btn-primary shadow-none btn-restomenu-primary">Ja, ga naar menu
                         </a>
                     </div>
                 </div>
             </div>
 
-            <form action="{{route('menu-visitor-save',['slug' => $restaurant->slug])}}" method="post" id="visitorFormNl"
-                class="d-none">
+            <form action="{{route('menu-visitor-save',['slug' => $restaurant->slug])}}" method="post" id="visitorFormNl" class="d-none">
                 <div class="modal-body visitor-form-block">
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="first_name"
-                            id="first_name" placeholder="Voornaam">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="first_name" id="first_name" placeholder="Voornaam">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="last_name"
-                            id="last_name" placeholder="Achternaam">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="last_name" id="last_name" placeholder="Achternaam">
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control rm-text-input shadow-none" name="email" id="email"
-                            placeholder="Jouw e-mail (optioneel)">
+                        <input type="email" class="form-control rm-text-input shadow-none" name="email" id="email" placeholder="Jouw e-mail (optioneel)">
                     </div>
 
                     <div class="form-group">
-                        <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people"
-                            id="number_of_people" placeholder="Hoeveel personen tafelen mee?" min="1">
+                        <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people" id="number_of_people" placeholder="Hoeveel personen tafelen mee?" min="1">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone"
-                            placeholder="Telefoonnummer">
+                        <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone" placeholder="Telefoonnummer">
+                    </div>
+
+                    @if(($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time) || $restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
+                    <div class="mb-2 text-center timing-text">
+                        @if($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time)
+                        <div>
+                            Ochtend tijd: {{$restaurant->restaurantTime->morning_start_time}} tot {{$restaurant->restaurantTime->morning_end_time}}
+                        </div>
+                        @endif
+
+                        @if($restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
+                        <div>
+                            Avond tijd: {{$restaurant->restaurantTime->evening_start_time}} tot {{$restaurant->restaurantTime->evening_end_time}}
+                        </div>
+                        @endif
+                    </div>
+                    @endif
+
+                    <div class="form-group">
+                        <div class="input-group date" id="appointment_time_nl" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none" name="appointment_time" data-target="#appointment_time_nl" placeholder="Selecteer uw tijd" />
+                            <div class="input-group-append" data-target="#appointment_time_nl" data-toggle="datetimepicker">
+                                <div class="input-group-text input-group-text-no-border"><i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-check form-check-flat form-check-primary">
@@ -290,8 +337,7 @@
                 </div>
                 <div class="modal-footer visitor-modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Afsluiten</button>
-                    <button type="submit"
-                        class="btn btn-primary shadow-none btn-restomenu-primary visitor-submit-btn">Opslaan</button>
+                    <button type="submit" class="btn btn-primary shadow-none btn-restomenu-primary visitor-submit-btn">Opslaan</button>
                 </div>
             </form>
         </div>
@@ -322,11 +368,14 @@
             number_of_people: {
                 required: true,
             },
+            appointment_time: {
+                required: true,
+            },
             phone: {
                 required: true,
                 number: true
             },
-            is_terms_checked:{
+            is_terms_checked: {
                 required: true,
             }
         },
@@ -343,21 +392,26 @@
             number_of_people: {
                 required: "This field is required.",
             },
+            appointment_time: {
+                required: "This field is required.",
+            },
             phone: {
                 required: "This field is required.",
                 number: "Please enter a valid phone number.",
             },
-            is_terms_checked:{
+            is_terms_checked: {
                 required: "Please accept terms of service.",
             }
         },
         errorPlacement: function(error, element) {
-			if (element.attr("name") == "is_terms_checked") {
-				error.insertAfter($(element).closest('.form-check'));
-			} else {
-				error.insertAfter(element);
-			}
-		},
+            if (element.attr("name") == "is_terms_checked") {
+                error.insertAfter($(element).closest('.form-check'));
+            } else if (element.attr("name") == "appointment_time") {
+                error.insertAfter($(element).closest('.input-group'));
+            } else {
+                error.insertAfter(element);
+            }
+        },
         submitHandler: function() {
             registerVisitor();
         },
@@ -383,11 +437,14 @@
             number_of_people: {
                 required: true,
             },
+            appointment_time: {
+                required: true,
+            },
             phone: {
                 required: true,
                 number: true
             },
-            is_terms_checked:{
+            is_terms_checked: {
                 required: true,
             }
         },
@@ -404,21 +461,26 @@
             number_of_people: {
                 required: "Ce champ est obligatoire.",
             },
+            appointment_time: {
+                required: "Ce champ est obligatoire.",
+            },
             phone: {
                 required: "Ce champ est obligatoire.",
                 number: "Veuillez introduire un numéro de téléphone valide.",
             },
-            is_terms_checked:{
+            is_terms_checked: {
                 required: "Veuillez accepter les conditions.",
             }
         },
         errorPlacement: function(error, element) {
-			if (element.attr("name") == "is_terms_checked") {
-				error.insertAfter($(element).closest('.form-check'));
-			} else {
-				error.insertAfter(element);
-			}
-		},
+            if (element.attr("name") == "is_terms_checked") {
+                error.insertAfter($(element).closest('.form-check'));
+            } else if (element.attr("name") == "appointment_time") {
+                error.insertAfter($(element).closest('.input-group'));
+            } else {
+                error.insertAfter(element);
+            }
+        },
         submitHandler: function() {
             registerVisitorFr();
         },
@@ -444,11 +506,14 @@
             number_of_people: {
                 required: true,
             },
+            appointment_time: {
+                required: true,
+            },
             phone: {
                 required: true,
                 number: true
             },
-            is_terms_checked:{
+            is_terms_checked: {
                 required: true,
             }
         },
@@ -465,21 +530,26 @@
             number_of_people: {
                 required: "Dit veld is verplicht.",
             },
+            appointment_time: {
+                required: "Dit veld is verplicht.",
+            },
             phone: {
                 required: "Dit veld is verplicht.",
                 number: "Gelieve een geldig telefoonnummer in te geven.",
             },
-            is_terms_checked:{
+            is_terms_checked: {
                 required: "Gelieve de voorwaarden te accepteren.",
             }
         },
         errorPlacement: function(error, element) {
-			if (element.attr("name") == "is_terms_checked") {
-				error.insertAfter($(element).closest('.form-check'));
-			} else {
-				error.insertAfter(element);
-			}
-		},
+            if (element.attr("name") == "is_terms_checked") {
+                error.insertAfter($(element).closest('.form-check'));
+            } else if (element.attr("name") == "appointment_time") {
+                error.insertAfter($(element).closest('.input-group'));
+            } else {
+                error.insertAfter(element);
+            }
+        },
         submitHandler: function() {
             registerVisitorNl();
         },
@@ -627,7 +697,26 @@
         $('#visitorFormEn').find('.error').removeClass('error');
         $('#visitorFormEn').addClass('d-none');
     });
-    
+
+    var dateNow = new Date();
+    var nowHour = moment().format('HH');
+    var nowMinute = moment().format('mm');
+    $('#visitorModalEn,#visitorModalFr,#visitorModalNl').on('show.bs.modal', function() {
+        $("#appointment_time_en").data("datetimepicker").date(new Date());
+        $("#appointment_time_fr").data("datetimepicker").date(new Date());
+        $("#appointment_time_nl").data("datetimepicker").date(new Date());
+    });
+
+    $('#appointment_time_en,#appointment_time_fr,#appointment_time_nl').datetimepicker({
+        format: 'HH:mm',
+        defaultDate: dateNow,
+        minDate: moment({
+            h: nowHour,
+            minute: nowMinute
+        }),
+        // maxDate: moment({h:24}),
+    });
+
     $('#visitorModalFr').on('hidden.bs.modal', function() {
         $('#visitorFormFr').trigger("reset");
         visitorFormValidationFr.resetForm();
@@ -642,24 +731,15 @@
         $('#visitorFormNl').addClass('d-none');
     });
 
-    $(".register-en").on('click',function(){
+    $(".register-en").on('click', function() {
         $('#visitorFormEn').removeClass('d-none');
     });
 
-    var morningstarttime = "{{$restaurantTime->morning_start_time}}";
-     var   a = morningstarttime.split(':');
-     var abc =a[0];
-     var abc2 =a[1];
-  $('#appointmentTimepicker').datetimepicker({
-            format: 'HH:mm',
-            minDate: moment({hour: `${abc}`, minute: `${abc2}`}),
-            // maxDate: moment({h:23})
-        });
-    $(".register-fr").on('click',function(){
+    $(".register-fr").on('click', function() {
         $('#visitorFormFr').removeClass('d-none');
     });
 
-    $(".register-nl").on('click',function(){
+    $(".register-nl").on('click', function() {
         $('#visitorFormNl').removeClass('d-none');
     });
 </script>
