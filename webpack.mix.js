@@ -68,7 +68,10 @@ mix.combine(
         "resources/assets/front/vendor/sweetalert2/sweetalert2.min.js",
         "resources/assets/front/vendor/toastr/toastr.min.js",
         "resources/assets/front/vendor/select2/select2.full.min.js",
-        "resources/assets/front/vendor/star-rating/jquery.star-rating-svg.js"
+        "resources/assets/front/vendor/star-rating/jquery.star-rating-svg.js",
+        "resources/assets/front/vendor/moment/moment.min.js",
+        "resources/assets/front/vendor/tempusdominus/tempusdominus-bootstrap-4.min.js"
+
         // 'resources/assets/front/js/inspinia.js'
     ],
     "public/front/js/vendor.js"
