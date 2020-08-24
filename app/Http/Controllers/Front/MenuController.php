@@ -15,6 +15,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ComboDishRepository;
 use App\Repositories\RestaurantRepository;
 use App;
+use App\Models\RestaurantTime;
 use DB;
 
 class MenuController extends Controller
@@ -73,7 +74,9 @@ class MenuController extends Controller
 
     public function selectLanguage($restaurant)
     {
-        return view("front.select-language.index")->with('restaurant', $restaurant);
+        $restaurantTime= RestaurantTime::where('restaurant_id',$restaurant->id)->first();
+        // dd($restaurantTime->morning_start_time);
+        return view("front.select-language.index")->with(['restaurant'=> $restaurant,'restaurantTime'=>$restaurantTime]);
     }
 
     public function menuDutch($slug)
