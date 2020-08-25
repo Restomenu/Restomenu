@@ -698,24 +698,27 @@
         $('#visitorFormEn').addClass('d-none');
     });
 
-    var dateNow = new Date();
-    var nowHour = moment().format('HH');
-    var nowMinute = moment().format('mm');
-    $('#visitorModalEn,#visitorModalFr,#visitorModalNl').on('show.bs.modal', function() {
-        $("#appointment_time_en").data("datetimepicker").date(new Date());
-        $("#appointment_time_fr").data("datetimepicker").date(new Date());
-        $("#appointment_time_nl").data("datetimepicker").date(new Date());
-    });
 
-    $('#appointment_time_en,#appointment_time_fr,#appointment_time_nl').datetimepicker({
-        format: 'HH:mm',
-        defaultDate: dateNow,
-        minDate: moment({
-            h: nowHour,
-            minute: nowMinute
-        }),
-        // maxDate: moment({h:24}),
-    });
+    if ("{{$restaurant->restaurantTime}}") {
+        var dateNow = new Date();
+        var nowHour = moment().format('HH');
+        var nowMinute = moment().format('mm');
+        $('#visitorModalEn,#visitorModalFr,#visitorModalNl').on('show.bs.modal', function() {
+            $("#appointment_time_en").data("datetimepicker").date(new Date());
+            $("#appointment_time_fr").data("datetimepicker").date(new Date());
+            $("#appointment_time_nl").data("datetimepicker").date(new Date());
+        });
+
+        $('#appointment_time_en,#appointment_time_fr,#appointment_time_nl').datetimepicker({
+            format: 'HH:mm',
+            defaultDate: dateNow,
+            minDate: moment({
+                h: nowHour,
+                minute: nowMinute
+            }),
+            // maxDate: moment({h:24}),
+        });
+    }
 
     $('#visitorModalFr').on('hidden.bs.modal', function() {
         $('#visitorFormFr').trigger("reset");
