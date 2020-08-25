@@ -193,7 +193,7 @@
                         <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone" placeholder="Numéro de téléphone">
                     </div>
 
-                    @if($restaurant->restaurantTime && ($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time) || $restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
+                    @if(($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time) || $restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)
                     <div class="mb-2 text-center timing-text">
                         @if($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time)
                         <div>
