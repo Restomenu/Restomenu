@@ -186,19 +186,5 @@
     "Welcome back! Log in to your account.": "Welcome back! Log in to your account.",
     "Agree with submitting your information to our customers record.": "Agree with submitting your information to our customers record.",
     "Please enter only digits.": "Please enter only digits.",
-    "New Customer Registered!": "New Customer Registered!",
-
-    "Change Customer Status": "Change Customer Status",
-    "Pending": "Pending",
-    "Accept": "Accept",
-    "Schedule": "Schedule",
-    "Accepted": "Accepted",
-    "Canceled": "Canceled",
-    "Scheduled": "Scheduled",
-    "Appointment Time": "Appointment Time",
-    "Please select another time.": "Please select another time.",
-    "Select Your Time": "Select Your Time",
-    "Morning Time": "Morning Time",
-    "Evening Time": "Evening Time",
-    "To": "To"
+    "New Customer Registered!": "New Customer Registered!"
 }

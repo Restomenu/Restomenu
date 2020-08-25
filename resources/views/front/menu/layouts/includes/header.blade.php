@@ -83,46 +83,10 @@ function setActiveMenu($route)
                             placeholder="@lang('Phone number')">
                     </div>
 
-                    @if(($restaurant->restaurantTime->morning_start_time &&
-                    $restaurant->restaurantTime->morning_end_time) || $restaurant->restaurantTime->evening_start_time &&
-                    $restaurant->restaurantTime->evening_end_time)
-                    <div class="mb-2 text-center timing-text">
-                        @if($restaurant->restaurantTime->morning_start_time &&
-                        $restaurant->restaurantTime->morning_end_time)
-                        <div>
-                            @lang('Morning Time'): {{$restaurant->restaurantTime->morning_start_time}} @lang('To')
-                            {{$restaurant->restaurantTime->morning_end_time}}
-                        </div>
-                        @endif
-
-                        @if($restaurant->restaurantTime->evening_start_time &&
-                        $restaurant->restaurantTime->evening_end_time)
-                        <div>
-                            @lang('Evening Time'): {{$restaurant->restaurantTime->evening_start_time}} @lang('To')
-                            {{$restaurant->restaurantTime->evening_end_time}}
-                        </div>
-                        @endif
-                    </div>
-                    @endif
-
-                    <div class="form-group">
-                        <div class="input-group date" id="appointment_time" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
-                                name="appointment_time" data-target="#appointment_time"
-                                placeholder="@lang('Select Your Time')" />
-                            <div class="input-group-append" data-target="#appointment_time"
-                                data-toggle="datetimepicker">
-                                <div class="input-group-text input-group-text-no-border"><i class="fa fa-calendar"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">
                             <input type="checkbox" class="form-check-input" name="is_terms_checked" value="1">
-                            <a href="{{env('TERMS_CONDITIONS_URL')}}" class="t-c-link" target="_blank">@lang('I agree to
-                                the terms of service.')</a>
+                            <a href="{{env('TERMS_CONDITIONS_URL')}}" class="t-c-link" target="_blank">@lang('I agree to the terms of service.')</a>
                         </label>
                     </div>
 
@@ -166,9 +130,6 @@ function setActiveMenu($route)
             number_of_people: {
                 required: true,
             },
-            appointment_time: {
-                required: true,
-            },
             phone: {
                 required: true,
                 number: true
@@ -190,9 +151,6 @@ function setActiveMenu($route)
             number_of_people: {
                 required: "@lang('This field is required.')",
             },
-            appointment_time: {
-                required: "@lang('This field is required.')",
-            },
             phone: {
                 required: "@lang('This field is required.')",
                 number: "@lang('Please enter a valid phone number.')",
@@ -204,11 +162,9 @@ function setActiveMenu($route)
         errorPlacement: function(error, element) {
 			if (element.attr("name") == "is_terms_checked") {
 				error.insertAfter($(element).closest('.form-check'));
-			} else if (element.attr("name") == "appointment_time") {
-                error.insertAfter($(element).closest('.input-group'));
-            } else {
+			} else {
 				error.insertAfter(element);
-            }
+			}
 		},
         submitHandler: function() {
             registerVisitor();
@@ -256,23 +212,6 @@ function setActiveMenu($route)
             }
         });
     }
-
-    var dateNow = new Date();
-    var nowHour = moment().format('HH');
-    var nowMinute = moment().format('mm');
-    $('#visitorModal').on('show.bs.modal', function() {
-        $("#appointment_time").data("datetimepicker").date(new Date());
-    });
-
-    $('#appointment_time').datetimepicker({
-        format: 'HH:mm',
-        defaultDate: dateNow,
-        minDate: moment({
-            h: nowHour,
-            minute: nowMinute
-        }),
-        // maxDate: moment({h:24}),
-    });
 
     $('#visitorModal').on('hidden.bs.modal', function() {
         $('#visitorForm').trigger("reset");

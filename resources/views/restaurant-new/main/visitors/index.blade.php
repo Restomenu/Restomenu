@@ -61,77 +61,6 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="statusModal" role="dialog" aria-labelledby="feedbackModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                    @lang('Change Customer Status')
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="javascript:void(0);" method="post" id="customerStatusForm">
-                <div class="modal-body p-4">
-                    <div class="form-group row">
-                        <div class="col-12 col-sm-3">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="panding_btn"
-                                        value="0">
-                                    @lang('Pending')
-                                    <i class="input-frame"></i></label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-3">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="accept_btn"
-                                        value="1">
-                                    @lang('Accept')
-                                    <i class="input-frame"></i></label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-3">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="reject_btn"
-                                        value="-1">
-                                    @lang('Cancel')
-                                    <i class="input-frame"></i></label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-3">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="schedule_btn"
-                                        value="2">
-                                    @lang('Schedule')
-                                    <i class="input-frame"></i></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row appointment_time_block d-none">
-                        <label for="appointment_time">@lang('Appointment Time')</label>
-                        <input type="text" class="form-control" name="appointment_time" id="appointment_time" />
-                    </div>
-
-                    <input type="hidden" class="form-control" name="visitor_id" id="visitor_id">
-                </div>
-                <div class="modal-footer feedback-modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
-                    <button type="button"
-                        class="btn btn-primary shadow-none btn-restomenu-primary status-submit-btn">@lang('Save')</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
 
 @endsection
 
@@ -275,21 +204,30 @@
                 searchable: false,
                 orderable: false,
                 render: function(appointment_status, type, visitor, meta) {
-                    
-                    var resultStr = '<div>';
+                    var resultStr = '';
                     if(appointment_status===0) {
-                        resultStr += `<a href="#" class="badge badge-primary">@lang('Pending')</a>`;
+                        resultStr += `<select name="appointment_status" class="appointment_status" data-customer-id="${visitor.id}">
+                                        <option value="0" selected>Pending</option>
+                                        <option value="1">Accept</option>
+                                        <option value="-1">Reject</option>
+                                    </select>`;
+
                     }else if(appointment_status===1) {
-                        resultStr += `<a href="#" class="badge badge-success">@lang('Accepted')</a>`;
+
+                        resultStr += `<select name="appointment_status" class="appointment_status" data-customer-id="${visitor.id}">
+                                        <option value="0">Pending</option>
+                                        <option value="1" selected>Accept</option>
+                                        <option value="-1">Reject</option>
+                                    </select>`;
+
                     }else if(appointment_status===-1) {
-                        resultStr += `<a href="#" class="badge badge-danger">@lang('Canceled')</a>`;
-                    }else if(appointment_status===2) {
-                        resultStr += `<a href="#" class="badge badge-warning">@lang('Scheduled')</a>`;
+
+                        resultStr += `<select name="appointment_status" class="appointment_status" data-customer-id="${visitor.id}">
+                                        <option value="0">Pending</option>
+                                        <option value="1">Accept</option>
+                                        <option value="-1" selected>Reject</option>
+                                    </select>`;
                     }
-
-                    resultStr += `<a class="btn btn-primary change-status-btn ml-2" href="#"  data-visitor-id="${visitor.id}" data-current-status="${visitor.appointment_status}" data-appointment-time="${visitor.appointment_time}"><i class='fa fa-edit'></i></a>`;
-                    resultStr += "</div>";
-
                     return resultStr;
                 }
             },
@@ -392,119 +330,6 @@
             error: function(xhr, status, error) {
                 ajaxError(xhr, status, error);
             },
-        });
-    }
-
-    $(document).on('click', ".change-status-btn", function(e) {
-        var visitorId = $(this).data('visitor-id');
-        var currentStatus = $(this).data('current-status');
-        var appointmentTime = $(this).data('appointment-time');
-
-        if(currentStatus === 0) {
-            $('#panding_btn').prop("checked", true);
-            $('.appointment_time_block').addClass('d-none');
-        } else if(currentStatus === 1) {
-            $('#accept_btn').prop("checked", true);
-            $('.appointment_time_block').addClass('d-none');
-        } else if(currentStatus === -1) {
-            $('#reject_btn').prop("checked", true);
-            $('.appointment_time_block').addClass('d-none');
-        } else if(currentStatus === 2) {
-            $('#schedule_btn').prop("checked", true);
-            $('.appointment_time_block').removeClass('d-none');
-        }
-        
-        $('#statusModal #visitor_id').val(visitorId);
-        $('#appointment_time').val(appointmentTime);
-        $('#statusModal').modal('show');
-
-        $('#appointment_time').clockpicker({
-            donetext: "@lang('Done')",
-        });
-    });
-
-    $(document).on('change', "input[type=radio][name=status]", function(e) {
-        if (this.value == '2') {
-            $('.appointment_time_block').removeClass('d-none');
-        }else{
-            $('.appointment_time_block').addClass('d-none');
-        }
-    });
-
-    $(document).on('click', ".status-submit-btn", function(e) {
-        $('#customerStatusForm').submit();
-    });
-
-    var statusFormValidation = $("#customerStatusForm").validate({
-        normalizer: function(value) {
-            return $.trim(value);
-        },
-        rules: {
-            status: {
-                required: false,
-            },
-            appointment_time: {
-                required: true,
-            }
-        },
-        messages: {
-            status: {
-                required: "@lang('This field is required.')",
-            },
-            appointment_time: {
-                required: "@lang('This field is required.')",
-            }
-        },
-        // errorPlacement: function(error, element) {
-        //     error.insertAfter(element);
-        // },
-        submitHandler: function() {
-            changeStatus();
-        },
-    });
-
-    $('#statusModal').on('hidden.bs.modal', function() {
-        $('#customerStatusForm').trigger("reset");
-        statusFormValidation.resetForm();
-        $('#customerStatusForm').find('.error').removeClass('error');
-    });
-
-    function changeStatus() {
-        var statusFormData = $('#customerStatusForm').serialize();
-
-        $.ajax({
-            url: "{{route('restaurant.visitors-status-update')}}",
-            method: 'POST',
-            data: statusFormData,
-            processData: false,
-            cache: false,
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}",
-            },
-            beforeSend: function() {
-                $('.status-submit-btn').prop("disabled", true);
-                $('.status-submit-btn').html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> @lang('Loading')...`);
-            },
-            success: function(data, status, xhr) {
-                $('#statusModal').modal('hide');
-                visitorTable.draw();
-                fnToastSuccess(data.message);
-            },
-            error: function(xhr, status, error) {
-                if (xhr.status == 422) {
-                    var errorObj = Object.values(xhr.responseJSON.errors)
-                    for (var key in errorObj) {
-                        var value = errorObj[key];
-                        fnToastError(value.pop());
-                    }
-                } else {
-                    ajaxError(xhr, status, error);
-                }
-            },
-            complete: function() {
-                $('.status-submit-btn').attr("disabled", false);
-                $('.status-submit-btn').html(`@lang('Save')`);
-            }
         });
     }
 
