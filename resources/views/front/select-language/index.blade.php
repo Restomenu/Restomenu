@@ -1,7 +1,6 @@
 @extends('front.select-language.layouts.default')
 
 @section('content')
-
 <div class="language-selection-box-mobile-languages-box">
     <h2>
         @if($restaurant->setting->language_dutch)
@@ -90,15 +89,6 @@
                     <div class="form-group">
                         <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people"
                             id="number_of_people" placeholder="Number of people" min="1">
-                    </div>
-                    
-                    <div class="input-group date timepicker" id="appointmentTimepicker" data-target-input="nearest">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="appointment_time" id="appointment_time"
-                            placeholder="Select Your Time">
-
-                        <div class="input-group-append" data-target="#appointmentTimepicker" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i data-feather="clock"></i></div>
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -646,15 +636,6 @@
         $('#visitorFormEn').removeClass('d-none');
     });
 
-    var morningstarttime = "{{$restaurantTime->morning_start_time}}";
-     var   a = morningstarttime.split(':');
-     var abc =a[0];
-     var abc2 =a[1];
-  $('#appointmentTimepicker').datetimepicker({
-            format: 'HH:mm',
-            minDate: moment({hour: `${abc}`, minute: `${abc2}`}),
-            // maxDate: moment({h:23})
-        });
     $(".register-fr").on('click',function(){
         $('#visitorFormFr').removeClass('d-none');
     });
