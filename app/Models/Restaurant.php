@@ -44,9 +44,4 @@ class Restaurant extends Authenticatable
     {
         return $this->hasOne('App\Models\Setting');
     }
-
-    public function restaurantTime()
-    {
-        return $this->hasOne('App\Models\RestaurantTime');
-    }
 }

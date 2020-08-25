@@ -2,14 +2,6 @@
 
 @section('title', isset($module_name) ? __(Str::plural($module_name)) : '')
 
-@push("stylesheets")
-<style>
-    select {
-        color: #000;
-    }
-</style>
-@endpush
-
 @section('content')
 
 <div class="row">
@@ -49,7 +41,6 @@
                                 <th>{{__('Number Of People')}}</th>
                                 <th>{{__('Check In')}}</th>
                                 <th>{{__('Check Out')}}</th>
-                                <th>{{__('Status')}}</th>
                                 {{-- <th>{{__('Action')}}</th> --}}
                             </tr>
                         </thead>
@@ -59,8 +50,6 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection
 
@@ -171,7 +160,6 @@
             {
                 data: 'number_of_people',
                 name: "number_of_people",
-                searchable: false,
                 defaultContent: "N/A",
                 width: '10%'
             },
@@ -179,14 +167,12 @@
                 data: 'checkin_at',
                 name: "checkin_at",
                 defaultContent: "N/A",
-                searchable: false,
                 width: '10%'
             },
             {
                 data: 'checkout_at',
                 name: 'checkout_at',
                 orderable: false,
-                searchable: false,
                 "render": function(data, type, full, meta) {
                     var resultStr = '';
                     if (!full.checkout_at) {
@@ -196,39 +182,6 @@
                     } else if (full.checkout_at) {
                         return full.checkout_at;
                     }
-                }
-            },
-            {
-                data: 'appointment_status',
-                name: 'appointment_status',
-                searchable: false,
-                orderable: false,
-                render: function(appointment_status, type, visitor, meta) {
-                    var resultStr = '';
-                    if(appointment_status===0) {
-                        resultStr += `<select name="appointment_status" class="appointment_status" data-customer-id="${visitor.id}">
-                                        <option value="0" selected>Pending</option>
-                                        <option value="1">Accept</option>
-                                        <option value="-1">Reject</option>
-                                    </select>`;
-
-                    }else if(appointment_status===1) {
-
-                        resultStr += `<select name="appointment_status" class="appointment_status" data-customer-id="${visitor.id}">
-                                        <option value="0">Pending</option>
-                                        <option value="1" selected>Accept</option>
-                                        <option value="-1">Reject</option>
-                                    </select>`;
-
-                    }else if(appointment_status===-1) {
-
-                        resultStr += `<select name="appointment_status" class="appointment_status" data-customer-id="${visitor.id}">
-                                        <option value="0">Pending</option>
-                                        <option value="1">Accept</option>
-                                        <option value="-1" selected>Reject</option>
-                                    </select>`;
-                    }
-                    return resultStr;
                 }
             },
             // {
@@ -253,12 +206,12 @@
     });
 
     //delete Record
-    // $(document).on('click', '.deleteRecord', function(event) {
-    //     var id = $(this).attr('val');
-    //     var deleteUrl = "{!!  $module_route  !!}/" + id;
-    //     var deleteMessage = "{{ __('You want to delete customer?') }}";
-    //     var isDelete = deleteRecordByAjax(deleteUrl, "{{$module_name}}", visitorTable, null, deleteMessage);
-    // });
+    $(document).on('click', '.deleteRecord', function(event) {
+        var id = $(this).attr('val');
+        var deleteUrl = "{!!  $module_route  !!}/" + id;
+        var deleteMessage = "{{ __('You want to delete customer?') }}";
+        var isDelete = deleteRecordByAjax(deleteUrl, "{{$module_name}}", visitorTable, null, deleteMessage);
+    });
 
     $('.select-visitor-type button').click( function() {
         $(this).removeClass('btn-outline-secondary').addClass('btn-secondary').siblings().removeClass('btn-secondary').addClass('btn-outline-secondary');
@@ -307,31 +260,6 @@
             }
         });
     });
-
-    $(document).on("change", ".appointment_status", function () {
-      var value = $(this).val();
-      var customerId = $(this).data('customer-id');
-      changeStatusByAjax(value, customerId);      
-    });
-
-    function changeStatusByAjax(value, customerId) {
-        $.ajax({
-            url: "{{route('restaurant.visitors-status-update')}}",
-            method: "POST",
-            type: "JSON",
-            data: {status:value, customer_id:customerId},
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}",
-            },
-            success: function(data, status, xhr) {
-                visitorTable.draw();
-                fnToastSuccess(data.message);
-            },
-            error: function(xhr, status, error) {
-                ajaxError(xhr, status, error);
-            },
-        });
-    }
 
     setInterval(function() {
         visitorTable.draw(true);

@@ -44,21 +44,21 @@ class VisitorController extends Controller
                 $restaurantPhoneNumber = $restaurant->phone;
                 $availableSmsCount = (int) $setting->available_sms_count;
 
-                if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount && $availableSmsCount > 0 && $restaurantPhoneNumber) {
+                if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount > 0 && $restaurantPhoneNumber) {
 
                     $spryngUsername = config("restomenu.sms.username");
                     $spryngPassword = config("restomenu.sms.password");
                     $spryngCompany = config("restomenu.sms.company");
-                    $message = __("New Customer Registered!");
+                    $message = "New Customer Registered!";
 
                     $spryng = new Client($spryngUsername, $spryngPassword, $spryngCompany);
                     // $balance = $spryng->sms->checkBalance();
 
                     try {
-                        $spryng->sms->send($restaurantPhoneNumber, $message, [
-                            'route' => 'business',
-                            'allowlong' => true,
-                        ]);
+                        // $spryng->sms->send($restaurantPhoneNumber, $message, [
+                        //     'route' => 'business',
+                        //     'allowlong' => true,
+                        // ]);
 
                         $setting->available_sms_count = $availableSmsCount - 1;
                         $setting->save();

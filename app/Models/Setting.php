@@ -21,4 +21,9 @@ class Setting extends Model
             return asset('admin/images/placeholder-image.png');
         }
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models');
+    }
 }
