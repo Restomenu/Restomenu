@@ -192,42 +192,42 @@
 
                 <fieldset class="form-group">
                     <legend class="scheduler-border">Change Password</legend>
-                
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Current Password')}}</label>
-                    <div class="col-sm-6">
-                       
-                        {{ Form::text('old_password', null, ['id' => 'old_password', 'class'=>"form-control"]) }}
 
-                        @if($errors->has('old_password'))
-                        <p class="text-danger">{{ $errors->first('old_password') }}</p>
-                        @endif
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-2">{{__('Current Password')}}</label>
+                        <div class="col-sm-6">
+
+                            {{ Form::text('old_password', null, ['id' => 'old_password', 'class'=>"form-control"]) }}
+
+                            @if($errors->has('old_password'))
+                            <p class="text-danger">{{ $errors->first('old_password') }}</p>
+                            @endif
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('New Password')}}</label>
-                    <div class="col-sm-6">
-                       
-                        {{ Form::text('password', null, ['id' => 'password', 'class'=>"form-control"]) }}
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-2">{{__('New Password')}}</label>
+                        <div class="col-sm-6">
 
-                        @if($errors->has('password'))
-                        <p class="text-danger">{{ $errors->first('password') }}</p>
-                        @endif
+                            {{ Form::text('password', null, ['id' => 'password', 'class'=>"form-control"]) }}
+
+                            @if($errors->has('password'))
+                            <p class="text-danger">{{ $errors->first('password') }}</p>
+                            @endif
+                        </div>
                     </div>
-                </div>
 
 
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Confirm Password')}}</label>
-                    <div class="col-sm-6">
-                       
-                        {{ Form::text('password_confirmation', null, ['id' => 'password_confirmation', 'class'=>"form-control"]) }}
-                        @if($errors->has('password_confirmation'))
-                        <p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
-                        @endif
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-2">{{__('Confirm Password')}}</label>
+                        <div class="col-sm-6">
+
+                            {{ Form::text('password_confirmation', null, ['id' => 'password_confirmation', 'class'=>"form-control"]) }}
+                            @if($errors->has('password_confirmation'))
+                            <p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
+                            @endif
+                        </div>
                     </div>
-                </div>
                 </fieldset>
                 <div class="hr-line-dashed"></div>
 
@@ -332,6 +332,18 @@
                 menu_primary_color:{
                     required: true,
                     colorHex:true
+                },
+                morning_start_time: {
+                    required: true,
+                },
+                morning_end_time: {
+                    required: true,
+                },
+                evening_start_time:{
+                    required: true,
+                },
+                evening_end_time: {
+                    required: true,
                 }
             },
             messages: {
@@ -341,8 +353,19 @@
                 },
                 menu_primary_color:{
                     required: "@lang('This field is required.')",
+                },
+                morning_start_time: {
+                    required: "@lang('This field is required.')",
+                },
+                morning_end_time: {
+                    required: "@lang('This field is required.')",
+                },
+                evening_start_time: {
+                    required: "@lang('This field is required.')",
+                },
+                evening_end_time: {
+                    required: "@lang('This field is required.')",
                 }
-                
 		    },
         });
     });
