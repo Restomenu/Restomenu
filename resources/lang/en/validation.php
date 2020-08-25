@@ -133,10 +133,6 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'password' => [
-            'required'=>"Password required.",
-            'confirmed' => 'your password not match',
-        ]
     ],
 
     /*

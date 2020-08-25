@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\RestaurantTime;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
@@ -112,79 +108,6 @@ class SettingController extends Controller
                 } elseif (!$request->admin_language_french && $result->defualt_language == 'fr' || !$request->admin_language_french && $request->defualt_language == 'fr') {
                     return redirect(route('restaurant.settings-edit'))->with("error", "Sorry! You Can't Inactive Default langauge French");
                 }
-
-                if ($request->old_password) {
-                    $hashedPassword = Restaurant::find($restaurantId)->password;
-                    // dd($hashedPassword);
-                    if (Hash::check($request->old_password, $hashedPassword)) {
-                        // $this->validate($request, [
-                        //     'password' => 'required|confirmed'
-                        // ]);
-
-
-                        $validator = Validator::make($request->all(), [
-                            'password' => 'required',
-                            'password_confirmation' => 'same:password',
-                        ], [
-                            'password_confirmation.same' => 'Confirm password does not match.'
-                        ]);
-
-                        if ($validator->fails()) {
-                            return back()->withInput()->withErrors($validator->messages());
-                        }
-
-                        $newpassword = Hash::make($request->password);
-
-
-
-                        Restaurant::find($restaurantId)->update(['password' => $newpassword]);
-                    } else {
-                        return redirect(route('restaurant.settings-edit'))->with("error", "Sorry! Your Current Password is Wrong");
-                    }
-                }
-
-
-                if (auth()->guard('restaurant')->user()->email != $request->email) {
-                    $validator = Validator::make($request->all(), [
-                        'email' => 'required|email|max:255|unique:restaurants',
-
-                    ], [
-                        'email.unique' => 'This Email Already Registered',
-                        'email.required' => 'Please Email Address',
-
-                    ]);
-
-                    if ($validator->fails()) {
-                        return back()->withInput()->withErrors($validator->messages());
-                    }
-
-                    Restaurant::find($restaurantId)->update(['email' => $request->email]);
-                }
-
-                if (auth()->guard('restaurant')->user()->phone != $request->phone) {
-
-
-                    $validator = Validator::make($request->all(), [
-                        'phone' => 'required|numeric|unique:restaurants',
-
-                    ], [
-                        'phone.unique' => 'This Number Already Registered',
-                        'phone.required' => 'Please Enter Number',
-
-                    ]);
-
-                    if ($validator->fails()) {
-                        return back()->withInput()->withErrors($validator->messages());
-                    }
-
-                    // $this->validate($request, [
-                    //     'phone' => 'required|numeric|unique:restaurants',
-                    // ]);
-
-
-                    Restaurant::find($restaurantId)->update(['phone' => $request->phone]);
-                }
-
 
                 $isSaved = $result->update($inputs);
                 $sessionLangauge = session()->get('locale');

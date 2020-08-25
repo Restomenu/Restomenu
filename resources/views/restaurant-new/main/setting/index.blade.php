@@ -190,69 +190,6 @@
                     </div>
                 </div>
 
-                <fieldset class="form-group">
-                    <legend class="scheduler-border">Change Password</legend>
-                
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Current Password')}}</label>
-                    <div class="col-sm-6">
-                       
-                        {{ Form::text('old_password', null, ['id' => 'old_password', 'class'=>"form-control"]) }}
-
-                        @if($errors->has('old_password'))
-                        <p class="text-danger">{{ $errors->first('old_password') }}</p>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('New Password')}}</label>
-                    <div class="col-sm-6">
-                       
-                        {{ Form::text('password', null, ['id' => 'password', 'class'=>"form-control"]) }}
-
-                        @if($errors->has('password'))
-                        <p class="text-danger">{{ $errors->first('password') }}</p>
-                        @endif
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Confirm Password')}}</label>
-                    <div class="col-sm-6">
-                       
-                        {{ Form::text('password_confirmation', null, ['id' => 'password_confirmation', 'class'=>"form-control"]) }}
-                        @if($errors->has('password_confirmation'))
-                        <p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
-                        @endif
-                    </div>
-                </div>
-                </fieldset>
-                <div class="hr-line-dashed"></div>
-
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Mail Address')}}</label>
-                    <div class="col-sm-6">
-                        {{ Form::text('email', auth()->guard('restaurant')->user()->email, ['id' => 'email', 'class'=>"form-control"]) }}
-                        @if($errors->has('email'))
-                        <p class="text-danger">{{ $errors->first('email') }}</p>
-                        @endif
-                    </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Phone Number')}}</label>
-                    <div class="col-sm-6">
-                        {{ Form::text('phone', auth()->guard('restaurant')->user()->phone, ['id' => 'phone', 'class'=>"form-control"]) }}
-                        @if($errors->has('phone'))
-                        <p class="text-danger">{{ $errors->first('phone') }}</p>
-                        @endif
-                    </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">{{__('Facebook URL')}}</label>
                     <div class="col-sm-6">
