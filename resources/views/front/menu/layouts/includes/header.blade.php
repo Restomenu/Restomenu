@@ -257,24 +257,22 @@ function setActiveMenu($route)
         });
     }
 
-    if ("{{$restaurant->restaurantTime}}") {
-        var dateNow = new Date();
-        var nowHour = moment().format('HH');
-        var nowMinute = moment().format('mm');
-        $('#visitorModal').on('show.bs.modal', function() {
-            $("#appointment_time").data("datetimepicker").date(new Date());
-        });
+    var dateNow = new Date();
+    var nowHour = moment().format('HH');
+    var nowMinute = moment().format('mm');
+    $('#visitorModal').on('show.bs.modal', function() {
+        $("#appointment_time").data("datetimepicker").date(new Date());
+    });
 
-        $('#appointment_time').datetimepicker({
-            format: 'HH:mm',
-            defaultDate: dateNow,
-            minDate: moment({
-                h: nowHour,
-                minute: nowMinute
-            }),
-            // maxDate: moment({h:24}),
-        });
-    }
+    $('#appointment_time').datetimepicker({
+        format: 'HH:mm',
+        defaultDate: dateNow,
+        minDate: moment({
+            h: nowHour,
+            minute: nowMinute
+        }),
+        // maxDate: moment({h:24}),
+    });
 
     $('#visitorModal').on('hidden.bs.modal', function() {
         $('#visitorForm').trigger("reset");
