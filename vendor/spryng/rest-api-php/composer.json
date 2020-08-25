@@ -1,0 +1,27 @@
+{
+    "name": "spryng/rest-api-php",
+    "description": "Implementation of the REST API in PHP",
+    "type": "library",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Roemer Bakker",
+            "email": "contact@roemerbaker.com"
+        }
+    ],
+    "keywords": [
+        "spryng", "sms", "php", "rest", "api", "text", "gateway"
+    ],
+    "require": {
+      "ext-curl": "*",
+      "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spryng\\SpryngRestApi\\": "src/Spryng/SpryngRestApi"
+        }
+    }
+}
