@@ -80,11 +80,10 @@ class RestaurantController extends Controller
             'image' => 'required',
             'slug' => 'required|unique:restaurants,slug,NULL,id,deleted_at,NULL',
             'color' => 'required',
-            'available_sms_count' => 'required|numeric'
         ]);
 
         try {
-            $inputs = $request->except('_token', 'image', 'color', 'password', 'available_sms_count');
+            $inputs = $request->except('_token', 'image', 'color', 'password');
             $inputs['password'] = bcrypt($request->password);
             $isSaved = $this->model->create($inputs);
 
@@ -100,7 +99,6 @@ class RestaurantController extends Controller
                     "restaurant_id" => $isSaved->id,
                     "site_logo" => $fileName,
                     "site_name" => $request->name,
-                    "available_sms_count" => (int) $request->available_sms_count,
                     "language_english" => 1,
                     "language_dutch" => 1,
                     "language_french" => 1,
@@ -188,7 +186,6 @@ class RestaurantController extends Controller
             'email' => 'required|unique:restaurants,email,' . $id . ',id,deleted_at,NULL',
             'slug' => 'required|unique:restaurants,slug,' . $id . ',id,deleted_at,NULL',
             'color' => 'required',
-            'available_sms_count' => 'required|numeric'
         ]);
 
         try {
@@ -196,7 +193,7 @@ class RestaurantController extends Controller
             $setting = $this->settingModel->where('restaurant_id', $id)->first();
 
             if ($result) {
-                $inputs = $request->except('_token', 'image', 'color', 'password', 'available_sms_count');
+                $inputs = $request->except('_token', 'image', 'color', 'password');
 
                 if ($request->password) {
                     $inputs['password'] = bcrypt($request->password);
@@ -220,7 +217,6 @@ class RestaurantController extends Controller
                     }
                     $setting->site_name = $request->name;
                     $setting->menu_primary_color = $request->color;
-                    $setting->available_sms_count = $request->available_sms_count;
                     $setting->save();
 
                     return redirect($this->moduleRoute)->with("success", __($this->moduleName . " updated!"));

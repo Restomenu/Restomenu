@@ -8,10 +8,8 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <div class="custom-header d-flex pt-1 row">
-                    <div class="col-12 col-sm-6">
-                        <h4 class="mt-1">{{isset($module_name) ? __(Str::plural($module_name)) : ''}}</h4>
-                    </div>
+                <div class="custom-header d-flex pt-1">
+                    <h4 class="mt-1">{{isset($module_name) ? __(Str::plural($module_name)) : ''}}</h4>
                 </div>
             </div>
             <div class="card-body">

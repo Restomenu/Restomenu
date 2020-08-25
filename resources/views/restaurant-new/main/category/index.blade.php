@@ -8,17 +8,12 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <div class="custom-header d-flex pt-1 row">
-                    <div class="col-12 col-sm-6">
-                        <h4 class="mt-1">{{__(Str::plural($module_name))}}</h4>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="ml-auto">
-                            <a href="{{ $module_route."/sorting" }}"
-                                class="btn btn-sm btn-primary pull-right mr-2">{{__('Sort')}}</a>
-                            <a href="{{ $module_route."/create" }}"
-                                class="btn btn-sm btn-primary pull-right mr-2">{{__('Add')}}</a>
-                        </div>
+                <div class="custom-header d-flex pt-1">
+                    <h4 class="mt-1">{{__(Str::plural($module_name))}}</h4>
+
+                    <div class="ml-auto">
+                        <a href="{{ $module_route."/sorting" }}" class="btn btn-sm btn-primary mr-2">{{__('Sort')}}</a>
+                        <a href="{{ $module_route."/create" }}" class="btn btn-sm btn-primary ">{{__('Add')}}</a>
                     </div>
                 </div>
             </div>

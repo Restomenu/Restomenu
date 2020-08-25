@@ -8,17 +8,14 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <div class="custom-header d-flex pt-1 row">
-                    <div class="col-12 col-sm-6">
-                        <h4 class="mt-1">{{__(Str::plural($module_name))}}</h4>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="ml-auto">
-                            <a href="{{ $module_route."/create" }}"
-                                class="btn btn-sm btn-primary pull-right">{{__('Add')}}</a>
-                            <a href="{{ $module_route."/multiple-create" }}"
-                                class="btn btn-sm btn-primary pull-right mr-2">{{__('Multiple Add')}}</a>
-                        </div>
+                <div class="custom-header d-flex pt-1">
+                    <h4 class="mt-1">{{__(Str::plural($module_name))}}</h4>
+
+                    <div class="ml-auto">
+                        <a href="{{ $module_route."/create" }}"
+                            class="btn btn-sm btn-primary pull-right">{{__('Add')}}</a>
+                        <a href="{{ $module_route."/multiple-create" }}"
+                        class="btn btn-sm btn-primary pull-right mr-2">{{__('Multiple Add')}}</a>
                     </div>
                 </div>
             </div>
@@ -29,7 +26,7 @@
                             <tr>
                                 {{-- <th>{{__('No.')}}</th> --}}
                                 <th>{{__('Name')}}</th>
-                                {{-- <th>{{__('Description')}}</th> --}}
+                                <th>{{__('Description')}}</th>
                                 <th>{{__('Price')}} (€)</th>
                                 <th>{{__('Category')}}</th>
                                 <th>{{__('Status')}}</th>
@@ -92,12 +89,12 @@
                 defaultContent: "N/A",
                 width: '10%'
             },
-            // {
-            //     data: 'description',
-            //     name: "description",
-            //     defaultContent: "N/A",
-            //     width: '10%'
-            // },
+            {
+                data: 'description',
+                name: "description",
+                defaultContent: "N/A",
+                width: '10%'
+            },
             {
                 data: 'price',
                 name: "price",

@@ -42,17 +42,6 @@
 
 <div class="hr-line-dashed"></div>
 <div class="form-group row">
-    <label class="col-form-label col-sm-2">{{__('Phone')}}</label>
-    <div class="col-sm-6">
-        {{ Form::text('phone', null, ['id' => 'phone', 'class'=>"form-control"]) }}
-        @if($errors->has('phone'))
-        <p class="text-danger">{{ $errors->first('phone') }}</p>
-        @endif
-    </div>
-</div>
-
-<div class="hr-line-dashed"></div>
-<div class="form-group row">
     <label class="col-form-label col-sm-2">{{__('Logo')}}</label>
     <div class="col-sm-6">
         {{ Form::file("image", ["class"=>"form-control", "id" => "image"]) }}
@@ -81,17 +70,6 @@
         {{ Form::text('slug', null, ['id' => 'slug', 'class'=>"form-control"]) }}
         @if($errors->has('slug'))
         <p class="text-danger">{{ $errors->first('slug') }}</p>
-        @endif
-    </div>
-</div>
-
-<div class="hr-line-dashed"></div>
-<div class="form-group row">
-    <label class="col-form-label col-sm-2">{{__('Available SMS')}}</label>
-    <div class="col-sm-6">
-        {{ Form::text('available_sms_count', isset($result) ? $result->setting->available_sms_count : 50, ['id' => 'available_sms_count', 'class'=>"form-control"]) }}
-        @if($errors->has('available_sms_count'))
-        <p class="text-danger">{{ $errors->first('available_sms_count') }}</p>
         @endif
     </div>
 </div>
@@ -157,9 +135,6 @@
 					},
                     minlength:8
                 },
-                phone:{
-                    digits: true
-                },
                 image:{
                     required: function() {
 						@if(!isset($result))
@@ -190,10 +165,6 @@
                 color:{
                     required: true,
                     colorHex:true
-                },
-                available_sms_count:{
-                    required: true,
-                    digits: true
                 }
             },
             messages: {
@@ -210,9 +181,6 @@
                     required: "@lang('This field is required.')",
                     minlength:"@lang('Please enter at least 8 characters.')"
                 },
-                phone:{
-                    digits: "@lang('Please enter only digits.')",
-                },
                 image:{
                     required: "@lang('This field is required.')",
                 },
@@ -223,11 +191,8 @@
                 },
                 color:{
                     required: "@lang('This field is required.')",
-                },
-                available_sms_count:{
-                    required: "@lang('This field is required.')",
-                    digits: "@lang('Please enter only digits.')",
                 }
+                
 		    },
         });
     });
