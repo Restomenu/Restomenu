@@ -83,9 +83,7 @@ function setActiveMenu($route)
                             placeholder="@lang('Phone number')">
                     </div>
 
-                    @if($restaurant->restaurantTime && (($restaurant->restaurantTime->morning_start_time &&
-                    $restaurant->restaurantTime->morning_end_time) || ($restaurant->restaurantTime->evening_start_time
-                    && $restaurant->restaurantTime->evening_end_time)))
+                    @if($restaurant->restaurantTime && (($restaurant->restaurantTime->morning_start_time && $restaurant->restaurantTime->morning_end_time) || ($restaurant->restaurantTime->evening_start_time && $restaurant->restaurantTime->evening_end_time)))
                     <div class="mb-2 text-center timing-text">
                         @if($restaurant->restaurantTime->morning_start_time &&
                         $restaurant->restaurantTime->morning_end_time)
@@ -103,6 +101,7 @@ function setActiveMenu($route)
                         </div>
                         @endif
                     </div>
+                    @endif
 
                     <div class="form-group">
                         <div class="input-group date" id="appointment_time" data-target-input="nearest">
@@ -116,7 +115,6 @@ function setActiveMenu($route)
                             </div>
                         </div>
                     </div>
-                    @endif
 
                     <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">

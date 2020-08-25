@@ -103,6 +103,7 @@
                         </div>
                         @endif
                     </div>
+                    @endif
 
                     <div class="form-group">
                         {{-- <input type="text" class="form-control rm-text-input shadow-none" name="appointment_time"
@@ -117,7 +118,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
 
                     <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">
@@ -207,6 +207,7 @@
                         </div>
                         @endif
                     </div>
+                    @endif
 
                     <div class="form-group">
                         <div class="input-group date" id="appointment_time_fr" data-target-input="nearest">
@@ -217,7 +218,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
 
                     <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">
@@ -307,6 +307,7 @@
                         </div>
                         @endif
                     </div>
+                    @endif
 
                     <div class="form-group">
                         <div class="input-group date" id="appointment_time_nl" data-target-input="nearest">
@@ -317,7 +318,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
 
                     <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">
@@ -353,7 +353,7 @@
         normalizer: function(value) {
             return $.trim(value);
         },
-        // ignore: [],
+        ignore: [],
         rules: {
             first_name: {
                 required: true,
@@ -422,7 +422,7 @@
         normalizer: function(value) {
             return $.trim(value);
         },
-        // ignore: [],
+        ignore: [],
         rules: {
             first_name: {
                 required: true,
@@ -491,7 +491,7 @@
         normalizer: function(value) {
             return $.trim(value);
         },
-        // ignore: [],
+        ignore: [],
         rules: {
             first_name: {
                 required: true,
