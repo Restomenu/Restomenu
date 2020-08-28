@@ -68,7 +68,7 @@ return [
     */
 
     'timezone' => 'Europe/Paris',
-
+    // 'timezone' => 'Asia/Kolkata',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

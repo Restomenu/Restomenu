@@ -317,3 +317,62 @@ mix.combine(
     ],
     "public/restaurant-new/js/vendor.js"
 );
+
+//************************ reservation **************************/
+mix.js("resources/assets/reservation/js/app.js", "public/reservation/js");
+mix.js("resources/assets/reservation/js/main.js", "public/reservation/js")
+    .sass(
+        "resources/assets/reservation/sass/app.scss",
+        "public/reservation/css"
+    )
+    .copyDirectory(
+        ["resources/assets/reservation/images"],
+        "public/reservation/images"
+    )
+    .copyDirectory(
+        ["resources/assets/reservation/fonts"],
+        "public/reservation/fonts"
+    )
+    .copyDirectory(
+        ["resources/assets/reservation/vendor/font-awesome/fonts"],
+        "public/reservation/css/fonts"
+    );
+
+mix.styles(
+    ["resources/assets/reservation/css/style.css"],
+    "public/reservation/css/style.css"
+);
+mix.styles(
+    ["resources/assets/reservation/fonts/material-design-iconic-font.min.css"],
+    "public/reservation/css/material-design-iconic-font.min.css"
+);
+
+mix.combine(
+    [
+        "resources/assets/reservation/vendor/font-awesome/font-awesome.css",
+        "resources/assets/reservation/fonts/material-design-iconic-font.min.css",
+        "resources/assets/reservation/vendor/sweetalert2/sweetalert2.min.css",
+        "resources/assets/reservation/vendor/toastr/toastr.min.css",
+        "resources/assets/reservation/vendor/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css"
+        // "resources/assets/reservation/vendor/jquery-steps/jquery.steps.css"
+    ],
+    "public/reservation/css/vendor.css"
+);
+
+mix.combine(
+    [
+        "resources/assets/reservation/vendor/slimscroll/jquery.slimscroll.min.js",
+        "resources/assets/reservation/vendor/metisMenu/jquery-metisMenu.js",
+        "resources/assets/reservation/vendor/popper/popper.min.js",
+        "resources/assets/reservation/vendor/jquery-validation/jquery-validate.min.js",
+        "resources/assets/reservation/vendor/jquery-validation/additional-methods.min.js",
+        "resources/assets/reservation/vendor/pace/pace.min.js",
+        "resources/assets/reservation/vendor/sweetalert2/es6-promise.auto.min.js",
+        "resources/assets/reservation/vendor/sweetalert2/sweetalert2.min.js",
+        "resources/assets/reservation/vendor/toastr/toastr.min.js",
+        "resources/assets/reservation/vendor/jquery-steps/jquery.steps.js",
+        "resources/assets/reservation/vendor/moment/moment.min.js",
+        "resources/assets/reservation/vendor/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.js"
+    ],
+    "public/reservation/js/vendor.js"
+);

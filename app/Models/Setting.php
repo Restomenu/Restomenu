@@ -24,6 +24,6 @@ class Setting extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models');
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -10,11 +10,17 @@
     "/admin/css/app.css": "/admin/css/app.css",
     "/restaurant/css/app.css": "/restaurant/css/app.css",
     "/restaurant-new/css/app.css": "/restaurant-new/css/app.css",
+    "/reservation/css/app.css": "/reservation/css/app.css",
     "/front/js/app.js.map": "/front/js/app.js.map",
     "/front/css/app.css.map": "/front/css/app.css.map",
     "/admin/css/app.css.map": "/admin/css/app.css.map",
     "/restaurant/css/app.css.map": "/restaurant/css/app.css.map",
     "/restaurant-new/css/app.css.map": "/restaurant-new/css/app.css.map",
+    "/reservation/css/app.css.map": "/reservation/css/app.css.map",
+    "/reservation/js/app.js": "/reservation/js/app.js",
+    "/reservation/js/app.js.map": "/reservation/js/app.js.map",
+    "/reservation/js/main.js": "/reservation/js/main.js",
+    "/reservation/js/main.js.map": "/reservation/js/main.js.map",
     "/restaurant-new/js/app.js": "/restaurant-new/js/app.js",
     "/restaurant-new/js/app.js.map": "/restaurant-new/js/app.js.map",
     "/restaurant-new/js/template.js": "/restaurant-new/js/template.js",
@@ -35,5 +41,9 @@
     "/restaurant/js/vendor.js": "/restaurant/js/vendor.js",
     "/errors/404.svg": "/errors/404.svg",
     "/restaurant-new/css/vendor.css": "/restaurant-new/css/vendor.css",
-    "/restaurant-new/js/vendor.js": "/restaurant-new/js/vendor.js"
+    "/restaurant-new/js/vendor.js": "/restaurant-new/js/vendor.js",
+    "/reservation/css/style.css": "/reservation/css/style.css",
+    "/reservation/css/material-design-iconic-font.min.css": "/reservation/css/material-design-iconic-font.min.css",
+    "/reservation/css/vendor.css": "/reservation/css/vendor.css",
+    "/reservation/js/vendor.js": "/reservation/js/vendor.js"
 }

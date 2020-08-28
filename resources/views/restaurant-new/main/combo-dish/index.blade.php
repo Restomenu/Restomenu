@@ -8,41 +8,43 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <div class="custom-header d-flex pt-1">
-                    <h4 class="mt-1">{{isset($module_name) ? __(Str::plural($module_name)) : ''}}</h4>
-
-                    <div class="ml-auto">
-                        <a href="{{ $module_route."/create" }}"
-                            class="btn btn-sm btn-primary pull-right">{{__('Add')}}</a>
+                <div class="custom-header d-flex pt-1 row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mt-1">{{isset($module_name) ? __(Str::plural($module_name)) : ''}}</h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="ml-auto">
+                            <a href="{{ $module_route."/create" }}"
+                                class="btn btn-sm btn-primary pull-right mr-2">{{__('Add')}}</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="combo-dish-table" class="table table-bordered table-hover" width="100%">
-                        <thead>
-                            <tr>
-                                {{-- <th>{{__('No.')}}</th> --}}
-                                <th>{{__('Name')}}</th>
-                                {{-- <th>{{__('Description')}}</th> --}}
-                                <th>{{__('Status')}}</th>
-                                {{-- <th>{{__('Image')}}</th> --}}
-                                <th>{{__('Action')}}</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="combo-dish-table" class="table table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    {{-- <th>{{__('No.')}}</th> --}}
+                                    <th>{{__('Name')}}</th>
+                                    {{-- <th>{{__('Description')}}</th> --}}
+                                    <th>{{__('Status')}}</th>
+                                    {{-- <th>{{__('Image')}}</th> --}}
+                                    <th>{{__('Action')}}</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@endsection
+    @endsection
 
-@push('scripts')
+    @push('scripts')
 
-<script>
-    var comboDishTable = $("#combo-dish-table").DataTable({
+    <script>
+        var comboDishTable = $("#combo-dish-table").DataTable({
         "dom": '<"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
         processing: true,
         serverSide: true,
@@ -133,5 +135,5 @@
         var deleteMessage = "{{ __('You want to delete Combo Dish?') }}";
         var isDelete = deleteRecordByAjax(deleteUrl, "{{$module_name}}", comboDishTable, null, deleteMessage);
     });
-</script>
-@endpush
+    </script>
+    @endpush

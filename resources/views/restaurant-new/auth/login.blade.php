@@ -4,6 +4,42 @@
 
 @section('content')
 
+<div class="languageDropdownBlock">
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                @if (app()->getLocale() == 'en')
+                <i class="flag-icon flag-icon-us mt-1" title="us"></i>
+
+                @elseif (app()->getLocale() == 'fr')
+                <i class="flag-icon flag-icon-fr" title="fr"></i>
+
+                @elseif (app()->getLocale() == 'nl')
+                <i class="flag-icon flag-icon-be" title="nl"></i>
+                @endif
+            </a>
+            <div class="dropdown-menu" aria-labelledby="languageDropdown">
+
+                <a href="javascript:;" class="dropdown-item py-2" id="lang-btn-nl">
+                    <i class="flag-icon flag-icon-be" title="us"></i>
+                </a>
+
+                <a href="javascript:;" class="dropdown-item py-2" id="lang-btn-fr">
+                    <i class="flag-icon flag-icon-fr" title="us"></i>
+                </a>
+
+                <a href="javascript:;" class="dropdown-item py-2" id="lang-btn-en">
+                    <i class="flag-icon flag-icon-us" title="us"></i>
+                </a>
+
+            </div>
+        </li>
+
+    </ul>
+</div>
+
 <div class="page-content d-flex align-items-center justify-content-center">
     <div class="row w-100 mx-0 auth-page">
         <div class="col-md-8 col-xl-6 mx-auto">
@@ -24,7 +60,7 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <label for="email">Email address</label>
+                                    <label for="email">{{__('Email address')}}</label>
                                     <input type="email" class="form-control  @error('email') is-invalid @enderror"
                                         placeholder="Email" name="email" autofocus autocomplete="email"
                                         value="{{ old('email') }}">
@@ -37,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password">{{__('Password')}}</label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror"
                                         placeholder="Password" name="password">
 
@@ -51,12 +87,14 @@
                                     <label class="form-check-label">
                                         <input type="checkbox" class="form-check-input"
                                             {{ old('remember') ? 'checked' : '' }}>
-                                        Remember me
+                                        {{__('Remember me')}}
                                     </label>
                                 </div>
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0">Login</button>
-                                  <a href="{{ route('restaurant.password-reset-form') }}"><small>Forgot password?</small></a>
+                                    <button type="submit"
+                                        class="btn btn-primary mr-2 mb-2 mb-md-0">{{__('Login')}}</button>
+                                    <a href="{{ route('restaurant.password-reset-form') }}"><small>{{__('Forgot
+                                            password?')}}</small></a>
 
                                 </div>
                             </form>
@@ -69,3 +107,17 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    $("#lang-btn-en").click(function() {
+        window.location = "{{ route('restaurant.auth.lang',['locale' => 'en']) }}";
+    });
+    $("#lang-btn-nl").click(function() {
+        window.location = "{{ route('restaurant.auth.lang',['locale' => 'nl']) }}";
+    });
+    $("#lang-btn-fr").click(function() {
+        window.location = "{{ route('restaurant.auth.lang',['locale' => 'fr']) }}";
+    });
+</script>
+@endpush

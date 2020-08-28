@@ -8,51 +8,56 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <div class="custom-header d-flex pt-1">
-                    <h4 class="mt-1">{{isset($module_name) ? __(Str::plural($module_name)) : ''}}</h4>
-
-                    <div class="ml-auto">
-                        <a href="{{ $module_route."/create" }}" class="btn btn-sm btn-primary ">{{__('Add')}}</a>
+                <div class="custom-header d-flex pt-1 row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mt-1">{{isset($module_name) ? __(Str::plural($module_name)) : ''}}</h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="ml-auto">
+                            <a href="{{ $module_route."/create" }}"
+                                class="btn btn-sm btn-primary pull-right">{{__('Add')}}</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
+                <div class="card-body">
 
-                <div class="text-center">
-                    <div class="btn-group mb-3 select-visitor-type" role="group">
-                        <button type="button" class="btn btn-secondary" data-type="checkIn">{{__('Check In')}}</button>
-                        <button type="button" class="btn btn-outline-secondary"
-                            data-type="checkOut">{{__('Check Out')}}</button>
-                        <button type="button" class="btn btn-outline-secondary" data-type="all">{{__('All')}}</button>
+                    <div class="text-center">
+                        <div class="btn-group mb-3 select-visitor-type" role="group">
+                            <button type="button" class="btn btn-secondary"
+                                data-type="checkIn">{{__('Check In')}}</button>
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-type="checkOut">{{__('Check Out')}}</button>
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-type="all">{{__('All')}}</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="table-responsive">
-                    <table id="visitors-table" class="table table-bordered table-hover" width="100%">
-                        <thead>
-                            <tr>
-                                {{-- <th>{{__('No.')}}</th> --}}
-                                <th>{{__('Last Name')}}</th>
-                                <th>{{__('First Name')}}</th>
-                                <th>{{__('Number Of People')}}</th>
-                                <th>{{__('Check In')}}</th>
-                                <th>{{__('Check Out')}}</th>
-                                {{-- <th>{{__('Action')}}</th> --}}
-                            </tr>
-                        </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="visitors-table" class="table table-bordered table-hover" width="100%">
+                            <thead>
+                                <tr>
+                                    {{-- <th>{{__('No.')}}</th> --}}
+                                    <th>{{__('Last Name')}}</th>
+                                    <th>{{__('First Name')}}</th>
+                                    <th>{{__('Number Of People')}}</th>
+                                    <th>{{__('Check In')}}</th>
+                                    <th>{{__('Check Out')}}</th>
+                                    {{-- <th>{{__('Action')}}</th> --}}
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@endsection
+    @endsection
 
-@push('scripts')
+    @push('scripts')
 
-<script>
-    var visitorsFilterValue = null;
+    <script>
+        var visitorsFilterValue = null;
     var visitorTable = $("#visitors-table").DataTable({
         // "dom": '<"row" <"col-sm-12 mb-3"<"html5buttons"B>>> <"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
         "dom": '<"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
@@ -260,5 +265,5 @@
     setInterval(function() {
         visitorTable.draw(true);
     }, 300000);
-</script>
-@endpush
+    </script>
+    @endpush

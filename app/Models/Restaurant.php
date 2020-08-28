@@ -17,7 +17,7 @@ class Restaurant extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'slug', 'status'
+        'name', 'email', 'password', 'slug', 'status', 'phone'
     ];
 
     /**

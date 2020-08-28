@@ -18,9 +18,9 @@
             <div class="card-header">
                 <h5 class="mt-1">{{ isset($module_name) ? __($module_name) : '' }} {{__('Add')}}</h5>
             </div>
-            {!! Form::open(['url' => $module_route, 'method' => 'POST',
-            "enctype"=>"multipart/form-data",'class'=>'form-horizontal','id'=>'form_validate','name'=>'form_general',
-            'autocomplete'=>'off']) !!}
+                {!! Form::open(['url' => $module_route, 'method' => 'POST',
+                "enctype"=>"multipart/form-data",'class'=>'form-horizontal','id'=>'form_validate','name'=>'form_general',
+                'autocomplete'=>'off']) !!}
             <div class="card-body">
                
                 

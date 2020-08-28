@@ -33,6 +33,12 @@ return [
             'Others', 'others', 'other', 'others', 'Divers', 'Autres'
         ],
         "site_logo_path" => 'storage/site-logo/',
+    ],
+    "sms" => [
+        "is_enabled" => env('SMS_SERVICE_STATUS', 0),
+        "username" => env('SPRYNG_USERNAME', 'restomenu'),
+        "password" => env('SPRYNG_PASSWORD', 'jaydarryrestomenu'),
+        "company" => env('SPRYNG_COMPANY', 'Restomenu'),
     ]
 
 ];

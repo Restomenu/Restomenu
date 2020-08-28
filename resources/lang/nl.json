@@ -184,5 +184,21 @@
     "Login": "Login",
     "Forgot password?": "Passwoord vergeten?",
     "Welcome back! Log in to your account.": "Welkom terug! Log aan met jouw account.",
-    "Agree with submitting your information to our customers record.": "Ik ga akkoord dat mijn gegevens opgenomen worden in het klantenbestand."
+    "Agree with submitting your information to our customers record.": "Ik ga akkoord dat mijn gegevens opgenomen worden in het klantenbestand.",
+
+    "Please enter only digits.": "Please enter only digits.",
+    "New Customer Registered!": "New Customer Registered!",
+    "Change Customer Status": "Change Customer Status",
+    "Pending": "Pending",
+    "Accept": "Accept",
+    "Schedule": "Schedule",
+    "Accepted": "Accepted",
+    "Canceled": "Canceled",
+    "Scheduled": "Scheduled",
+    "Appointment Time": "Appointment Time",
+    "Please select another time.": "Please select another time.",
+    "Select Your Time": "Selecteer uw tijd",
+    "Morning Time": "Ochtend tijd",
+    "Evening Time": "Avond tijd",
+    "To": "tot"
 }
