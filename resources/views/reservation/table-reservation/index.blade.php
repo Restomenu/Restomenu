@@ -40,7 +40,7 @@
 <div class="wrapper-container">
     <div class="wrapper">
         <form action="{{route('reservation.reservation-save',['slug' => $restaurant->slug])}}" method="post"
-            id="visitorForm">
+            id="visitorForm" class="reservation-form">
             <div id="wizard">
                 <!-- SECTION 1 -->
                 <h4></h4>

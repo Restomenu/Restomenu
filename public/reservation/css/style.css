@@ -656,3 +656,7 @@ label.error {
 .t-c-link {
     color: #b36600 !important;
 }
+
+.reservation-form{
+    margin: 0 auto;
+}
