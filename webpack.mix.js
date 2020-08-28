@@ -269,6 +269,7 @@ mix.combine(
         "resources/assets/restaurant-new/plugins/select2/select2.min.css",
         "resources/assets/restaurant-new/plugins/sweetalert2/sweetalert2.min.css",
         "resources/assets/restaurant-new/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css",
+        "resources/assets/restaurant-new/plugins/clockpicker/clockpicker.css",
         "resources/assets/restaurant-new/plugins/star-rating/star-rating-svg.css"
     ],
     "public/restaurant-new/css/vendor.css"
@@ -312,6 +313,7 @@ mix.combine(
         "resources/assets/restaurant-new/plugins/sweetalert2/sweetalert2.min.js",
         "resources/assets/restaurant-new/plugins/promise-polyfill/polyfill.min.js",
         "resources/assets/restaurant-new/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.js",
+        "resources/assets/restaurant-new/plugins/clockpicker/clockpicker.js",
         "resources/assets/restaurant-new/plugins/star-rating/jquery.star-rating-svg.js"
         // "resources/assets/restaurant-new/plugins/typeahead-js/typeahead.bundle.min.js"
     ],
