@@ -33,7 +33,16 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant']
 
     Route::get('visitors/datatable', 'VisitorController@getDatatable')->name('visitors-datatable');
     Route::post('visitors/checkout/{id}', 'VisitorController@editCheckout')->name('visitors-checkout');
+
     Route::resource('visitors', 'VisitorController');
 
+    Route::get('reservations/datatable', 'ReservationController@getDatatable')->name('reservations-datatable');
+    Route::resource('reservations', 'ReservationController');
+
+    Route::post('reservations/status-update', 'ReservationController@statusUpdate')->name('reservation-status-update');
+
     Route::resource('restaurant-feedbacks', 'RestaurantFeedbackController');
+});
+Route::group(['domain' => 'my.restomenu.local', 'namespace' => 'Restaurant'], function () {
+    
 });
