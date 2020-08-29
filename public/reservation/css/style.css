@@ -90,7 +90,7 @@ body {
     background-size: cover;
 }
 
-.main-wrapper{
+.main-wrapper {
     margin-bottom: 50px;
 }
 
@@ -110,7 +110,7 @@ body {
     width: 51%;
 }
 .wrapper form {
-    width: 49%;
+    width: 60%;
 }
 
 .wizard > .steps .current-info,
@@ -657,6 +657,6 @@ label.error {
     color: #b36600 !important;
 }
 
-.reservation-form{
+.reservation-form {
     margin: 0 auto;
 }

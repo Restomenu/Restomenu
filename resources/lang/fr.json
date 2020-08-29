@@ -200,5 +200,31 @@
     "Select Your Time": "Select Your Time",
     "Morning Time": "Morning Time",
     "Evening Time": "Evening Time",
-    "To": "To"
+    "To": "To",
+    "The time format is invalid.": "The time format is invalid.",
+    "Restaurant time updated!": "Restaurant time updated!",
+    "Reservations": "Reservations",
+    "Restaurant Timings": "Restaurant Timings",
+
+    "Monday": "Monday",
+    "Tuesday": "Tuesday",
+    "Wednesday": "Wednesday",
+    "Thursday": "Thursday",
+    "Friday": "Friday",
+    "Saturday": "Saturday",
+    "Sunday": "Sunday",
+
+    "Opening hours": "Opening hours",
+    "Reservation Date": "Reservation Date",
+    "Select Date": "Select Date",
+    "Reservation Time": "Reservation Time",
+    "Select Time": "Select Time",
+    "Adults": "Adults",
+    "Kids": "Kids",
+    "Total People": "Total People",
+    "I confirm to have no COVID symptoms.": "I confirm to have no COVID symptoms.",
+
+    "Book A Table": "Book A Table",
+    "Contact Information": "Contact Information",
+    "Confirm": "Confirm"
 }

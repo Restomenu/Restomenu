@@ -1,6 +1,6 @@
 @extends('restaurant-new.layouts.default')
 
-@section('title', __('Settings'))
+@section('title', isset($module_name) ? __(Str::plural($module_name)) : '')
 
 @section('content')
 
@@ -52,44 +52,6 @@
                         {{ Form::text('site_name', null, ['id' => 'site_name', 'class'=>"form-control"]) }}
                         @if($errors->has('site_name'))
                         <p class="text-danger">{{ $errors->first('site_name') }}</p>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Morning Time')}}</label>
-                    <div class="col-sm-3">
-                        {{ Form::text('morning_start_time', $restaurantTime->morning_start_time ?? null, ['id' => 'morning_start_time', 'class'=>"form-control"]) }}
-                        @if($errors->has('morning_start_time'))
-                        <p class="text-danger">{{ $errors->first('morning_start_time') }}</p>
-                        @endif
-                    </div>
-
-                    <label class="col-form-label">{{__('To')}}</label>
-
-                    <div class="col-sm-3">
-                        {{ Form::text('morning_end_time', $restaurantTime->morning_end_time ?? null, ['id' => 'morning_end_time', 'class'=>"form-control"]) }}
-                        @if($errors->has('morning_end_time'))
-                        <p class="text-danger">{{ $errors->first('morning_end_time') }}</p>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Evening Time')}}</label>
-                    <div class="col-sm-3">
-                        {{ Form::text('evening_start_time', $restaurantTime->evening_start_time ?? null, ['id' => 'evening_start_time', 'class'=>"form-control"]) }}
-                        @if($errors->has('evening_start_time'))
-                        <p class="text-danger">{{ $errors->first('evening_start_time') }}</p>
-                        @endif
-                    </div>
-
-                    <label class="col-form-label">{{__('To')}}</label>
-
-                    <div class="col-sm-3">
-                        {{ Form::text('evening_end_time', $restaurantTime->evening_end_time ?? null, ['id' => 'evening_end_time', 'class'=>"form-control"]) }}
-                        @if($errors->has('evening_end_time'))
-                        <p class="text-danger">{{ $errors->first('evening_end_time') }}</p>
                         @endif
                     </div>
                 </div>
@@ -333,18 +295,6 @@
                     required: true,
                     colorHex:true
                 },
-                morning_start_time: {
-                    required: true,
-                },
-                morning_end_time: {
-                    required: true,
-                },
-                evening_start_time:{
-                    required: true,
-                },
-                evening_end_time: {
-                    required: true,
-                }
             },
             messages: {
 			    site_name: {
@@ -354,18 +304,6 @@
                 menu_primary_color:{
                     required: "@lang('This field is required.')",
                 },
-                morning_start_time: {
-                    required: "@lang('This field is required.')",
-                },
-                morning_end_time: {
-                    required: "@lang('This field is required.')",
-                },
-                evening_start_time: {
-                    required: "@lang('This field is required.')",
-                },
-                evening_end_time: {
-                    required: "@lang('This field is required.')",
-                }
 		    },
         });
     });

@@ -15,19 +15,18 @@ $("#wizard").steps({
         }
         if (newIndex === 2) {
             $(".steps ul").addClass("step-3");
-            $(".actions ul").addClass("step-last");
+            // $(".actions ul").addClass("step-last");
         } else {
             $(".steps ul").removeClass("step-3");
+            // $(".actions ul").removeClass("step-last");
+        }
+        if (newIndex === 3) {
+            $(".steps ul").addClass("step-4");
+            $(".actions ul").addClass("step-last");
+        } else {
+            $(".steps ul").removeClass("step-4");
             $(".actions ul").removeClass("step-last");
         }
-
-        // if (newIndex === 3) {
-        //     $(".steps ul").addClass("step-4");
-        //     $(".actions ul").addClass("step-last");
-        // } else {
-        //     $(".steps ul").removeClass("step-4");
-        //     $(".actions ul").removeClass("step-last");
-        // }
         return true;
     },
     labels: {

@@ -1,7 +1,7 @@
 @extends('restaurant-new.layouts.default')
 
 @section('title', isset($module_name) ? __(Str::plural($module_name)) : '')
-{{-- {!! dd($module_route.'/datatable') !!} --}}
+
 @push("stylesheets")
 <style>
     select {
@@ -34,12 +34,13 @@
                     <div class="btn-group mb-3 select-visitor-type" role="group">
                         <button type="button" class="btn btn-secondary" data-type="all">{{__('All')}}</button>
                         <button type="button" class="btn btn-outline-secondary"
-                        data-type="accept">{{__('Accept')}}</button>
-                        <button type="button" class="btn btn-outline-secondary" data-type="pending">{{__('Pending')}}</button>
+                            data-type="accept">{{__('Accept')}}</button>
                         <button type="button" class="btn btn-outline-secondary"
-                        data-type="schedule">{{__('Schedule')}}</button>
+                            data-type="pending">{{__('Pending')}}</button>
                         <button type="button" class="btn btn-outline-secondary"
-                        data-type="cancel">{{__('Cancel')}}</button>
+                            data-type="schedule">{{__('Schedule')}}</button>
+                        <button type="button" class="btn btn-outline-secondary"
+                            data-type="cancel">{{__('Cancel')}}</button>
                     </div>
                 </div>
 
@@ -51,7 +52,8 @@
                                 <th>{{__('Last Name')}}</th>
                                 <th>{{__('First Name')}}</th>
                                 <th>{{__('Number Of People')}}</th>
-                                <th>{{__('Appointment Time')}}</th>
+                                <th>{{__('Reservation Date')}}</th>
+                                <th>{{__('Reservation Time')}}</th>
                                 {{-- <th>{{__('Check Out')}}</th> --}}
                                 <th>{{__('Status')}}</th>
                                 {{-- <th>{{__('Action')}}</th> --}}
@@ -248,6 +250,13 @@
                 name: "number_of_people",
                 searchable: false,
                 defaultContent: "N/A",
+                width: '20%'
+            },
+            {
+                data: 'appointment_date',
+                name: "appointment_date",
+                defaultContent: "N/A",
+                searchable: false,
                 width: '20%'
             },
             {

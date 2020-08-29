@@ -45,45 +45,182 @@
                 <!-- SECTION 1 -->
                 <h4></h4>
                 <section>
-
-                    @if($restaurant->restaurantTime && (($restaurant->restaurantTime->morning_start_time &&
-                    $restaurant->restaurantTime->morning_end_time) || ($restaurant->restaurantTime->evening_start_time
-                    && $restaurant->restaurantTime->evening_end_time)))
-                    <div class="mb-2 text-center timing-text">
-                        @if($restaurant->restaurantTime->morning_start_time &&
-                        $restaurant->restaurantTime->morning_end_time)
-                        <div>
-                            @lang('Morning Time'): {{$restaurant->restaurantTime->morning_start_time}} @lang('To')
-                            {{$restaurant->restaurantTime->morning_end_time}}
+                    @if ($restaurant->restaurantTime)
+                    <div class="row mb-4">
+                        <div class="col-12 mb-3">
+                            <h5>@lang('Opening hours')</h5>
                         </div>
-                        @endif
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 font-weight-bold">
+                                    <div>@lang('Monday')</div>
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
+                                    {{$restaurant->restaurantTime->monday_mrng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->monday_mrng_ending_time ?? null}}
+                                </div>
+                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                    |
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
+                                    {{$restaurant->restaurantTime->monday_evng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->monday_evng_ending_time ?? null}}
+                                </div>
+                            </div>
 
-                        @if($restaurant->restaurantTime->evening_start_time &&
-                        $restaurant->restaurantTime->evening_end_time)
-                        <div>
-                            @lang('Evening Time'): {{$restaurant->restaurantTime->evening_start_time}} @lang('To')
-                            {{$restaurant->restaurantTime->evening_end_time}}
+                            <div class="row">
+                                <div class="col-12 col-sm-4 font-weight-bold">
+                                    <div>@lang('Tuesday')</div>
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
+                                    {{$restaurant->restaurantTime->tuesday_mrng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->tuesday_mrng_ending_time ?? null}}
+                                </div>
+                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                    |
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
+                                    {{$restaurant->restaurantTime->tuesday_evng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->tuesday_evng_ending_time ?? null}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-4 font-weight-bold">
+                                    <div>@lang('Wednesday')</div>
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
+                                    {{$restaurant->restaurantTime->wednesday_mrng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->wednesday_mrng_ending_time ?? null}}
+                                </div>
+                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                    |
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
+                                    {{$restaurant->restaurantTime->wednesday_evng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->wednesday_evng_ending_time ?? null}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-4 font-weight-bold">
+                                    <div>@lang('Thursday')</div>
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
+                                    {{$restaurant->restaurantTime->thursday_mrng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->thursday_mrng_ending_time ?? null}}
+                                </div>
+                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                    |
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
+                                    {{$restaurant->restaurantTime->thursday_evng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->thursday_evng_ending_time ?? null}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-4 font-weight-bold">
+                                    <div>@lang('Friday')</div>
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
+                                    {{$restaurant->restaurantTime->friday_mrng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->friday_mrng_ending_time ?? null}}
+                                </div>
+                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                    |
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
+                                    {{$restaurant->restaurantTime->friday_evng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->friday_evng_ending_time ?? null}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-4 font-weight-bold">
+                                    <div>@lang('Saturday')</div>
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
+                                    {{$restaurant->restaurantTime->saturday_mrng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->saturday_mrng_ending_time ?? null}}
+                                </div>
+                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                    |
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
+                                    {{$restaurant->restaurantTime->saturday_evng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->saturday_evng_ending_time ?? null}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-4 font-weight-bold">
+                                    <div>@lang('Sunday')</div>
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
+                                    {{$restaurant->restaurantTime->sunday_mrng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->sunday_mrng_ending_time ?? null}}
+                                </div>
+                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                    |
+                                </div>
+                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
+                                    {{$restaurant->restaurantTime->sunday_evng_start_time ?? null}} :
+                                    {{$restaurant->restaurantTime->sunday_evng_ending_time ?? null}}
+                                </div>
+                            </div>
                         </div>
-                        @endif
                     </div>
 
-                    <div class="form-group">
-                        <div class="input-group date" id="appointment_time" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
-                                name="appointment_time" data-target="#appointment_time"
-                                placeholder="@lang('Select Your Time')" />
-                            <div class="input-group-append" data-target="#appointment_time"
-                                data-toggle="datetimepicker">
-                                <div class="input-group-text input-group-text-no-border"><i class="fa fa-calendar"></i>
+                    <div class="row">
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="">@lang('Reservation Date')</label>
+                            <div class="input-group date" id="appointment_date" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
+                                    name="appointment_date" data-target="#appointment_date"
+                                    placeholder="@lang('Select Date')" />
+                                <div class="input-group-append" data-target="#appointment_date"
+                                    data-toggle="datetimepicker">
+                                    <div class="input-group-text input-group-text-no-border"><i
+                                            class="fa fa-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="">@lang('Reservation Time')</label>
+                            <div class="input-group date" id="appointment_time" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
+                                    name="appointment_time" data-target="#appointment_time"
+                                    placeholder="@lang('Select Time')" />
+                                <div class="input-group-append" data-target="#appointment_time"
+                                    data-toggle="datetimepicker">
+                                    <div class="input-group-text input-group-text-no-border"><i
+                                            class="fa fa-clock-o"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     @endif
 
-                    <div class="form-group">
-                        <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people"
-                            id="number_of_people" placeholder="@lang('Number of people')" min="1">
+                    <div class="row">
+                        <div class="form-group col-12 col-sm-4">
+                            <label for="">@lang('Adults')</label>
+                            <input type="number" class="form-control rm-text-input shadow-none" name="adults"
+                                id="adults" placeholder="@lang('Adults')" min="1">
+                        </div>
+                        <div class="form-group col-12 col-sm-4">
+                            <label for="">@lang('Kids')</label>
+                            <input type="number" class="form-control rm-text-input shadow-none" name="kids" id="kids"
+                                placeholder="@lang('Kids')" min="1">
+                        </div>
+                        <div class="form-group col-12 col-sm-4">
+                            <label for="">@lang('Total People')</label>
+                            <input type="number" class="form-control rm-text-input shadow-none" name="number_of_people"
+                                id="number_of_people" placeholder="@lang('Total People')" min="1" readonly>
+                        </div>
                     </div>
 
                 </section>
@@ -115,9 +252,15 @@
                         <label>
                             <input type="checkbox" name="is_terms_checked" value="1"> <a
                                 href="{{env('TERMS_CONDITIONS_URL')}}" class="t-c-link" target="_blank">@lang('I agree
-                                to
-                                the
-                                terms of service.')</a>
+                                to the terms of service.')</a>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="have_covid" value="1">@lang('I confirm to have no COVID
+                            symptoms.')</a>
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -125,8 +268,7 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="is_agreed" value="1">@lang('Agree with submitting your
-                            information
-                            to our customers record.')</a>
+                            information to our customers record.')</a>
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -149,54 +291,88 @@
             </section>
 
             <!-- SECTION 3 -->
-            {{-- <h4></h4>
-        <section>
-            <div class="product">
-                <div class="item">
-                    <div class="left">
-                        <a href="#" class="thumb">
-                            <img src="images/item-1.png" alt="">
-                        </a>
-                        <div class="purchase">
-                            <h6>
-                                <a href="#">Low Table/Stool</a>
-                            </h6>
-                            <span>x4</span>
+            <h4></h4>
+            <section>
+                <div class="contact-info-confirm">
+                    <h5 class="py-3">@lang("Contact Information")</h5>
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('First name')
+                        </div>
+                        <div class="col-6 col-sm-6" id="fname-confirm-text">
+
                         </div>
                     </div>
-                    <span class="price">$29</span>
-                </div>
-                <div class="item">
-                    <div class="left">
-                        <a href="#" class="thumb">
-                            <img src="images/item-2.png" alt="">
-                        </a>
-                        <div class="purchase">
-                            <h6>
-                                <a href="#">Set of 3 Porcelain</a>
-                            </h6>
-                            <span>x2</span>
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Last name')
+                        </div>
+                        <div class="col-6 col-sm-6" id="lname-confirm-text">
+
                         </div>
                     </div>
-                    <span class="price">$124</span>
+                    <div class="row py-2 email-row d-none">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Email')
+                        </div>
+                        <div class="col-6 col-sm-6" id="email-confirm-text">
+
+                        </div>
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Phone number')
+                        </div>
+                        <div class="col-6 col-sm-6" id="phone-confirm-text">
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="checkout">
-                <div class="subtotal">
-                    <span class="heading">Subtotal</span>
-                    <span>$364</span>
+                <div class="book-table-confirm">
+                    <h5 class="py-3">@lang("Reservation Information")</h5>
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Reservation Date')
+                        </div>
+                        <div class="col-6 col-sm-6" id="date-confirm-text">
+
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Reservation Time')
+                        </div>
+                        <div class="col-6 col-sm-6" id="time-confirm-text">
+
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Adults')
+                        </div>
+                        <div class="col-6 col-sm-6" id="adults-confirm-text">
+                            -
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Kids')
+                        </div>
+                        <div class="col-6 col-sm-6" id="kids-confirm-text">
+                            -
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-6 col-sm-4 font-weight-bold">
+                            @lang('Total People')
+                        </div>
+                        <div class="col-6 col-sm-6" id="total-people-confirm-text">
+
+                        </div>
+                    </div>
                 </div>
-                <p class="shipping">
-                    <span class="heading">Shipping</span>
-                    there are no shipping methods available. please double check your address, or contact us if you
-                    need any help.
-                </p>
-                <div class="total">
-                    <span class="heading">Subtotal</span>
-                    <span class="total-price">$364</span>
-                </div>
-            </div>
-        </section> --}}
+            </section>
 
             {{-- <!-- SECTION 4 -->
             <h4 data-after="Billing Details 1"></h4>
@@ -236,20 +412,100 @@
 
 @push('scripts')
 <script>
-    $(".steps ul").attr('data-title','Book A Table');
-    $(".steps ul").attr('data-title-2','Contact Information');
+    $(".steps ul").attr('data-title','@lang("Book A Table")');
+    $(".steps ul").attr('data-title-2','@lang("Contact Information")');
+    $(".steps ul").attr('data-title-3','@lang("Confirm")');
 
     var dateNow = new Date();
     var nowHour = moment().format('HH');
     var nowMinute = moment().format('mm');
     $('#appointment_time').datetimepicker({
         format: 'HH:mm',
-        defaultDate: dateNow,
-        minDate: moment({
-            h: nowHour,
-            minute: nowMinute
-        }),
-        maxDate: moment({h:24}),
+        // defaultDate: dateNow,
+        // minDate: moment({
+        //     h: nowHour,
+        //     minute: nowMinute
+        // }),
+        // maxDate: moment({h:24}),
+    });
+
+    const today = new Date();
+    const yesterday = new Date(today);
+
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    
+    $('#appointment_date').datetimepicker({
+        format: 'YYYY-MM-DD',
+        // defaultDate: moment(),
+        // defaultDate: dateNow,
+        minDate: dateNow,
+        // maxDate: moment({h:24}),
+    });
+
+    // confirm contact info
+    $(document).on('input change', '#first_name', function() {
+        $('#fname-confirm-text').text($(this).val());
+    });
+    $(document).on('input change', '#last_name', function() {
+        $('#lname-confirm-text').text($(this).val());
+    });
+    $(document).on('input change', '#email', function() {
+        if($(this).val() !== ''){
+            $('.email-row').removeClass('d-none');
+        }else{
+            $('.email-row').addClass('d-none');
+        }
+        $('#email-confirm-text').text($(this).val());
+    });
+    $(document).on('input change', '#phone', function() {
+        $('#phone-confirm-text').text($(this).val());
+    });
+    
+    // confirm resrevation info
+    $("#appointment_date").on("change.datetimepicker", ({e, oldDate}) => {    
+        $('#date-confirm-text').text($('[name="appointment_date"]').val());
+    });
+    
+    $("#appointment_time").on("change.datetimepicker", ({e, oldDate}) => {    
+        $('#time-confirm-text').text($('[name="appointment_time"]').val());
+    });
+
+    $(document).on('input change', '#adults', function() {
+        if($(this).val() !== ''){
+            $('#adults-confirm-text').text($(this).val());
+        }else{
+            $('#adults-confirm-text').text('-');
+        }
+    });
+    $(document).on('input change', '#kids', function() {
+        if($(this).val() !== ''){
+            $('#kids-confirm-text').text($(this).val());
+        }else{
+            $('#kids-confirm-text').text('-');
+        }
+    });
+    $(document).on('input change', '#number_of_people', function() {
+        $('#total-people-confirm-text').text($(this).val());
+    });
+
+    // total people calculation
+    $("#adults,#kids").on('input change',function(){
+        var totalPeople = null;
+        
+        var adults = $('#adults').val();
+        var kids = $('#kids').val();
+
+        if(adults !== '' && kids !== '') {
+            totalPeople = parseInt(adults) + parseInt(kids);
+        }else if(adults !== '' && kids === ''){
+            totalPeople = adults;
+        }else if(adults === '' && kids !== ''){
+            totalPeople = kids;
+        }
+
+        $('#number_of_people').val(totalPeople);
+        $('#total-people-confirm-text').text(totalPeople);
     });
 
     var form = $("#visitorForm");
@@ -269,14 +525,33 @@
                 required: false,
                 email: true
             },
+            appointment_date:{
+                required: true,
+            },
+            appointment_time:{
+                required: true,
+            },
+            adults:{
+                required: "#kids:blank",
+                digits: true
+            },
+            kids:{
+                required: "#adults:blank",
+                digits: true
+            },
             number_of_people: {
                 required: true,
+                digits: true
             },
             phone: {
                 required: true,
-                number: true
+                number: true,
+                digits: true
             },
             is_terms_checked:{
+                required: true,
+            },
+            have_covid:{
                 required: true,
             }
         },
@@ -290,21 +565,42 @@
             email: {
                 email: "@lang('Please enter a valid email address.')",
             },
+            appointment_time:{
+                required: "@lang('This field is required.')",
+            },
+            appointment_date:{
+                required: "@lang('This field is required.')",
+            },
             number_of_people: {
                 required: "@lang('This field is required.')",
+                digits: "@lang('Please enter only digits.')"
+            },
+            adults:{
+                required: "@lang('This field is required.')",
+                digits: "@lang('Please enter only digits.')"
+            },
+            kids:{
+                required: "@lang('This field is required.')",
+                digits: "@lang('Please enter only digits.')"
             },
             phone: {
                 required: "@lang('This field is required.')",
                 number: "@lang('Please enter a valid phone number.')",
+                digits: "@lang('Please enter only digits.')"
             },
             is_terms_checked:{
                 required: "@lang('Please accept terms of service.')",
+            },
+            have_covid: {
+                required: "@lang('This field is required.')",
             }
         },
         errorPlacement: function(error, element) {
-			if (element.attr("name") == "is_terms_checked") {
+			if (element.attr("name") == "is_terms_checked" || element.attr("name") == "have_covid") {
 				error.insertAfter($(element).closest('.checkbox'));
-			} else {
+			}else if(element.attr("name") == "appointment_date" || element.attr("name") == "appointment_time"){
+                error.insertAfter($(element).closest('.input-group'));
+            } else {
 				error.insertAfter(element);
 			}
 		},
@@ -334,9 +630,12 @@
             },
             success: function(data, status, xhr) {
                 fnToastSuccess(data.message);
+                // form.resetForm();
+                $('#visitorForm').trigger("reset");
+                $('#visitorForm').find('.error').removeClass('error');
                 setTimeout(function(){
                     location.reload();
-                },1000);
+                },2000);
             },
             error: function(xhr, status, error) {
                 if (xhr.status == 422) {

@@ -25,6 +25,9 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant']
     Route::get('settings', 'SettingController@edit')->name('settings-edit');
     Route::post('settings', 'SettingController@update')->name('settings-update');
 
+    Route::get('restaurant-time', 'RestaurantTimeController@edit')->name('restaurant-time-edit');
+    Route::post('restaurant-time', 'RestaurantTimeController@update')->name('restaurant-time-update');
+
     Route::get('category-icons/datatable', 'CategoryIconController@getDatatable')->name('category-icons-datatable');
     Route::resource('category-icons', 'CategoryIconController');
 

@@ -38,7 +38,6 @@ class SettingController extends Controller
     {
         $restaurantId = auth()->guard('restaurant')->user()->id;
         $result = $this->model->where('restaurant_id', $restaurantId)->first();
-        $restaurantTime = $this->restaurantTimeModel->where('restaurant_id', $restaurantId)->first();
         $selectedLanguage = [];
 
         if ($result) {
@@ -51,7 +50,7 @@ class SettingController extends Controller
             if ($result->admin_language_french == 1) {
                 $selectedLanguage['fr'] = 'French';
             }
-            return view($this->moduleView . ".index", compact("result", "selectedLanguage", "restaurantTime"));
+            return view($this->moduleView . ".index", compact("result", "selectedLanguage"));
         }
         // return redirect()->back()->with("error", __("Sorry, $this->moduleName not found!"));
 
@@ -73,7 +72,7 @@ class SettingController extends Controller
         try {
             if ($result) {
 
-                $inputs = $request->except(['_token', 'morning_start_time', 'morning_end_time', 'evening_start_time', 'evening_end_time']);
+                $inputs = $request->except(['_token']);
 
                 //site logo setting
                 if ($request->site_logo) {
@@ -188,19 +187,6 @@ class SettingController extends Controller
 
                 $isSaved = $result->update($inputs);
                 $sessionLangauge = session()->get('locale');
-
-                $restaurantTime = $this->restaurantTimeModel->where('restaurant_id', $restaurantId)->first();
-                if (!$restaurantTime) {
-                    $restaurantTimings = $request->only(['morning_start_time', 'morning_end_time', 'evening_start_time', 'evening_end_time']);
-                    $restaurantTimings['restaurant_id'] = $restaurantId;
-                    $this->restaurantTimeModel->create($restaurantTimings);
-                } else {
-                    $restaurantTime->morning_start_time = $request->morning_start_time;
-                    $restaurantTime->morning_end_time = $request->morning_end_time;
-                    $restaurantTime->evening_start_time = $request->evening_start_time;
-                    $restaurantTime->evening_end_time = $request->evening_end_time;
-                    $restaurantTime->save();
-                }
 
                 if ($isSaved) {
                     if ($sessionLangauge == 'en') {
