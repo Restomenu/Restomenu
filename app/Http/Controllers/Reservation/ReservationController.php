@@ -150,7 +150,7 @@ class ReservationController extends Controller
                                 Log::info($e->getMessage());
                             }
                         }
-
+                        event(new \App\Events\ReservationEvent());
                         $data = [
                             'message' => __('Registration successful.'),
                         ];

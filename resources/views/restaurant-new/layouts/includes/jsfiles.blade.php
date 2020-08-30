@@ -1,6 +1,7 @@
 <script src="{{ url('restaurant-new/js/app.js') }}" type="text/javascript"></script>
 <script src="{{ url('restaurant-new/js/vendor.js') }}" type="text/javascript"></script>
 <script src="{{ url('restaurant-new/js/template.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/echo.js') }}" type="text/javascript"></script>
 
 <script>
     toastr.options = {
@@ -152,5 +153,11 @@
         }
     }
 
-
+    Echo.private("reservation").listen("ReservationEvent", e => {
+        // console.log(e.action);
+        console.log(e);
+        
+        console.log('here');
+        fnToastSuccess(e.message);
+    });
 </script>

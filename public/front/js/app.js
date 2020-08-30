@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -37257,17 +37257,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/admin/scss/app.scss":
-/*!**********************************************!*\
-  !*** ./resources/assets/admin/scss/app.scss ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/assets/front/js/app.js":
 /*!******************************************!*\
   !*** ./resources/assets/front/js/app.js ***!
@@ -37324,63 +37313,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/assets/front/sass/app.scss":
-/*!**********************************************!*\
-  !*** ./resources/assets/front/sass/app.scss ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/reservation/sass/app.scss":
-/*!****************************************************!*\
-  !*** ./resources/assets/reservation/sass/app.scss ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/restaurant-new/sass/app.scss":
-/*!*******************************************************!*\
-  !*** ./resources/assets/restaurant-new/sass/app.scss ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/restaurant/scss/app.scss":
-/*!***************************************************!*\
-  !*** ./resources/assets/restaurant/scss/app.scss ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/front/js/app.js ./resources/assets/front/sass/app.scss ./resources/assets/admin/scss/app.scss ./resources/assets/restaurant/scss/app.scss ./resources/assets/restaurant-new/sass/app.scss ./resources/assets/reservation/sass/app.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************/
+/***/ 2:
+/*!************************************************!*\
+  !*** multi ./resources/assets/front/js/app.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/front/js/app.js */"./resources/assets/front/js/app.js");
-__webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/front/sass/app.scss */"./resources/assets/front/sass/app.scss");
-__webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/admin/scss/app.scss */"./resources/assets/admin/scss/app.scss");
-__webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/restaurant/scss/app.scss */"./resources/assets/restaurant/scss/app.scss");
-__webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/restaurant-new/sass/app.scss */"./resources/assets/restaurant-new/sass/app.scss");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/reservation/sass/app.scss */"./resources/assets/reservation/sass/app.scss");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/front/js/app.js */"./resources/assets/front/js/app.js");
 
 
 /***/ })

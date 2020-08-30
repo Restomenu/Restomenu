@@ -1,6 +1,7 @@
 <script src="{{ asset('reservation/js/app.js') }}"></script>
 <script src="{{ asset('reservation/js/vendor.js') }}" type="text/javascript"></script>
 <script src="{{ asset('reservation/js/main.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/echo.js') }}" type="text/javascript"></script>
 
 <script>
     toastr.options = {

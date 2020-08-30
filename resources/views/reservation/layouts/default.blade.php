@@ -15,6 +15,11 @@
 
     <title>{{ config('app.name','Restomenu') }} | @yield('title')</title>
 
+    <script>
+        var primaryColor = '{{$restaurant->setting->menu_primary_color}}';
+        document.documentElement.style.setProperty('--reservation-primary-color', primaryColor);
+    </script>
+
     @include('reservation.layouts.includes.cssfiles')
     @stack('stylesheets')
 

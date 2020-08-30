@@ -2,6 +2,7 @@
 <script src="{{url('admin/js/jquery-ui.js')}}"></script>
 <script src="{{ url('admin/js/app.js') }}" type="text/javascript"></script>
 <script src="{{ url('admin/js/vendor.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/echo.js') }}" type="text/javascript"></script>
 
 <script>
     toastr.options = {

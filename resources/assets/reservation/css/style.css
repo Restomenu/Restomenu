@@ -1,3 +1,7 @@
+:root {
+    --reservation-primary-color: #f3d4b7;
+}
+
 @font-face {
     font-family: "Poppins-Regular";
     src: url("../fonts/poppins/Poppins-Regular.ttf");
@@ -86,7 +90,7 @@ img {
 
 body {
     /* background: url("../images/form-wizard-bg.jpg"); */
-    background: antiquewhite;
+    background: #f1f1f2;
     background-size: cover;
 }
 
@@ -145,7 +149,7 @@ body {
 }
 .steps ul li.first a,
 .steps ul li.checked a {
-    background: #f3d4b7;
+    background: var(--reservation-primary-color);
     transition: all 0.5s ease;
 }
 .steps ul:before {
@@ -211,7 +215,7 @@ h3 {
     padding: 0 18px;
 }
 .form-control:focus {
-    border-color: #f3d4b7;
+    border-color: var(--reservation-primary-color);
 }
 .form-control::-webkit-input-placeholder {
     color: #999;
@@ -257,7 +261,7 @@ textarea.form-control {
     height: 51px;
     width: 135px;
     align-items: center;
-    background: #f3d4b7;
+    background: var(--reservation-primary-color);
     cursor: pointer;
     position: relative;
     padding-left: 41px;
@@ -278,7 +282,7 @@ textarea.form-control {
     transform: translateZ(0);
 }
 .actions li a:hover {
-    background: #d9bda3;
+    background: var(--reservation-primary-color);
 }
 .actions li a:hover:before {
     -webkit-animation-name: hvr-icon-wobble-horizontal;
@@ -654,7 +658,7 @@ label.error {
 }
 
 .t-c-link {
-    color: #b36600 !important;
+    color: var(--reservation-primary-color) !important;
 }
 
 .reservation-form {

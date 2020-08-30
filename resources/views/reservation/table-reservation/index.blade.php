@@ -177,8 +177,8 @@
                             <label for="">@lang('Reservation Date')</label>
                             <div class="input-group date" id="appointment_date" data-target-input="nearest">
                                 <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
-                                    name="appointment_date" data-target="#appointment_date"
-                                    placeholder="@lang('Select Date')" />
+                                    name="appointment_date" data-target="#appointment_date" data-toggle="datetimepicker"
+                                    placeholder="@lang('Select Date')" autocomplete="off"/>
                                 <div class="input-group-append" data-target="#appointment_date"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text input-group-text-no-border"><i
@@ -193,7 +193,7 @@
                             <div class="input-group date" id="appointment_time" data-target-input="nearest">
                                 <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
                                     name="appointment_time" data-target="#appointment_time"
-                                    placeholder="@lang('Select Time')" />
+                                    placeholder="@lang('Select Time')" data-toggle="datetimepicker" autocomplete="off"/>
                                 <div class="input-group-append" data-target="#appointment_time"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text input-group-text-no-border"><i

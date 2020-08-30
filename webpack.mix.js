@@ -11,6 +11,7 @@ const mix = require("laravel-mix");
  |
  */
 //************************ front **************************/
+mix.js("resources/js/echo.js", "public/js");
 mix.js("resources/assets/front/js/app.js", "public/front/js")
     .sass("resources/assets/front/sass/app.scss", "public/front/css")
     .copyDirectory(["resources/assets/front/images"], "public/front/images")

@@ -26,6 +26,8 @@
     },
     "dependencies": {
         "compass-mixins": "^0.12.10",
-        "node-sass": "^4.14.1"
+        "laravel-echo": "^1.8.1",
+        "node-sass": "^4.14.1",
+        "socket.io-client": "^2.3.0"
     }
 }
