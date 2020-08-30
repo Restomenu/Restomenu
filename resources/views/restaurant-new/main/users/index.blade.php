@@ -38,13 +38,13 @@
             </div>
         </div>
     </div>
+</div>
+@endsection
 
-    @endsection
+@push('scripts')
 
-    @push('scripts')
-
-    <script>
-        var userTable = $("#user-table").DataTable({
+<script>
+    var userTable = $("#user-table").DataTable({
         "dom": '<"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
         processing: true,
         serverSide: true,
@@ -124,5 +124,5 @@
         var deleteMessage = "{{ __('You want to delete User?') }}";
         var isDelete = deleteRecordByAjax(deleteUrl, "{{$module_name}}", userTable, null, deleteMessage);
     });
-    </script>
-    @endpush
+</script>
+@endpush

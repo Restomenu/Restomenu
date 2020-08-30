@@ -51,13 +51,13 @@
             </div>
         </div>
     </div>
+</div>
+@endsection
 
-    @endsection
+@push('scripts')
 
-    @push('scripts')
-
-    <script>
-        var visitorsFilterValue = null;
+<script>
+    var visitorsFilterValue = null;
     var visitorTable = $("#visitors-table").DataTable({
         // "dom": '<"row" <"col-sm-12 mb-3"<"html5buttons"B>>> <"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
         "dom": '<"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
@@ -265,5 +265,5 @@
     setInterval(function() {
         visitorTable.draw(true);
     }, 300000);
-    </script>
-    @endpush
+</script>
+@endpush
