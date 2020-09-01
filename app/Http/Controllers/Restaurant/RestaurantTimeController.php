@@ -42,14 +42,14 @@ class RestaurantTimeController extends Controller
             if ($result) {
                 $response = $result->update($inputs);
                 if ($response) {
-                    return redirect(route('restaurant.home'))->with("success", __("Restaurant time updated!"));
+                    return redirect(route('restaurant.restaurant-time-edit'))->with("success", __("Restaurant time updated!"));
                 }
                 return redirect(route('restaurant.restaurant-time-edit'))->with("error", __("Something went wrong, please try again later."));
             } else {
                 $inputs['restaurant_id'] = $restaurantId;
                 $isSaved = $this->model->create($inputs);
                 if ($isSaved) {
-                    return redirect(route('restaurant.home'))->with("success", __("Restaurant time updated!"));
+                    return redirect(route('restaurant.restaurant-time-edit'))->with("success", __("Restaurant time updated!"));
                 }
                 return redirect(route('restaurant.restaurant-time-edit'))->with("error", __("Something went wrong, please try again later."));
             }
