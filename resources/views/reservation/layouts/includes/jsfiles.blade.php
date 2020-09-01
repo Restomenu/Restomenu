@@ -107,6 +107,16 @@
         toastr.error(message,"@lang('Error')");
     }
 
+    function fnToastWarning(message) {
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            showMethod: 'slideDown',
+            timeOut: 4000
+        };
+        toastr.warning(message,"@lang('Warning')");
+    }
+
     function ajaxError(xhr, status, error) {
         if (xhr.status == 401) {
             fnToastError("You are not logged in. please login and try again");

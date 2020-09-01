@@ -55,16 +55,19 @@
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Monday')</div>
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
-                                    {{$restaurant->restaurantTime->monday_mrng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->monday_mrng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    {{ isset($restaurant->restaurantTime->monday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_start_time)->format('h:i A') : null  }}
+                                    :
+                                    {{isset($restaurant->restaurantTime->monday_mrng_ending_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_ending_time)->format('h:i A') : null}}
                                 </div>
-                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
-                                    {{$restaurant->restaurantTime->monday_evng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->monday_evng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    {{isset($restaurant->restaurantTime->monday_evng_start_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->monday_evng_ending_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_ending_time)->format('h:i A'): null}}
                                 </div>
                             </div>
 
@@ -72,16 +75,21 @@
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Tuesday')</div>
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
-                                    {{$restaurant->restaurantTime->tuesday_mrng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->tuesday_mrng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    {{isset($restaurant->restaurantTime->tuesday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->tuesday_mrng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_ending_time)->format('h:i A'): null}}
                                 </div>
-                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
-                                    {{$restaurant->restaurantTime->tuesday_evng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->tuesday_evng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    {{isset($restaurant->restaurantTime->tuesday_evng_start_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_evng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->tuesday_evng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_evng_ending_time)->format('h:i A'): null}}
                                 </div>
                             </div>
 
@@ -89,16 +97,19 @@
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Wednesday')</div>
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
-                                    {{$restaurant->restaurantTime->wednesday_mrng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->wednesday_mrng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    {{isset($restaurant->restaurantTime->wednesday_mrng_start_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->wednesday_mrng_ending_time) ?Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_ending_time)->format('h:i A'): null}}
                                 </div>
-                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
-                                    {{$restaurant->restaurantTime->wednesday_evng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->wednesday_evng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    {{isset($restaurant->restaurantTime->wednesday_evng_start_time) ?Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_evng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->wednesday_evng_ending_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_evng_ending_time)->format('h:i A'): null}}
                                 </div>
                             </div>
 
@@ -106,16 +117,20 @@
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Thursday')</div>
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
-                                    {{$restaurant->restaurantTime->thursday_mrng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->thursday_mrng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    {{isset($restaurant->restaurantTime->thursday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_start_time)->format('h:i A') : null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->thursday_mrng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_ending_time)->format('h:i A') : null}}
                                 </div>
-                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
-                                    {{$restaurant->restaurantTime->thursday_evng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->thursday_evng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    {{isset($restaurant->restaurantTime->thursday_evng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_evng_start_time)->format('h:i A') : null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->thursday_evng_ending_time) ? 
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_evng_ending_time)->format('h:i A') : null}}
                                 </div>
                             </div>
 
@@ -123,16 +138,21 @@
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Friday')</div>
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
-                                    {{$restaurant->restaurantTime->friday_mrng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->friday_mrng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    {{isset($restaurant->restaurantTime->friday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_start_time)->format('h:i A') : null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->friday_mrng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_ending_time)->format('h:i A'): null}}
                                 </div>
-                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
-                                    {{$restaurant->restaurantTime->friday_evng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->friday_evng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    {{isset($restaurant->restaurantTime->friday_evng_start_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_evng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->friday_evng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_evng_ending_time)->format('h:i A'): null}}
                                 </div>
                             </div>
 
@@ -140,16 +160,21 @@
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Saturday')</div>
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
-                                    {{$restaurant->restaurantTime->saturday_mrng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->saturday_mrng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    {{isset($restaurant->restaurantTime->saturday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->saturday_mrng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_ending_time)->format('h:i A'): null}}
                                 </div>
-                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
-                                    {{$restaurant->restaurantTime->saturday_evng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->saturday_evng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    {{isset($restaurant->restaurantTime->saturday_evng_start_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_evng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->saturday_evng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_evng_ending_time)->format('h:i A'): null}}
                                 </div>
                             </div>
 
@@ -157,16 +182,21 @@
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Sunday')</div>
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pr-0">
-                                    {{$restaurant->restaurantTime->sunday_mrng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->sunday_mrng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    {{isset($restaurant->restaurantTime->sunday_mrng_start_time) ?Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->sunday_mrng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_ending_time)->format('h:i A'): null}}
                                 </div>
-                                <div class="col-1 col-sm-1 text-left text-sm-center">
+                                <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
-                                <div class="col-5 col-sm-3 text-left text-sm-center pl-0">
-                                    {{$restaurant->restaurantTime->sunday_evng_start_time ?? null}} :
-                                    {{$restaurant->restaurantTime->sunday_evng_ending_time ?? null}}
+                                <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    {{isset($restaurant->restaurantTime->sunday_evng_start_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_evng_start_time)->format('h:i A'): null}}
+                                    :
+                                    {{isset($restaurant->restaurantTime->sunday_evng_ending_time) ?
+                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_evng_ending_time)->format('h:i A'): null}}
                                 </div>
                             </div>
                         </div>
@@ -176,9 +206,10 @@
                         <div class="form-group col-12 col-sm-6">
                             <label for="">@lang('Reservation Date')</label>
                             <div class="input-group date" id="appointment_date" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
+                                <input type="text" id="reservation-date-input"
+                                    class="form-control datetimepicker-input rm-text-input shadow-none"
                                     name="appointment_date" data-target="#appointment_date" data-toggle="datetimepicker"
-                                    placeholder="@lang('Select Date')" autocomplete="off"/>
+                                    placeholder="@lang('Select Date')" autocomplete="off" />
                                 <div class="input-group-append" data-target="#appointment_date"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text input-group-text-no-border"><i
@@ -191,9 +222,11 @@
                         <div class="form-group col-12 col-sm-6">
                             <label for="">@lang('Reservation Time')</label>
                             <div class="input-group date" id="appointment_time" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input rm-text-input shadow-none"
+                                <input type="text" id="reservation-time-input"
+                                    class="form-control datetimepicker-input rm-text-input shadow-none"
                                     name="appointment_time" data-target="#appointment_time"
-                                    placeholder="@lang('Select Time')" data-toggle="datetimepicker" autocomplete="off"/>
+                                    placeholder="@lang('Select Time')" data-toggle="datetimepicker"
+                                    autocomplete="off" />
                                 <div class="input-group-append" data-target="#appointment_time"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text input-group-text-no-border"><i
@@ -214,7 +247,7 @@
                         <div class="form-group col-12 col-sm-4">
                             <label for="">@lang('Kids')</label>
                             <input type="number" class="form-control rm-text-input shadow-none" name="kids" id="kids"
-                                placeholder="@lang('Kids')" min="1">
+                                placeholder="@lang('Kids')" min="0">
                         </div>
                         <div class="form-group col-12 col-sm-4">
                             <label for="">@lang('Total People')</label>
@@ -259,7 +292,7 @@
 
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="have_covid" value="1">@lang('I confirm to have no COVID
+                            <input type="checkbox" name="have_covid" value="0">@lang('I confirm to have no COVID
                             symptoms.')</a>
                             <span class="checkmark"></span>
                         </label>
@@ -412,6 +445,115 @@
 
 @push('scripts')
 <script>
+    var is_async_step = false;
+    $("#wizard").steps({
+    headerTag: "h4",
+    bodyTag: "section",
+    transitionEffect: "fade",
+    enableAllSteps: true,
+    transitionEffectSpeed: 500,
+    onStepChanging: function(event, currentIndex, newIndex) {
+        form.valid();
+        if (!form.valid()) {
+            return false;
+        }
+
+        if (is_async_step) {
+            is_async_step = false;
+            //ALLOW NEXT STEP
+            return true;
+        }
+
+        if (currentIndex == 0) {
+            var reservationTimeCheckUrl = '{{ route("reservation.reservation-time-check", ":slug") }}';
+            reservationTimeCheckUrl = reservationTimeCheckUrl.replace(':slug', "{{$restaurant->slug}}");
+
+            $.ajax({
+                url: reservationTimeCheckUrl,
+                method: 'POST',
+                data: {
+                    'appointment_date': $('#reservation-date-input').val(),
+                    'appointment_time':  $('#reservation-time-input').val(),
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                },
+                success: function(data, status, xhr) {
+                    //Add below 2 lines for every Index(Steps).                            
+                    is_async_step = true;
+                    //This will move to next step.
+                    $("#wizard").steps("next");
+                },
+                error: function(xhr, status, error) {
+                    fnToastWarning(xhr.responseJSON.message);
+                    return false;
+                },
+                
+            });
+            return false;
+        }
+
+        if (newIndex === 1) {
+            $(".steps ul").addClass("step-2");
+        } else {
+            $(".steps ul").removeClass("step-2");
+        }
+        if (newIndex === 2) {
+            $(".steps ul").addClass("step-3");
+            // $(".actions ul").addClass("step-last");
+        } else {
+            $(".steps ul").removeClass("step-3");
+            // $(".actions ul").removeClass("step-last");
+        }
+        if (newIndex === 3) {
+            $(".steps ul").addClass("step-4");
+            $(".actions ul").addClass("step-last");
+        } else {
+            $(".steps ul").removeClass("step-4");
+            $(".actions ul").removeClass("step-last");
+        }
+        return true;
+    },
+    labels: {
+        finish: "Finish",
+        next: "Next",
+        previous: "Previous"
+    },
+    onFinished: function(event, currentIndex) {
+        form.submit();
+    }
+});
+
+    // Custom Steps Jquery Steps
+    $(".wizard > .steps li a").click(function() {
+        if (!form.valid()) {
+            return false;
+        }
+        $(this)
+            .parent()
+            .addClass("checked");
+        $(this)
+            .parent()
+            .prevAll()
+            .addClass("checked");
+        $(this)
+            .parent()
+            .nextAll()
+            .removeClass("checked");
+    });
+    // Custom Button Jquery Steps
+    $(".forward").click(function() {
+        $("#wizard").steps("next");
+    });
+    $(".backward").click(function() {
+        $("#wizard").steps("previous");
+    });
+    // Checkbox
+    $(".checkbox-circle label").click(function() {
+        $(".checkbox-circle label").removeClass("active");
+        $(this).addClass("active");
+    });
+
     $(".steps ul").attr('data-title','@lang("Book A Table")');
     $(".steps ul").attr('data-title-2','@lang("Contact Information")');
     $(".steps ul").attr('data-title-3','@lang("Confirm")');
@@ -420,7 +562,7 @@
     var nowHour = moment().format('HH');
     var nowMinute = moment().format('mm');
     $('#appointment_time').datetimepicker({
-        format: 'HH:mm',
+        format: 'hh:mm A',
         // defaultDate: dateNow,
         // minDate: moment({
         //     h: nowHour,
@@ -434,9 +576,8 @@
 
     yesterday.setDate(yesterday.getDate() - 1);
 
-    
     $('#appointment_date').datetimepicker({
-        format: 'YYYY-MM-DD',
+        format: 'DD-MM-YYYY',
         // defaultDate: moment(),
         // defaultDate: dateNow,
         minDate: dateNow,
@@ -508,6 +649,9 @@
         $('#total-people-confirm-text').text(totalPeople);
     });
 
+    var submitform = true;
+    var reservationTimeCheckUrl = '{{ route("reservation.reservation-time-check", ":slug") }}';
+    reservationTimeCheckUrl = reservationTimeCheckUrl.replace(':slug', "{{$restaurant->slug}}");
     var form = $("#visitorForm");
     form.validate({
         normalizer: function(value) {
@@ -527,9 +671,34 @@
             },
             appointment_date:{
                 required: true,
+                // remote: {
+                //     type:'post',
+                //     url:reservationTimeCheckUrl,
+                //     headers: {
+                //         'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                //     },
+                //     data: {
+                //         'appointment_date': function(){return $('#reservation-date-input').val()},
+                //         'appointment_time': function(){return $('#reservation-time-input').val()},
+                //         'is_date':true
+                //     },
+                // }
             },
             appointment_time:{
                 required: true,
+                // remote: {
+                //     type:'post',
+                //     url:reservationTimeCheckUrl,
+                //     headers: {
+                //         'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                //     },
+                //     data: {
+                //         'appointment_date': function(){return $('#reservation-date-input').val()},
+                //         'appointment_time': function(){return $('#reservation-time-input').val()},
+                //         'is_date':false
+                //     },
+                //     // dataType: 'json',
+                // }
             },
             adults:{
                 required: "#kids:blank",
@@ -567,9 +736,11 @@
             },
             appointment_time:{
                 required: "@lang('This field is required.')",
+                // remote: "@lang('Please select another date or time.')"
             },
             appointment_date:{
                 required: "@lang('This field is required.')",
+                // remote: "@lang('Please select another date or time.')"
             },
             number_of_people: {
                 required: "@lang('This field is required.')",
@@ -605,7 +776,9 @@
 			}
 		},
         submitHandler: function() {
-            registerVisitor();
+            if(submitform){
+                registerVisitor();
+            }
         },
     });
 
@@ -627,6 +800,7 @@
             beforeSend: function() {
                 $('.visitor-submit-btn').prop("disabled", true);
                 $('.visitor-submit-btn').html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> @lang('Loading')...`);
+                submitform = false;
             },
             success: function(data, status, xhr) {
                 fnToastSuccess(data.message);
@@ -647,6 +821,7 @@
                 } else {
                     ajaxError(xhr, status, error);
                 }
+                submitform = true;
             },
             complete: function() {
                 $('.visitor-submit-btn').attr("disabled", false);

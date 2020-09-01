@@ -138,4 +138,5 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'as' => 'restaurant.'], func
 Route::group(['domain' => env('RESERVATION_DOMAIN'), 'as' => 'reservation.'], function () {
   Route::get('/{slug}', 'Reservation\ReservationController@index');
   Route::post('/{slug}/reservation', 'Reservation\ReservationController@store')->name('reservation-save');
+  Route::post('/{slug}/reservation-time-check', 'Reservation\ReservationController@timeCheck')->name('reservation-time-check');
 });

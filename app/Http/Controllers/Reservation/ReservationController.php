@@ -34,7 +34,7 @@ class ReservationController extends Controller
         $restaurant = $this->restaurantRepository->getRestaurantFromSlug($slug);
 
         if ($request->appointment_time && $request->appointment_date) {
-            $appointmentTime = Carbon::createFromFormat('H:i', $request->appointment_time)->toDateTimeString();
+            $appointmentTime = Carbon::createFromFormat('h:i A', $request->appointment_time)->toDateTimeString();
 
             $day = Carbon::parse($request->appointment_date)->format('l');
 
@@ -117,6 +117,8 @@ class ReservationController extends Controller
 
                     $inputs = $request->except('_token');
                     $inputs['restaurant_id'] = $restaurant->id;
+                    $inputs['appointment_date'] = Carbon::createFromFormat('d-m-Y', $request->appointment_date)->format('Y-m-d');
+                    $inputs['appointment_time'] = Carbon::createFromFormat('h:i A', $request->appointment_time)->format('H:i');
 
                     $isSaved = $this->model->create($inputs);
 
@@ -176,7 +178,6 @@ class ReservationController extends Controller
 
                 $inputs = $request->except('_token');
                 $inputs['restaurant_id'] = $restaurant->id;
-                $inputs['checkin_at'] = Carbon::now()->toDateTimeString();
 
                 $isSaved = $this->model->create($inputs);
 
@@ -223,6 +224,98 @@ class ReservationController extends Controller
                 ];
                 return response()->json($data, $this->statusCodes['serverSide']);
             }
+        }
+    }
+
+    public function timeCheck(Request $request, $slug)
+    {
+        if ($request->appointment_time && $request->appointment_date) {
+            $restaurant = $this->restaurantRepository->getRestaurantFromSlug($slug);
+
+            $appointmentTime = Carbon::createFromFormat('h:i A', $request->appointment_time)->toDateTimeString();
+
+            $day = Carbon::parse($request->appointment_date)->format('l');
+
+            switch ($day) {
+                case 'Sunday':
+                    $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_start_time)->toDateTimeString();
+
+                    $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_ending_time)->toDateTimeString();
+
+                    $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_evng_start_time)->toDateTimeString();
+
+                    $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_evng_ending_time)->toDateTimeString();
+                    break;
+                case 'Monday':
+                    $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_start_time)->toDateTimeString();
+
+                    $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_ending_time)->toDateTimeString();
+
+                    $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_start_time)->toDateTimeString();
+
+                    $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_ending_time)->toDateTimeString();
+                    break;
+                case 'Tuesday':
+                    $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_start_time)->toDateTimeString();
+
+                    $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_ending_time)->toDateTimeString();
+
+                    $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_evng_start_time)->toDateTimeString();
+
+                    $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_evng_ending_time)->toDateTimeString();
+                    break;
+                case 'Wednesday':
+                    $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_start_time)->toDateTimeString();
+
+                    $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_ending_time)->toDateTimeString();
+
+                    $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_evng_start_time)->toDateTimeString();
+
+                    $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_evng_ending_time)->toDateTimeString();
+                    break;
+                case 'Thursday':
+                    $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_start_time)->toDateTimeString();
+
+                    $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_ending_time)->toDateTimeString();
+
+                    $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_evng_start_time)->toDateTimeString();
+
+                    $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_evng_ending_time)->toDateTimeString();
+                    break;
+                case 'Friday':
+                    $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_start_time)->toDateTimeString();
+
+                    $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_ending_time)->toDateTimeString();
+
+                    $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_evng_start_time)->toDateTimeString();
+
+                    $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_evng_ending_time)->toDateTimeString();
+                    break;
+                case 'Saturday':
+                    $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_start_time)->toDateTimeString();
+
+                    $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_ending_time)->toDateTimeString();
+
+                    $evening_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_evng_start_time)->toDateTimeString();
+
+                    $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_evng_ending_time)->toDateTimeString();
+                    break;
+                default:
+                    break;
+            }
+
+            if (($morning_start_time <= $appointmentTime) && ($appointmentTime <= $morning_end_time) || ($evening_start_time <= $appointmentTime) && ($appointmentTime <= $evening_end_time)) {
+                return 'true';
+            }
+            $data = [
+                'message' => __('Please select another date or time.'),
+            ];
+            return response()->json($data, $this->statusCodes['serverSide']);
+        } else {
+            $data = [
+                'message' => __('Please select reservation date and time.'),
+            ];
+            return response()->json($data, $this->statusCodes['serverSide']);
         }
     }
 }
