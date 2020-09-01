@@ -53,7 +53,7 @@
 <fieldset class="form-group main-fieldset" style="display: none" id="tuesday">
     <legend>@lang('Tuesday')</legend>
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Morning Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Morning Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('tuesday_mrng_start_time', $restaurantTime->tuesday_mrng_start_time ?? null, ['id' => 'tuesday_mrng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('tuesday_mrng_start_time'))
@@ -105,7 +105,7 @@
 <fieldset class="form-group main-fieldset" style="display: none" id="wednesday">
     <legend>@lang('Wednesday')</legend>
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Morning Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Morning Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('wednesday_mrng_start_time', $restaurantTime->wednesday_mrng_start_time ?? null, ['id' => 'wednesday_mrng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('wednesday_mrng_start_time'))
@@ -124,7 +124,7 @@
     </div>
 
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Evening Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Evening Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('wednesday_evng_start_time', $restaurantTime->wednesday_evng_start_time ?? null, ['id' => 'wednesday_evng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('wednesday_evng_start_time'))
@@ -157,7 +157,7 @@
 <fieldset class="form-group main-fieldset" style="display: none" id="thursday">
     <legend>@lang('Thursday')</legend>
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Morning Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Morning Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('thursday_mrng_start_time', $restaurantTime->thursday_mrng_start_time ?? null, ['id' => 'thursday_mrng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('thursday_mrng_start_time'))
@@ -176,7 +176,7 @@
     </div>
 
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Evening Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Evening Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('thursday_evng_start_time', $restaurantTime->thursday_evng_start_time ?? null, ['id' => 'thursday_evng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('thursday_evng_start_time'))
@@ -209,7 +209,7 @@
 <fieldset class="form-group main-fieldset" style="display: none" id="friday">
     <legend>@lang('Friday')</legend>
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Morning Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Morning Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('friday_mrng_start_time', $restaurantTime->friday_mrng_start_time ?? null, ['id' => 'friday_mrng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('friday_mrng_start_time'))
@@ -228,7 +228,7 @@
     </div>
 
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Evening Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Evening Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('friday_evng_start_time', $restaurantTime->friday_evng_start_time ?? null, ['id' => 'friday_evng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('friday_evng_start_time'))
@@ -260,7 +260,7 @@
 <fieldset class="form-group main-fieldset" style="display: none" id="saturday">
     <legend>@lang('Saturday')</legend>
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Morning Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Morning Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('saturday_mrng_start_time', $restaurantTime->saturday_mrng_start_time ?? null, ['id' => 'saturday_mrng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('saturday_mrng_start_time'))
@@ -279,7 +279,7 @@
     </div>
 
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Evening Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Evening Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('saturday_evng_start_time', $restaurantTime->saturday_evng_start_time ?? null, ['id' => 'saturday_evng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('saturday_evng_start_time'))
@@ -312,7 +312,7 @@
 <fieldset class="form-group main-fieldset" style="display: none" id="sunday">
     <legend>@lang('Sunday')</legend>
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Morning Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Morning Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('sunday_mrng_start_time', $restaurantTime->sunday_mrng_start_time ?? null, ['id' => 'sunday_mrng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('sunday_mrng_start_time'))
@@ -331,7 +331,7 @@
     </div>
 
     <div class="form-group row">
-        <label class="col-form-label col-sm-">{{__('Evening Time')}}</label>
+        <label class="col-form-label col-sm-3">{{__('Evening Time')}}</label>
         <div class="col-sm-3">
             {{ Form::text('sunday_evng_start_time', $restaurantTime->sunday_evng_start_time ?? null, ['id' => 'sunday_evng_start_time', 'class'=>"form-control timepicker"]) }}
             @if($errors->has('sunday_evng_start_time'))
