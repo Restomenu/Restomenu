@@ -83,20 +83,27 @@ select option[value=""][disabled] {
     display: none;
 }
 
-img {
+/* img {
     max-width: 100%;
+    vertical-align: middle;
+} */
+
+.restaurant-logo-at-selection {
+    /* max-width: 100%; */
+    max-width: 200px;
+    max-height: 200px;
     vertical-align: middle;
 }
 
 body {
     /* background: url("../images/form-wizard-bg.jpg"); */
-    background: #f1f1f2;
+    background: #f4f5f6;
     background-size: cover;
 }
 
-.main-wrapper {
+/* .main-wrapper {
     margin-bottom: 50px;
-}
+} */
 
 .reservation-header {
     width: 20%;
@@ -648,6 +655,7 @@ label.error {
 
 .wrapper-container {
     /* position: relative; */
+    margin-bottom: 70px;
 }
 
 .center {
@@ -663,4 +671,88 @@ label.error {
 
 .reservation-form {
     margin: 0 auto;
+}
+
+.back-refer {
+    position: sticky;
+    bottom: 0px;
+    min-height: 40px;
+    padding-top: 0px;
+    background-color: #F4F5F6;
+    width: 100%;
+    color: black;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    flex-wrap: wrap;
+}
+
+.back-refer a {
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.back-refer:hover {
+    background-color: #fff;
+    transition: 0.5s;
+}
+
+.back-refer a div {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.back-refer a p {
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 400;
+    text-transform: none;
+}
+
+.back-button-collection {
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.mini-footer {
+    height: 150px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    bottom: 0;
+}
+
+.mini-footer a {
+    text-decoration: none;
+}
+
+.mini-footer p {
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+.mini-footer img {
+    width: 200px;
+    align-self: center;
 }

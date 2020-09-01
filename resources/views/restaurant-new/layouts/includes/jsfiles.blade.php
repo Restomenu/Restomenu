@@ -153,11 +153,11 @@
         }
     }
 
-    Echo.private("reservation").listen("ReservationEvent", e => {
-        // console.log(e.action);
-        console.log(e);
+    // Echo.private("reservation").listen("ReservationEvent", e => {
+    //     // console.log(e.action);
+    //     console.log(e);
         
-        console.log('here');
-        fnToastSuccess(e.message);
-    });
+    //     console.log('here');
+    //     fnToastSuccess(e.message);
+    // });
 </script>

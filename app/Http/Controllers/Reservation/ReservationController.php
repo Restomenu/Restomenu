@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use SpryngApiHttpPhp\Client;
 use SpryngApiHttpPhp\Exception\InvalidRequestException;
+use App;
 
 class ReservationController extends Controller
 {
@@ -26,7 +27,38 @@ class ReservationController extends Controller
     public function index($slug)
     {
         $restaurant = $this->restaurantRepository->getRestaurantFromSlug($slug);
-        return view("reservation.table-reservation.index")->with('restaurant', $restaurant);
+
+        $totalAvailableLanguage = $restaurant->setting->language_english + $restaurant->setting->language_dutch + $restaurant->setting->language_french;
+
+        if ($totalAvailableLanguage > 1) {
+            return $this->selectLanguage($restaurant);
+        }
+
+        if ($restaurant->setting->language_dutch) {
+            return $this->reservationIndex($slug, 'nl');
+        }
+
+        if ($restaurant->setting->language_french) {
+            return $this->reservationIndex($slug, 'fr');
+        }
+
+        if ($restaurant->setting->language_english) {
+            return $this->reservationIndex($slug, 'en');
+        }
+    }
+
+    public function selectLanguage($restaurant)
+    {
+        return view("reservation.select-language.index")->with('restaurant', $restaurant);
+    }
+
+    public function reservationIndex($slug, $locale)
+    {
+        App::setLocale($locale);
+        session()->put('locale', $locale);
+
+        $restaurant = $this->restaurantRepository->getRestaurantFromSlug($slug);
+        return view("reservation.table-reservation.index")->with('restaurant', $restaurant)->with('locale', $locale);
     }
 
     public function store(Request $request, $slug)
@@ -238,6 +270,14 @@ class ReservationController extends Controller
 
             switch ($day) {
                 case 'Sunday':
+
+                    if (!$restaurant->restaurantTime->sunday) {
+                        $data = [
+                            'message' => __('Restaurant will be closed on your selected date.'),
+                        ];
+                        return response()->json($data, $this->statusCodes['serverSide']);
+                    }
+
                     $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_start_time)->toDateTimeString();
 
                     $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_ending_time)->toDateTimeString();
@@ -247,6 +287,14 @@ class ReservationController extends Controller
                     $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_evng_ending_time)->toDateTimeString();
                     break;
                 case 'Monday':
+
+                    if (!$restaurant->restaurantTime->monday) {
+                        $data = [
+                            'message' => __('Restaurant will be closed on your selected date.'),
+                        ];
+                        return response()->json($data, $this->statusCodes['serverSide']);
+                    }
+
                     $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_start_time)->toDateTimeString();
 
                     $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_ending_time)->toDateTimeString();
@@ -256,6 +304,14 @@ class ReservationController extends Controller
                     $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_ending_time)->toDateTimeString();
                     break;
                 case 'Tuesday':
+
+                    if (!$restaurant->restaurantTime->tuesday) {
+                        $data = [
+                            'message' => __('Restaurant will be closed on your selected date.'),
+                        ];
+                        return response()->json($data, $this->statusCodes['serverSide']);
+                    }
+
                     $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_start_time)->toDateTimeString();
 
                     $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_ending_time)->toDateTimeString();
@@ -265,6 +321,14 @@ class ReservationController extends Controller
                     $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_evng_ending_time)->toDateTimeString();
                     break;
                 case 'Wednesday':
+
+                    if (!$restaurant->restaurantTime->wednesday) {
+                        $data = [
+                            'message' => __('Restaurant will be closed on your selected date.'),
+                        ];
+                        return response()->json($data, $this->statusCodes['serverSide']);
+                    }
+
                     $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_start_time)->toDateTimeString();
 
                     $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_ending_time)->toDateTimeString();
@@ -274,6 +338,14 @@ class ReservationController extends Controller
                     $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_evng_ending_time)->toDateTimeString();
                     break;
                 case 'Thursday':
+
+                    if (!$restaurant->restaurantTime->thursday) {
+                        $data = [
+                            'message' => __('Restaurant will be closed on your selected date.'),
+                        ];
+                        return response()->json($data, $this->statusCodes['serverSide']);
+                    }
+
                     $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_start_time)->toDateTimeString();
 
                     $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_ending_time)->toDateTimeString();
@@ -283,6 +355,14 @@ class ReservationController extends Controller
                     $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_evng_ending_time)->toDateTimeString();
                     break;
                 case 'Friday':
+
+                    if (!$restaurant->restaurantTime->friday) {
+                        $data = [
+                            'message' => __('Restaurant will be closed on your selected date.'),
+                        ];
+                        return response()->json($data, $this->statusCodes['serverSide']);
+                    }
+
                     $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_start_time)->toDateTimeString();
 
                     $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_ending_time)->toDateTimeString();
@@ -292,6 +372,14 @@ class ReservationController extends Controller
                     $evening_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_evng_ending_time)->toDateTimeString();
                     break;
                 case 'Saturday':
+
+                    if (!$restaurant->restaurantTime->saturday) {
+                        $data = [
+                            'message' => __('Restaurant will be closed on your selected date.'),
+                        ];
+                        return response()->json($data, $this->statusCodes['serverSide']);
+                    }
+
                     $morning_start_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_start_time)->toDateTimeString();
 
                     $morning_end_time = Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_ending_time)->toDateTimeString();
