@@ -63,6 +63,18 @@ class ReservationController extends Controller
 
     public function store(Request $request, $slug)
     {
+        $this->validate($request, [
+            'appointment_date' => 'required',
+            'appointment_time' => 'required',
+            'adults' => 'required',
+            'number_of_people' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'is_terms_checked' => 'required',
+            'have_covid' => 'required'
+        ]);
+
         $restaurant = $this->restaurantRepository->getRestaurantFromSlug($slug);
 
         if ($request->appointment_time && $request->appointment_date) {
@@ -160,6 +172,7 @@ class ReservationController extends Controller
                         $isSmsEnabled = config("restomenu.sms.is_enabled");
                         $smsServiceStatus = $setting->sms_service_status;
                         $restaurantPhoneNumber = $restaurant->phone;
+                        $customerPhoneNumber = $request->phone;
                         $availableSmsCount = (int) $setting->available_sms_count;
 
                         if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount && $availableSmsCount > 0 && $restaurantPhoneNumber) {
@@ -167,18 +180,39 @@ class ReservationController extends Controller
                             $spryngUsername = config("restomenu.sms.username");
                             $spryngPassword = config("restomenu.sms.password");
                             $spryngCompany = config("restomenu.sms.company");
-                            $message = __("New Customer Registered!");
+                            $RestaurantBackendLink = config("restomenu.urls.restaurant_backend_url");
+
+                            if ($restaurant->setting->defualt_language == 'fr') {
+                                $messageToRestaurant = "Vous avez une nouvelle réservation en attente de confirmation : $request->number_of_people personnes le $request->appointment_date à $request->appointment_time au nom de $request->last_name $request->first_name. $RestaurantBackendLink";
+                            } else if ($restaurant->setting->defualt_language == 'nl') {
+                                $messageToRestaurant = "Je hebt een nieuwe reservatie dat wacht op bevestiging: $request->number_of_people personen op $request->appointment_date om $request->appointment_time opnaam van $request->last_name $request->first_name. $RestaurantBackendLink";
+                            } else {
+                                $messageToRestaurant = "You have a new reservation that is pending your confirmation $request->number_of_people persons reserved on the name $request->last_name $request->first_name on $request->appointment_date at $request->appointment_time. $RestaurantBackendLink";
+                            }
+
+                            if ($request->locale == 'fr') {
+                                $messageToCustomer = "Votre demande de réservation chez $restaurant->name le $request->appointment_date à $request->appointment_time. à bien été enregistrée. Vous recevrez un sms de confirmation endéans les 30 minutes. Si vous n’avez pas de nos nouvelles au-delà de ce délai, n’hésitez pas à nous contacter au $restaurantPhoneNumber.\nA très bientôt, \nL’équipe $restaurant->name";
+                            } else if ($request->locale == 'fr') {
+                                $messageToCustomer = "Je reservatie werd aangevraagd bij $restaurant->name op $request->appointment_date om $request->appointment_time. Je zult binnen de 30 minuten een bevestiging sms ontvangen. \nIndien je deze niet binnen de 30 minuten ontvangt, gelieve ons te bellen op $restaurantPhoneNumber om jouw reservering te bevestigen. \nTot snel! \n$restaurant->name team";
+                            } else {
+                                $messageToCustomer = "Your reservation has been made @ $restaurant->name on $request->appointment_date at $request->appointment_time. You will receive another text message confirming your reservation within 30 minutes. \nIf you don't receive a text message within 30 minutes please call us on $restaurantPhoneNumber to confirm your reservation. \nSee you soon! \n$restaurant->name team";
+                            }
 
                             $spryng = new Client($spryngUsername, $spryngPassword, $spryngCompany);
                             // $balance = $spryng->sms->checkBalance();
 
                             try {
-                                $spryng->sms->send($restaurantPhoneNumber, $message, [
+                                $spryng->sms->send($restaurantPhoneNumber, $messageToRestaurant, [
                                     'route' => 'business',
                                     'allowlong' => true,
                                 ]);
 
-                                $setting->available_sms_count = $availableSmsCount - 1;
+                                $spryng->sms->send($customerPhoneNumber, $messageToCustomer, [
+                                    'route' => 'business',
+                                    'allowlong' => true,
+                                ]);
+
+                                $setting->available_sms_count = $availableSmsCount - 2;
                                 $setting->save();
                             } catch (InvalidRequestException $e) {
                                 Log::info($e->getMessage());

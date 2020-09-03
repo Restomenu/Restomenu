@@ -194,9 +194,9 @@ class ReservationController extends Controller
 
                         if ($result->locale == 'en') {
                             $message = "Hello $result->first_name, \nThank you for your reservation, this has been confirmed. Your reservation has been made for $appointmentTime at $appointmentDate. \nSee you soon, \n$restaurant->name";
-                        } elseif ($result->locale == 'nl') {
-                            $message = "Bonjour $result->first_name, \nMerci pour votre réservation. Nous confirmons avec plaisir qu’une table pour $result->number_of_people personnes vous est réservée le $appointmentDate à $appointmentTime. \n\nA très bientôt ! \n$restaurant->name";
                         } elseif ($result->locale == 'fr') {
+                            $message = "Bonjour $result->first_name, \nMerci pour votre réservation. Nous confirmons avec plaisir qu’une table pour $result->number_of_people personnes vous est réservée le $appointmentDate à $appointmentTime. \n\nA très bientôt ! \n$restaurant->name";
+                        } elseif ($result->locale == 'nl') {
                             $message = "Dag $result->first_name, \nBedankt voor je reservatie, deze staat correct ingeboekt om $appointmentTime op $appointmentDate. Aantal personen Tot snel \n$restaurant->name";
                         }
                     } elseif ($appointment_status === -1) {
