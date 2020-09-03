@@ -32,23 +32,23 @@ class ReservationController extends Controller
     }
     public function index()
     {
-        
         return view("$this->moduleView.index");
     }
+
     public function getDatatable(Request $request)
     {
         $restaurantId = auth()->guard('restaurant')->user()->id;
-         $result = $this->model->where('restaurant_id', $restaurantId)->get();
+        $result = $this->model->where('restaurant_id', $restaurantId)->get();
         // dd($result);
         if ($request->visitorsFilterValue === 'pending') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status',0)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 0)->get();
         } elseif ($request->visitorsFilterValue === 'cancel') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status',-1)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', -1)->get();
         } elseif ($request->visitorsFilterValue === 'accept') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status',1)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 1)->get();
         } elseif ($request->visitorsFilterValue === 'schedule') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status',2)->get();
-        }elseif ($request->visitorsFilterValue === 'all') {
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 2)->get();
+        } elseif ($request->visitorsFilterValue === 'all') {
             $result = $this->model->where('restaurant_id', $restaurantId)->get();
         }
 
@@ -81,7 +81,7 @@ class ReservationController extends Controller
         }
     }
 
-     /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -158,16 +158,16 @@ class ReservationController extends Controller
     {
         try {
             $restaurant = auth()->guard('restaurant')->user();
-
             $restaurantId = $restaurant->id;
-
             $result = $this->model->where('restaurant_id', $restaurantId)->find($request->visitor_id);
+
             $appointment_status = (int) $request->status;
             $inputs['appointment_status'] = $appointment_status;
-            $inputs['appointment_time'] = null;
+            $inputs['reservation_cancel_reason'] = $request->reservation_cancel_reason ?? null;
+            $inputs['reservation_cancel_desc'] = $request->reservation_cancel_desc ?? null;
 
             if ($appointment_status === 2) {
-                $inputs['appointment_time'] = $request->appointment_time;
+                $inputs['appointment_scheduled_time'] = $request->appointment_time;
             }
             $isSaved = $result->update($inputs);
 
@@ -178,7 +178,7 @@ class ReservationController extends Controller
                 // send message to restaurant
                 $isSmsEnabled = config("restomenu.sms.is_enabled");
                 $smsServiceStatus = $setting->sms_service_status;
-                $customerPhoneNumber = $restaurant->phone;
+                $customerPhoneNumber = $result->phone;
                 $availableSmsCount = (int) $setting->available_sms_count;
 
                 if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount && $availableSmsCount > 0 && $customerPhoneNumber) {
@@ -186,10 +186,74 @@ class ReservationController extends Controller
                     $spryngPassword = config("restomenu.sms.password");
                     $spryngCompany = config("restomenu.sms.company");
 
+                    $appointmentDate = Carbon::createFromFormat('Y-m-d', $result->appointment_date)->format('d-m-Y');
+                    $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
+
                     if ($appointment_status === 1) {
-                        $message = "Your appointment has been accepted by $restaurant->name.";
+                        // $message = "Your appointment has been accepted by $restaurant->name.";
+
+                        if ($result->locale == 'en') {
+                            $message = "Hello $result->first_name, \nThank you for your reservation, this has been confirmed. Your reservation has been made for $appointmentTime at $appointmentDate. \nSee you soon, \n$restaurant->name";
+                        } elseif ($result->locale == 'nl') {
+                            $message = "Bonjour $result->first_name, \nMerci pour votre réservation. Nous confirmons avec plaisir qu’une table pour $result->number_of_people personnes vous est réservée le $appointmentDate à $appointmentTime. \n\nA très bientôt ! \n$restaurant->name";
+                        } elseif ($result->locale == 'fr') {
+                            $message = "Dag $result->first_name, \nBedankt voor je reservatie, deze staat correct ingeboekt om $appointmentTime op $appointmentDate. Aantal personen Tot snel \n$restaurant->name";
+                        }
                     } elseif ($appointment_status === -1) {
-                        $message = "Your appointment has been canceled by $restaurant->name.";
+
+                        if ($request->reservation_cancel_desc) {
+                            $message = $request->reservation_cancel_desc;
+                        } else {
+                            $message = "Your appointment has been canceled by $restaurant->name.";
+                        }
+
+                        // if ($request->reservation_cancel_reason == 1) {
+
+                        //     if ($result->locale == 'en') {
+                        //         $message = "Hello $result->first_name, \nWe’re not able to confirm your reservation for $result->number_of_people persons on $appointmentDate at $appointmentTime : We’re already fully booked. \n\nOur sincere apologies, \nKind regards, \n$restaurant->name";
+                        //     } elseif ($result->locale == 'nl') {
+                        //         $message = "Dag $result->first_name, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor $result->number_of_people personen op $appointmentDate om $appointmentTime : wij zijn reeds volzet vandaag. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n$restaurant->name";
+                        //     } elseif ($result->locale == 'fr') {
+                        //         $message = "Bonjour $result->first_name, \nNous ne pouvons malheureusement pas confirmer votre réservation pour $result->number_of_people personnes le $appointmentDate à $appointmentTime : nous sommes déjà complet aujourd’hui. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n$restaurant->name";
+                        //     }
+                        // } elseif ($request->reservation_cancel_reason == 2) {
+
+                        //     if ($result->locale == 'en') {
+                        //         $message = "Hello $result->first_name, \nWe’re not able to confirm your reservation for $result->number_of_people persons on $appointmentDate at $appointmentTime : We’re already fully booked on the given day. \n\nOur sincere apologies, \nKind regards, \n$restaurant->name";
+                        //     } elseif ($result->locale == 'nl') {
+                        //         $message = "Dag $result->first_name, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor $result->number_of_people personen op $appointmentDate om $appointmentTime : Wij zijn reeds volzet die dag. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n$restaurant->name";
+                        //     } elseif ($result->locale == 'fr') {
+                        //         $message = "Bonjour $result->first_name, \nNous ne pouvons malheureusement pas confirmer votre réservation pour $result->number_of_people personnes le $appointmentDate à $appointmentTime : nous sommes déjà complet ce jour-là. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n$restaurant->name";
+                        //     }
+                        // } elseif ($request->reservation_cancel_reason == 3) {
+                        //     if ($result->locale == 'en') {
+                        //         $message = "Hello $result->first_name, \nWe’re not able to confirm your reservation for $result->number_of_people persons on $appointmentDate at $appointmentTime : We’re exceptionally closed today. \n\nOur sincere apologies, \nKind regards, \n$restaurant->name";
+                        //     } elseif ($result->locale == 'nl') {
+                        //         $message = "Dag $result->first_name, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor $result->number_of_people personen op $appointmentDate om $appointmentTime : Wij zijn vandaag exceptioneel gesloten. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n$restaurant->name";
+                        //     } elseif ($result->locale == 'fr') {
+                        //         $message = "Bonjour $result->first_name, \nNous ne pouvons malheureusement pas confirmer votre réservation pour $result->number_of_people personnes le $appointmentDate à $appointmentTime : nous sommes exceptionnellement fermé aujourd’hui. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n$restaurant->name";
+                        //     }
+                        // } elseif ($request->reservation_cancel_reason == 4) {
+                        //     if ($result->locale == 'en') {
+                        //         $message = "Hello $result->first_name, \nWe’re not able to confirm your reservation for $result->number_of_people persons on $appointmentDate at $appointmentTime : We’re exceptionally closed on the given date. \n\nOur sincere apologies, \nKind regards, \n$restaurant->name";
+                        //     } elseif ($result->locale == 'nl') {
+                        //         $message = "Dag $result->first_name, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor $result->number_of_people personen op $appointmentDate om $appointmentTime : Wij zijn uitzonderlijk gesloten op $appointmentDate. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n$restaurant->name";
+                        //     } elseif ($result->locale == 'fr') {
+                        //         $message = "Bonjour $result->first_name, \nNous ne pouvons malheureusement pas confirmer votre réservation pour $result->number_of_people personnes le $appointmentDate à $appointmentTime : nous sommes exceptionnellement fermé ce jour-là. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n$restaurant->name";
+                        //     }
+                        // } elseif ($request->reservation_cancel_reason == 5) {
+                        //     if ($result->locale == 'en') {
+                        //         $message = "Hello $result->first_name, \nWe’re already fully booked on $appointmentDate at $appointmentTime. Although, we could propose other time for $result->number_of_people persons. If this hour fits your schedule, could you perhaps call us ($restaurant->phone) as soon as possible to confirm the reservation. \n\nThanks in advance,\n$restaurant->name";
+                        //     } elseif ($result->locale == 'nl') {
+                        //         $message = "Dag $result->first_name, \nWij zijn reeds vol geboekt op $appointmentDate om $appointmentTime. Wij kunnen jou wel een tafel voor $result->number_of_people personen voorstellen om other time.Als dit uur jou ook past, kun je ons zo snel mogelijk opbellen en bevestigen op $restaurant->phone. \n\nBedankt op voorhand, \n$restaurant->name";
+                        //     } elseif ($result->locale == 'fr') {
+                        //         $message = "Bonjour $result->first_name, \nNous sommes déjà complet le $appointmentDate à $appointmentTime. mais pouvons vous proposer une table pour $result->number_of_people personnes à other time. Si cette heure vous convient, veuillez nous contacter au plus vite au $restaurant->phone. \n\nD’avance merci,\n$restaurant->name";
+                        //     }
+                        // } elseif ($request->reservation_cancel_reason == 6) {
+                        //     // Others
+                        // } else {
+                        //     $message = "Your appointment has been canceled by $restaurant->name.";
+                        // }
                     } elseif ($appointment_status === 0) {
                         $message = "Your appointment status has been changed to pending by $restaurant->name.";
                     } elseif ($appointment_status === 2) {
@@ -203,6 +267,7 @@ class ReservationController extends Controller
                     // $balance = $spryng->sms->checkBalance();
 
                     try {
+                        // TODO:uncomment
                         $spryng->sms->send($customerPhoneNumber, $message, [
                             'route' => 'business',
                             'allowlong' => true,
