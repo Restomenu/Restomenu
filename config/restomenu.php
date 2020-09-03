@@ -39,6 +39,17 @@ return [
         "username" => env('SPRYNG_USERNAME', 'restomenu'),
         "password" => env('SPRYNG_PASSWORD', 'jaydarryrestomenu'),
         "company" => env('SPRYNG_COMPANY', 'Restomenu'),
+    ],
+    "reservation_cancel_reasons" => [
+        "1" => 'Full today',
+        "2" => 'Full on given day',
+        "3" => 'Exceptionally Closed today',
+        "4" => 'Exceptionally Closed on
+        given day',
+        "5" => 'Propose other time'
+    ],
+    "urls" => [
+        'restaurant_backend_url' => env('RESTAURANT_BACKEND_URL', "https://my.restomenu.be/")
     ]
 
 ];
