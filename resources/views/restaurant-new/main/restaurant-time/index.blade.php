@@ -40,7 +40,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">{{__("Monday")}}</th>
-                                @if($restaurantTime->monday_mrng == 1)
+                                @if(isset($restaurantTime) && $restaurantTime->monday_mrng == 1)
 
                                 <td>{{$restaurantTime->monday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->monday_mrng_ending_time}}</td>
@@ -49,7 +49,7 @@
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                @if($restaurantTime->monday_evng == 1)
+                                @if(isset($restaurantTime) && $restaurantTime->monday_evng == 1)
 
                                 <td>{{$restaurantTime->monday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->monday_evng_ending_time}}</td>
@@ -64,14 +64,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Tuesday")}}</th>
-                                @if($restaurantTime->tuesday_mrng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->tuesday_mrng == 1 )
                                 <td>{{$restaurantTime->tuesday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->tuesday_mrng_ending_time}}</td>
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                @if($restaurantTime->tuesday_evng == 1 )
+                                @if(isset($restaurantTime) &&  $restaurantTime->tuesday_evng == 1 )
                                 <td>{{$restaurantTime->tuesday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->tuesday_evng_ending_time}}</td>
                                 @else
@@ -83,7 +83,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Wednesday")}}</th>
-                                @if($restaurantTime->wednesday_mrng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->wednesday_mrng == 1 )
 
                                 <td>{{$restaurantTime->wednesday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->wednesday_mrng_ending_time}}</td>
@@ -92,7 +92,7 @@
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                @if($restaurantTime->wednesday_evng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->wednesday_evng == 1 )
                                 <td>{{$restaurantTime->wednesday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->wednesday_evng_ending_time}}</td>
                                 @else
@@ -105,14 +105,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Thursday")}}</th>
-                                @if($restaurantTime->thursday_mrng == 1)
+                                @if(isset($restaurantTime) && $restaurantTime->thursday_mrng == 1)
                                 <td>{{$restaurantTime->thursday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->thursday_mrng_ending_time}}</td>
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                @if($restaurantTime->thursday_evng == 1)
+                                @if(isset($restaurantTime) && $restaurantTime->thursday_evng == 1)
                                 <td>{{$restaurantTime->thursday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->thursday_evng_ending_time}}</td>
                                 @else
@@ -125,14 +125,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Friday")}}</th>
-                                @if($restaurantTime->friday_mrng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->friday_mrng == 1 )
                                 <td>{{$restaurantTime->friday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->friday_mrng_ending_time}}</td>
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                @if($restaurantTime->friday_evng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->friday_evng == 1 )
                                 <td>{{$restaurantTime->friday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->friday_evng_ending_time}}</td>
                                 @else
@@ -145,14 +145,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Saturday")}}</th>
-                                @if($restaurantTime->saturday_mrng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->saturday_mrng == 1 )
                                 <td>{{$restaurantTime->saturday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->saturday_mrng_ending_time}}</td>
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                @if($restaurantTime->saturday_evng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->saturday_evng == 1 )
                                 <td>{{$restaurantTime->saturday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->saturday_evng_ending_time}}</td>
                                 @else
@@ -164,14 +164,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Sunday")}}</th>
-                                @if($restaurantTime->sunday_mrng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->sunday_mrng == 1 )
                                 <td>{{$restaurantTime->sunday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->sunday_mrng_ending_time}}</td>
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                @if($restaurantTime->sunday_evng == 1 )
+                                @if(isset($restaurantTime) && $restaurantTime->sunday_evng == 1 )
                                 <td>{{$restaurantTime->sunday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->sunday_evng_ending_time}}</td>
                                 @else
