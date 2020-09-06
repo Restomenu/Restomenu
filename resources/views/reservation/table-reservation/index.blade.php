@@ -56,26 +56,32 @@
                                     <div>@lang('Monday')</div>
                                 </div>
 
-                                @if (!$restaurant->restaurantTime->monday)
-                                <div class="col-12 col-sm-7 text-left text-sm-center">
-                                    @lang('Closed')
-                                </div>
-                                @else
                                 <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+
+                                    @if (!$restaurant->restaurantTime->monday_mrng)
+                                    @lang('Closed')
+                                    @else
                                     {{ isset($restaurant->restaurantTime->monday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_start_time)->format('h:i A') : null  }}
                                     :
                                     {{isset($restaurant->restaurantTime->monday_mrng_ending_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_mrng_ending_time)->format('h:i A') : null}}
+                                    @endif
+
                                 </div>
                                 <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
                                 <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+
+                                    @if (!$restaurant->restaurantTime->monday_evng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->monday_evng_start_time) ?
-                                    Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_start_time)->format('h:i A'): null}}
+                                        Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->monday_evng_ending_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->monday_evng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
-                                @endif
+
                             </div>
 
                             <div class="row">
@@ -83,28 +89,31 @@
                                     <div>@lang('Tuesday')</div>
                                 </div>
 
-                                @if (!$restaurant->restaurantTime->tuesday)
-                                <div class="col-12 col-sm-7 text-left text-sm-center">
-                                    @lang('Closed')
-                                </div>
-                                @else
                                 <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    @if (!$restaurant->restaurantTime->tuesday_mrng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->tuesday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->tuesday_mrng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_mrng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
                                 <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
                                 <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    @if (!$restaurant->restaurantTime->tuesday_evng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->tuesday_evng_start_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_evng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->tuesday_evng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->tuesday_evng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
-                                @endif
+
                             </div>
 
                             <div class="row">
@@ -112,26 +121,29 @@
                                     <div>@lang('Wednesday')</div>
                                 </div>
 
-                                @if (!$restaurant->restaurantTime->wednesday)
-                                <div class="col-12 col-sm-7 text-left text-sm-center">
-                                    @lang('Closed')
-                                </div>
-                                @else
                                 <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    @if (!$restaurant->restaurantTime->wednesday_mrng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->wednesday_mrng_start_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->wednesday_mrng_ending_time) ?Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_mrng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
                                 <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
                                 <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    @if (!$restaurant->restaurantTime->wednesday_evng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->wednesday_evng_start_time) ?Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_evng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->wednesday_evng_ending_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->wednesday_evng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
-                                @endif
+
                             </div>
 
                             <div class="row">
@@ -139,27 +151,30 @@
                                     <div>@lang('Thursday')</div>
                                 </div>
 
-                                @if (!$restaurant->restaurantTime->thursday)
-                                <div class="col-12 col-sm-7 text-left text-sm-center">
-                                    @lang('Closed')
-                                </div>
-                                @else
                                 <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    @if (!$restaurant->restaurantTime->thursday_mrng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->thursday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_start_time)->format('h:i A') : null}}
                                     :
                                     {{isset($restaurant->restaurantTime->thursday_mrng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_mrng_ending_time)->format('h:i A') : null}}
+                                    @endif
                                 </div>
                                 <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
                                 <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    @if (!$restaurant->restaurantTime->thursday_evng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->thursday_evng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_evng_start_time)->format('h:i A') : null}}
                                     :
                                     {{isset($restaurant->restaurantTime->thursday_evng_ending_time) ? 
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->thursday_evng_ending_time)->format('h:i A') : null}}
+                                    @endif
                                 </div>
-                                @endif
+
                             </div>
 
                             <div class="row">
@@ -167,28 +182,30 @@
                                     <div>@lang('Friday')</div>
                                 </div>
 
-                                @if (!$restaurant->restaurantTime->friday)
-                                <div class="col-12 col-sm-7 text-left text-sm-center">
-                                    @lang('Closed')
-                                </div>
-                                @else
                                 <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    @if (!$restaurant->restaurantTime->friday_mrng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->friday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_start_time)->format('h:i A') : null}}
                                     :
                                     {{isset($restaurant->restaurantTime->friday_mrng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_mrng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
                                 <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
                                 <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    @if (!$restaurant->restaurantTime->friday_evng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->friday_evng_start_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_evng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->friday_evng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->friday_evng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
-                                @endif
                             </div>
 
                             <div class="row">
@@ -196,56 +213,61 @@
                                     <div>@lang('Saturday')</div>
                                 </div>
 
-                                @if (!$restaurant->restaurantTime->saturday)
-                                <div class="col-12 col-sm-7 text-left text-sm-center">
-                                    @lang('Closed')
-                                </div>
-                                @else
                                 <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    @if (!$restaurant->restaurantTime->saturday_mrng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->saturday_mrng_start_time) ? Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->saturday_mrng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_mrng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
                                 <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
                                 <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    @if (!$restaurant->restaurantTime->saturday_evng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->saturday_evng_start_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_evng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->saturday_evng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->saturday_evng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
-                                @endif
                             </div>
 
                             <div class="row">
                                 <div class="col-12 col-sm-4 font-weight-bold">
                                     <div>@lang('Sunday')</div>
                                 </div>
-                                @if (!$restaurant->restaurantTime->sunday)
-                                <div class="col-12 col-sm-7 text-left text-sm-center">
-                                    @lang('Closed')
-                                </div>
-                                @else
+
                                 <div class="col-12 col-sm-3 text-left text-sm-center pr-0">
+                                    @if (!$restaurant->restaurantTime->sunday_mrng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->sunday_mrng_start_time) ?Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->sunday_mrng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_mrng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
                                 <div class="col-1 col-sm-1 text-left text-sm-center d-none d-sm-block">
                                     |
                                 </div>
                                 <div class="col-12 col-sm-3 text-left text-sm-center pl-sm-0">
+                                    @if (!$restaurant->restaurantTime->sunday_evng)
+                                    @lang('Closed')
+                                    @else
                                     {{isset($restaurant->restaurantTime->sunday_evng_start_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_evng_start_time)->format('h:i A'): null}}
                                     :
                                     {{isset($restaurant->restaurantTime->sunday_evng_ending_time) ?
                                     Carbon\Carbon::createFromFormat('H:i', $restaurant->restaurantTime->sunday_evng_ending_time)->format('h:i A'): null}}
+                                    @endif
                                 </div>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -626,7 +648,7 @@ $restaurant->setting->language_french > 1)
     $(".steps ul").attr('data-title-2','@lang("Contact Information")');
     $(".steps ul").attr('data-title-3','@lang("Confirm")');
 
-    var dateNow = new Date();
+    var dateNow = new Date().setHours(0,0,0,0);
     var nowHour = moment().format('HH');
     var nowMinute = moment().format('mm');
     $('#appointment_time').datetimepicker({

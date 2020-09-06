@@ -230,5 +230,7 @@
     "Please select reservation date and time.": "Please select reservation date and time.",
     "Change Restaurant Timings": "Change Restaurant Timings",
     "Open": "Open",
-    "Closed": "Closed"
+    "Closed": "Closed",
+    "Morning Status": "Morning Status",
+    "Evening Status": "Evening Status"
 }

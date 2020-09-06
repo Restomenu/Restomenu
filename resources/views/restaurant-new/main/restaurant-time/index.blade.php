@@ -40,14 +40,21 @@
                         <tbody>
                             <tr>
                                 <th scope="row">{{__("Monday")}}</th>
-                                @if(isset($restaurantTime->monday) && $restaurantTime->monday == 1 )
+                                @if($restaurantTime->monday_mrng == 1)
 
                                 <td>{{$restaurantTime->monday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->monday_mrng_ending_time}}</td>
+
+                                @else
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
+                                @endif
+
+                                @if($restaurantTime->monday_evng == 1)
+
                                 <td>{{$restaurantTime->monday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->monday_evng_ending_time}}</td>
                                 @else
-                                <td class="text-center" colspan="4">Closed</td>
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
                                 <td>
@@ -57,13 +64,18 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Tuesday")}}</th>
-                                @if(isset($restaurantTime->tuesday) && $restaurantTime->tuesday == 1 )
+                                @if($restaurantTime->tuesday_mrng == 1 )
                                 <td>{{$restaurantTime->tuesday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->tuesday_mrng_ending_time}}</td>
+                                @else
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
+                                @endif
+
+                                @if($restaurantTime->tuesday_evng == 1 )
                                 <td>{{$restaurantTime->tuesday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->tuesday_evng_ending_time}}</td>
                                 @else
-                                <td class="text-center" colspan="4">Closed</td>
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
                                 <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="tuesday"><i
                                             class='fa fa-edit'></i></a></td>
@@ -71,58 +83,80 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Wednesday")}}</th>
-                                @if(isset($restaurantTime->wednesday) && $restaurantTime->wednesday == 1 )
+                                @if($restaurantTime->wednesday_mrng == 1 )
 
                                 <td>{{$restaurantTime->wednesday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->wednesday_mrng_ending_time}}</td>
+
+                                @else
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
+                                @endif
+
+                                @if($restaurantTime->wednesday_evng == 1 )
                                 <td>{{$restaurantTime->wednesday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->wednesday_evng_ending_time}}</td>
                                 @else
-                                <td class="text-center" colspan="4">Closed</td>
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
+
                                 <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="wednesday"><i
                                             class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Thursday")}}</th>
-                                @if(isset($restaurantTime->thursday) && $restaurantTime->thursday == 1 )
+                                @if($restaurantTime->thursday_mrng == 1)
                                 <td>{{$restaurantTime->thursday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->thursday_mrng_ending_time}}</td>
+                                @else
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
+                                @endif
+
+                                @if($restaurantTime->thursday_evng == 1)
                                 <td>{{$restaurantTime->thursday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->thursday_evng_ending_time}}</td>
                                 @else
-                                <td class="text-center" colspan="4">Closed</td>
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
+
                                 <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="thursday"><i
                                             class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Friday")}}</th>
-                                @if(isset($restaurantTime->friday) && $restaurantTime->friday == 1 )
-
+                                @if($restaurantTime->friday_mrng == 1 )
                                 <td>{{$restaurantTime->friday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->friday_mrng_ending_time}}</td>
+                                @else
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
+                                @endif
+
+                                @if($restaurantTime->friday_evng == 1 )
                                 <td>{{$restaurantTime->friday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->friday_evng_ending_time}}</td>
                                 @else
-                                <td class="text-center" colspan="4">Closed</td>
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
+
                                 <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="friday"><i
                                             class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Saturday")}}</th>
-                                @if(isset($restaurantTime->saturday) && $restaurantTime->saturday == 1 )
-
+                                @if($restaurantTime->saturday_mrng == 1 )
                                 <td>{{$restaurantTime->saturday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->saturday_mrng_ending_time}}</td>
+                                @else
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
+                                @endif
+
+                                @if($restaurantTime->saturday_evng == 1 )
                                 <td>{{$restaurantTime->saturday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->saturday_evng_ending_time}}</td>
                                 @else
-                                <td class="text-center" colspan="4">Closed</td>
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
                                 <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="saturday"><i
                                             class='fa fa-edit'></i></a></td>
@@ -130,14 +164,18 @@
                             </tr>
                             <tr>
                                 <th scope="row">{{__("Sunday")}}</th>
-                                @if(isset($restaurantTime->sunday) && $restaurantTime->sunday == 1 )
-
+                                @if($restaurantTime->sunday_mrng == 1 )
                                 <td>{{$restaurantTime->sunday_mrng_start_time}}</td>
                                 <td>{{$restaurantTime->sunday_mrng_ending_time}}</td>
+                                @else
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
+                                @endif
+
+                                @if($restaurantTime->sunday_evng == 1 )
                                 <td>{{$restaurantTime->sunday_evng_start_time}}</td>
                                 <td>{{$restaurantTime->sunday_evng_ending_time}}</td>
                                 @else
-                                <td class="text-center" colspan="4">Closed</td>
+                                <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
                                 <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="sunday"><i
                                             class='fa fa-edit'></i></a></td>

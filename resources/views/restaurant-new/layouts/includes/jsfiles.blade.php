@@ -153,11 +153,13 @@
         }
     }
 
-    // Echo.private("reservation").listen("ReservationEvent", e => {
-    //     // console.log(e.action);
-    //     console.log(e);
+    // @if(Auth::check())
+        // var restaurantId = "{{auth()->guard('restaurant')->user()->id}}";
         
-    //     console.log('here');
-    //     fnToastSuccess(e.message);
-    // });
+        // Echo.private(`reservation.${restaurantId}`).listen("ReservationEvent", e => {
+        //     console.log(e);
+        //     fnToastSuccess(e.message);
+        // });
+    // @endif
+    
 </script>
