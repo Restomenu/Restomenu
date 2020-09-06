@@ -38,23 +38,31 @@ class ReservationController extends Controller
     public function getDatatable(Request $request)
     {
         $restaurantId = auth()->guard('restaurant')->user()->id;
-        $result = $this->model->where('restaurant_id', $restaurantId)->get();
+        $result = $this->model->where('restaurant_id', $restaurantId);
         // dd($result);
         if ($request->visitorsFilterValue === 'pending') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 0)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 0);
         } elseif ($request->visitorsFilterValue === 'cancel') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', -1)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', -1);
         } elseif ($request->visitorsFilterValue === 'accept') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 1)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 1);
         } elseif ($request->visitorsFilterValue === 'schedule') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 2)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId)->where('appointment_status', 2);
         } elseif ($request->visitorsFilterValue === 'all') {
-            $result = $this->model->where('restaurant_id', $restaurantId)->get();
+            $result = $this->model->where('restaurant_id', $restaurantId);
         }
 
         // $result->whereDate('checkin_at', Carbon::today());
-
-        return Datatables::of($result)->addIndexColumn()->make(true);
+        // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
+        // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
+        return Datatables::of($result)->editColumn('appointment_date', function($result){
+            return Carbon::createFromFormat('Y-m-d', $result->appointment_date)->format('d-m-Y');
+        })->editColumn('appointment_time', function($result){
+            return Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
+        })->filterColumn('appointment_date', function ($query, $keyword) {
+            $query->whereRaw("DATE_FORMAT(str_to_date(reservations.appointment_date,'%Y-%m-%d'),'%d-%m-%Y') like ?", ["%$keyword%"]);
+        })
+        ->addIndexColumn()->make(true);
     }
 
     public function editCheckout($id)
