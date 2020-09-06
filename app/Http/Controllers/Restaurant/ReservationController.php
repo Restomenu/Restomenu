@@ -55,14 +55,14 @@ class ReservationController extends Controller
         // $result->whereDate('checkin_at', Carbon::today());
         // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
         // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
-        return Datatables::of($result)->editColumn('appointment_date', function($result){
+        return Datatables::of($result)->editColumn('appointment_date', function ($result) {
             return Carbon::createFromFormat('Y-m-d', $result->appointment_date)->format('d-m-Y');
-        })->editColumn('appointment_time', function($result){
+        })->editColumn('appointment_time', function ($result) {
             return Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
         })->filterColumn('appointment_date', function ($query, $keyword) {
             $query->whereRaw("DATE_FORMAT(str_to_date(reservations.appointment_date,'%Y-%m-%d'),'%d-%m-%Y') like ?", ["%$keyword%"]);
         })
-        ->addIndexColumn()->make(true);
+            ->addIndexColumn()->make(true);
     }
 
     public function editCheckout($id)
@@ -265,9 +265,17 @@ class ReservationController extends Controller
                     } elseif ($appointment_status === 0) {
                         $message = "Your appointment status has been changed to pending by $restaurant->name.";
                     } elseif ($appointment_status === 2) {
-                        $message = "Your appointment has been scheduled by $restaurant->name.";
-                        if ($request->appointment_time) {
-                            $message .= " On " . $request->appointment_time;
+                        // $message = "Your appointment has been scheduled by $restaurant->name.";
+                        // if ($request->appointment_time) {
+                        //     $message .= " On " . $request->appointment_time;
+                        // }
+
+                        if ($result->locale == 'en') {
+                            $message = "Hello $result->first_name, \nWe’re already fully booked on $appointmentDate at $appointmentTime. Although, we could propose $request->appointment_time for $result->number_of_people persons. If this hour fits your schedule, could you perhaps call us ($restaurant->phone) as soon as possible to confirm the reservation. \n\nThanks in advance,\n$restaurant->name";
+                        } elseif ($result->locale == 'nl') {
+                            $message = "Dag $result->first_name, \nWij zijn reeds vol geboekt op $appointmentDate om $appointmentTime. Wij kunnen jou wel een tafel voor $result->number_of_people personen voorstellen om $request->appointment_time.Als dit uur jou ook past, kun je ons zo snel mogelijk opbellen en bevestigen op $restaurant->phone. \n\nBedankt op voorhand, \n$restaurant->name";
+                        } elseif ($result->locale == 'fr') {
+                            $message = "Bonjour $result->first_name, \nNous sommes déjà complet le $appointmentDate à $appointmentTime. mais pouvons vous proposer une table pour $result->number_of_people personnes à $request->appointment_time. Si cette heure vous convient, veuillez nous contacter au plus vite au $restaurant->phone. \n\nD’avance merci,\n$restaurant->name";
                         }
                     }
 
