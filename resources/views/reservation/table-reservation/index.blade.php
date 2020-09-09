@@ -404,7 +404,7 @@
                         <div class="col-6 col-sm-4 font-weight-bold">
                             @lang('First name')
                         </div>
-                        <div class="col-6 col-sm-6" id="fname-confirm-text">
+                        <div class="col-6 col-sm-6 word-wrap" id="fname-confirm-text">
 
                         </div>
                     </div>
@@ -412,7 +412,7 @@
                         <div class="col-6 col-sm-4 font-weight-bold">
                             @lang('Last name')
                         </div>
-                        <div class="col-6 col-sm-6" id="lname-confirm-text">
+                        <div class="col-6 col-sm-6 word-wrap" id="lname-confirm-text">
 
                         </div>
                     </div>
@@ -420,7 +420,7 @@
                         <div class="col-6 col-sm-4 font-weight-bold">
                             @lang('Email')
                         </div>
-                        <div class="col-6 col-sm-6" id="email-confirm-text">
+                        <div class="col-6 col-sm-6 word-wrap" id="email-confirm-text">
 
                         </div>
                     </div>
@@ -429,7 +429,7 @@
                         <div class="col-6 col-sm-4 font-weight-bold">
                             @lang('Phone number')
                         </div>
-                        <div class="col-6 col-sm-6" id="phone-confirm-text">
+                        <div class="col-6 col-sm-6 word-wrap" id="phone-confirm-text">
 
                         </div>
                     </div>

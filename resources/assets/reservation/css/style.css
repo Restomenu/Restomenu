@@ -678,7 +678,7 @@ label.error {
     bottom: 0px;
     min-height: 40px;
     padding-top: 0px;
-    background-color: #F4F5F6;
+    background-color: #f4f5f6;
     width: 100%;
     color: black;
     display: flex;
@@ -755,4 +755,8 @@ label.error {
 .mini-footer img {
     width: 200px;
     align-self: center;
+}
+
+.word-wrap {
+    word-wrap: break-word;
 }
