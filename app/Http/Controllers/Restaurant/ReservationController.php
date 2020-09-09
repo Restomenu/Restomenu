@@ -55,11 +55,14 @@ class ReservationController extends Controller
         // $result->whereDate('checkin_at', Carbon::today());
         // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
         // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
-        return Datatables::of($result)->editColumn('appointment_date', function ($result) {
+        return Datatables::of($result)
+        ->editColumn('appointment_date', function ($result) {
             return Carbon::createFromFormat('Y-m-d', $result->appointment_date)->format('d-m-Y');
-        })->editColumn('appointment_time', function ($result) {
-            return Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
-        })->filterColumn('appointment_date', function ($query, $keyword) {
+        })
+        // ->editColumn('appointment_time', function ($result) {
+        //     return Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
+        // })
+        ->filterColumn('appointment_date', function ($query, $keyword) {
             $query->whereRaw("DATE_FORMAT(str_to_date(reservations.appointment_date,'%Y-%m-%d'),'%d-%m-%Y') like ?", ["%$keyword%"]);
         })
             ->addIndexColumn()->make(true);

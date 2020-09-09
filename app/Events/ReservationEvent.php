@@ -14,17 +14,18 @@ class ReservationEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     private $message = 'New reservation!';
-    private $type, $user;
+    private $type, $user, $restaurant;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message = "New reservation", $type = "new_reservation", $user = null)
+    public function __construct($restaurant, $message = "New reservation", $type = "new_reservation", $user = null)
     {
         $this->type = $type;
         $this->user = $user;
         $this->message = $message;
+        $this->restaurant = $restaurant;
     }
 
     /**
@@ -34,7 +35,11 @@ class ReservationEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('reservation');
+        // return new PrivateChannel('reservation');
+
+        return new PrivateChannel('reservation.' . $this->restaurant->id);
+
+
         // return new Channel('reservation');
     }
 

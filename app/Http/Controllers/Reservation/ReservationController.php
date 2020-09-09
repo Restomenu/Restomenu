@@ -162,7 +162,8 @@ class ReservationController extends Controller
                 $inputs = $request->except('_token');
                 $inputs['restaurant_id'] = $restaurant->id;
                 $inputs['appointment_date'] = Carbon::createFromFormat('d-m-Y', $request->appointment_date)->format('Y-m-d');
-                $inputs['appointment_time'] = Carbon::createFromFormat('h:i A', $request->appointment_time)->format('H:i');
+                // $inputs['appointment_time'] = Carbon::createFromFormat('h:i A', $request->appointment_time)->format('H:i');
+
 
                 $isSaved = $this->model->create($inputs);
 
@@ -298,7 +299,8 @@ class ReservationController extends Controller
         if ($request->appointment_time && $request->appointment_date) {
             $restaurant = $this->restaurantRepository->getRestaurantFromSlug($slug);
 
-            $appointmentTime = Carbon::createFromFormat('h:i A', $request->appointment_time)->toDateTimeString();
+            $appointmentTime = Carbon::createFromFormat('H:i', $request->appointment_time)->toDateTimeString();
+            // $appointmentTime = Carbon::createFromFormat('h:i A', $request->appointment_time)->toDateTimeString();
 
             $day = Carbon::parse($request->appointment_date)->format('l');
 
