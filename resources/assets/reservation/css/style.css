@@ -765,3 +765,7 @@ label.error {
 .word-wrap {
     word-wrap: break-word;
 }
+
+.footer-restomenu-logo{
+    width: 70px !important;
+}

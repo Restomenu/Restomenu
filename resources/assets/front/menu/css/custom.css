@@ -272,11 +272,17 @@ a.remove-from-cart-button:hover {
     .main-content-wrapper {
         max-width: 500px !important;
     }
+    .yes-btn {
+        margin-bottom: 10px !important;
+    }
 }
 
 @media (min-width: 768px) {
     .main-content-wrapper {
         max-width: 600px !important;
+    }
+    .yes-btn {
+        margin-bottom: 10px !important;
     }
 }
 
@@ -383,4 +389,8 @@ label.error {
 
 .input-group-text-no-border {	
     border: none !important;	
+}
+
+.footer-restomenu-logo{
+    width: 70px !important;
 }

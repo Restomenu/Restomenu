@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="language-selection-box-mobile-languages-box">
-    <h2>
+    {{-- <h2>
         @if($restaurant->setting->language_dutch)
         Kies een taal
         @endif
@@ -14,7 +14,7 @@
         @if($restaurant->setting->language_english)
         / Choose a language
         @endif
-    </h2>
+    </h2> --}}
 
     @if($restaurant->setting->language_dutch)
     <a href="javascript:void(0);" data-toggle="modal" data-target="#visitorModalNl" class="lang-btn">
