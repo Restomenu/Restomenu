@@ -19,14 +19,14 @@
     @if($restaurant->setting->language_dutch)
     <a href="javascript:void(0);" data-toggle="modal" data-target="#visitorModalNl" class="lang-btn">
         {{-- <a href="{{ route('menu-nl',['slug' => $restaurant->slug]) }}" class="lang-btn"> --}}
-        Nederlands
+        <i class="flag-icon flag-icon-be mr-2" title="nl"></i> Nederlands
     </a>
     @endif
 
     @if($restaurant->setting->language_french)
     <a href="javascript:void(0);" data-toggle="modal" data-target="#visitorModalFr" class="lang-btn">
         {{-- <a href="{{route('menu-fr',['slug' => $restaurant->slug])}}" class="lang-btn"> --}}
-        Français
+        <i class="flag-icon flag-icon-fr mr-2" title="fr"></i> Français
     </a>
     @endif
 
@@ -34,7 +34,7 @@
     <a href="javascript:void(0);" data-toggle="modal" data-target="#visitorModalEn" class="lang-btn">
         {{-- <a href="{{route('menu-en',['slug' => $restaurant->slug])}}" data-toggle="modal"
         data-target="#visitorModalEn"> --}}
-        English
+        <i class="flag-icon flag-icon-us mr-2" title="us"></i> English
     </a>
     @endif
 </div>

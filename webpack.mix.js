@@ -24,9 +24,10 @@ mix.js("resources/assets/front/js/app.js", "public/front/js")
         ["resources/assets/front/menu/images"],
         "public/front/menu/images"
     )
+    .copyDirectory(["resources/assets/front/menu/js/*"], "public/front/menu/js")
     .copyDirectory(
-        ["resources/assets/front/menu/js/*"],
-        "public/front/menu/js"
+        ["resources/assets/front/vendor/flag-icon-css/flags"],
+        "public/front/flags"
     );
 
 mix.styles(
@@ -48,7 +49,8 @@ mix.combine(
         "resources/assets/front/vendor/sweetalert2/sweetalert2.min.css",
         "resources/assets/front/vendor/toastr/toastr.min.css",
         "resources/assets/front/vendor/select2/select2.min.css",
-        "resources/assets/front/vendor/star-rating/star-rating-svg.css"
+        "resources/assets/front/vendor/star-rating/star-rating-svg.css",
+        "resources/assets/front/vendor/flag-icon-css/css/flag-icon.css"
     ],
     "public/front/css/vendor.css"
 );
