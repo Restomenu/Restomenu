@@ -13,7 +13,7 @@ class VisitorController extends Controller
 {
     public function __construct(Visitor $model)
     {
-        $this->moduleName = "Customer";
+        $this->moduleName = "COVID-19 Registration";
         $this->moduleRoute = url('visitors');
         $this->moduleView = "restaurant-new.main.visitors";
         $this->model = $model;

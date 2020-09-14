@@ -79,7 +79,7 @@ function show_class($path) {
             <li class="nav-item {{ setActiveMenu('visitors') }}">
                 <a href="{{route('restaurant.visitors.index')}}" class="nav-link">
                     <i class="link-icon" data-feather="user"></i>
-                    <span class="link-title">{{__('Customers')}}</span>
+                    <span class="link-title">{{__('COVID-19 Registrations')}}</span>
                 </a>
             </li>
             <li class="nav-item {{ setActiveMenu('reservations') }}">
