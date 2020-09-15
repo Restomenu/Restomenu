@@ -34,14 +34,14 @@
 
     @include('restaurant-new.layouts.includes.jsfiles')
     @stack('scripts')
-    {{-- <script>
+    <script>
         var restaurantId = "{{auth()->guard('restaurant')->user()->id}}";
         
         Echo.private(`reservation.${restaurantId}`).listen("ReservationEvent", e => {
             console.log(e);
             fnToastSuccess(e.message);
         });
-    </script> --}}
+    </script>
 
 </body>
 

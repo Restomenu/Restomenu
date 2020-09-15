@@ -12202,12 +12202,19 @@ module.exports = yeast;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 
-window.io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  broadcaster: "socket.io",
-  host: window.location.hostname + ":6001" // this is laravel-echo-server host
+window.io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js"); // window.Echo = new Echo({
+//     broadcaster: "socket.io",
+//     host: window.location.hostname + ":6001" // this is laravel-echo-server host
+// });
+// Have this in case you stop running your laravel echo server
 
-});
+if (typeof io !== "undefined") {
+  window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    broadcaster: "socket.io",
+    host: window.location.hostname + ":6001" // this is laravel-echo-server host
+
+  });
+}
 
 /***/ }),
 
