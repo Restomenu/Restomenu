@@ -36,10 +36,20 @@
     @stack('scripts')
     <script>
         var restaurantId = "{{auth()->guard('restaurant')->user()->id}}";
-        
+
+        var notificationSoundUrl = "{{asset('restaurant-new/sounds/notify.mp3')}}";
+                
+        var notificationSound = new Howl({
+          src: [notificationSoundUrl]
+        });
+
         Echo.private(`reservation.${restaurantId}`).listen("ReservationEvent", e => {
-            console.log(e);
-            fnToastSuccess(e.message);
+            // console.log(e);
+            notificationSound.play();
+            // $('.notification-indicator').removeClass('d-none');
+            var message = `${e.first_name} ${e.last_name} made reservation for ${e.number_of_people} ${e.number_of_people == 1 ? "person":'persons'} for date: ${e.appointment_date}.`;
+             
+            fnShowSuccessNotif(message);
         });
     </script>
 

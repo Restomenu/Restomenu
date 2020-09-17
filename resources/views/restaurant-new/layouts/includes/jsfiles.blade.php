@@ -153,6 +153,13 @@
         }
     }
 
+    function fnShowSuccessNotif(message){
+        Toast.fire({
+            position: 'bottom-right',
+            icon: "success",
+            title: message
+        });
+    }
     // @if(Auth::check())
         // var restaurantId = "{{auth()->guard('restaurant')->user()->id}}";
         

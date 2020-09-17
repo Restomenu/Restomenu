@@ -165,9 +165,9 @@ class ReservationController extends Controller
                 // $inputs['appointment_time'] = Carbon::createFromFormat('h:i A', $request->appointment_time)->format('H:i');
 
 
-                $isSaved = $this->model->create($inputs);
+                $reservation = $this->model->create($inputs);
 
-                if ($isSaved) {
+                if ($reservation) {
 
                     // send message to restaurant
                     $isSmsEnabled = config("restomenu.sms.is_enabled");
@@ -219,7 +219,7 @@ class ReservationController extends Controller
                             Log::info($e->getMessage());
                         }
                     }
-                    event(new \App\Events\ReservationEvent($restaurant));
+                    event(new \App\Events\ReservationEvent($restaurant, $reservation));
                     $data = [
                         'message' => __('Registration successful.'),
                     ];

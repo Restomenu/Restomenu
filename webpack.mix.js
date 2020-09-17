@@ -249,6 +249,10 @@ mix.copyDirectory(
 mix.copyDirectory(["resources/assets/errors/404.svg"], "public/errors");
 
 mix.copyDirectory(["resources/assets/mails"], "public/mails");
+mix.copyDirectory(
+    ["resources/assets/restaurant-new/sounds"],
+    "public/restaurant-new/sounds"
+);
 
 mix.combine(
     [
@@ -317,7 +321,8 @@ mix.combine(
         "resources/assets/restaurant-new/plugins/promise-polyfill/polyfill.min.js",
         "resources/assets/restaurant-new/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.js",
         "resources/assets/restaurant-new/plugins/clockpicker/clockpicker.js",
-        "resources/assets/restaurant-new/plugins/star-rating/jquery.star-rating-svg.js"
+        "resources/assets/restaurant-new/plugins/star-rating/jquery.star-rating-svg.js",
+        "resources/assets/restaurant-new/plugins/howler/howler.min.js"
         // "resources/assets/restaurant-new/plugins/typeahead-js/typeahead.bundle.min.js"
     ],
     "public/restaurant-new/js/vendor.js"
