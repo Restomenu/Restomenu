@@ -76,17 +76,19 @@ class SettingController extends Controller
 
                 //site logo setting
                 if ($request->site_logo) {
+                    $storagePath= config("restomenu.path.storage_restaurant_images_root_dir") . "restaurant_" . $restaurantId . '/' . config("restomenu.path.storage_logo");
+                    
                     if ($request->hasFile('site_logo')) {
                         $fileName = 'site-logo' . time() . '.' . $request->site_logo->getClientOriginalExtension();
                         $file = $request->file('site_logo');
 
-                        Storage::put($this->siteLogoStoragePath . $fileName, file_get_contents($file), 'public');
+                        Storage::put($storagePath . $fileName, file_get_contents($file), 'public');
 
                         $inputs['site_logo'] = $fileName;
 
                         if (isset($result->site_logo) && $result->site_logo) {
-                            if (Storage::exists($this->siteLogoStoragePath . $result->site_logo)) {
-                                Storage::delete($this->siteLogoStoragePath . $result->site_logo);
+                            if (Storage::exists($storagePath . $result->site_logo)) {
+                                Storage::delete($storagePath . $result->site_logo);
                             }
                         }
                     }
@@ -112,77 +114,77 @@ class SettingController extends Controller
                     return redirect(route('restaurant.settings-edit'))->with("error", "Sorry! You Can't Inactive Default langauge French");
                 }
 
-                if ($request->old_password) {
-                    $hashedPassword = Restaurant::find($restaurantId)->password;
-                    // dd($hashedPassword);
-                    if (Hash::check($request->old_password, $hashedPassword)) {
-                        // $this->validate($request, [
-                        //     'password' => 'required|confirmed'
-                        // ]);
+                // if ($request->old_password) {
+                //     $hashedPassword = Restaurant::find($restaurantId)->password;
+                //     // dd($hashedPassword);
+                //     if (Hash::check($request->old_password, $hashedPassword)) {
+                //         // $this->validate($request, [
+                //         //     'password' => 'required|confirmed'
+                //         // ]);
 
 
-                        $validator = Validator::make($request->all(), [
-                            'password' => 'required',
-                            'password_confirmation' => 'same:password',
-                        ], [
-                            'password_confirmation.same' => 'Confirm password does not match.'
-                        ]);
+                //         $validator = Validator::make($request->all(), [
+                //             'password' => 'required',
+                //             'password_confirmation' => 'same:password',
+                //         ], [
+                //             'password_confirmation.same' => 'Confirm password does not match.'
+                //         ]);
 
-                        if ($validator->fails()) {
-                            return back()->withInput()->withErrors($validator->messages());
-                        }
+                //         if ($validator->fails()) {
+                //             return back()->withInput()->withErrors($validator->messages());
+                //         }
 
-                        $newpassword = Hash::make($request->password);
-
-
-
-                        Restaurant::find($restaurantId)->update(['password' => $newpassword]);
-                    } else {
-                        return redirect(route('restaurant.settings-edit'))->with("error", "Sorry! Your Current Password is Wrong");
-                    }
-                }
+                //         $newpassword = Hash::make($request->password);
 
 
-                if (auth()->guard('restaurant')->user()->email != $request->email) {
-                    $validator = Validator::make($request->all(), [
-                        'email' => 'required|email|max:255|unique:restaurants',
 
-                    ], [
-                        'email.unique' => 'This Email Already Registered',
-                        'email.required' => 'Please Email Address',
-
-                    ]);
-
-                    if ($validator->fails()) {
-                        return back()->withInput()->withErrors($validator->messages());
-                    }
-
-                    Restaurant::find($restaurantId)->update(['email' => $request->email]);
-                }
-
-                if (auth()->guard('restaurant')->user()->phone != $request->phone) {
+                //         Restaurant::find($restaurantId)->update(['password' => $newpassword]);
+                //     } else {
+                //         return redirect(route('restaurant.settings-edit'))->with("error", "Sorry! Your Current Password is Wrong");
+                //     }
+                // }
 
 
-                    $validator = Validator::make($request->all(), [
-                        'phone' => 'required|numeric|unique:restaurants',
+                // if (auth()->guard('restaurant')->user()->email != $request->email) {
+                //     $validator = Validator::make($request->all(), [
+                //         'email' => 'required|email|max:255|unique:restaurants',
 
-                    ], [
-                        'phone.unique' => 'This Number Already Registered',
-                        'phone.required' => 'Please Enter Number',
+                //     ], [
+                //         'email.unique' => 'This Email Already Registered',
+                //         'email.required' => 'Please Email Address',
 
-                    ]);
+                //     ]);
 
-                    if ($validator->fails()) {
-                        return back()->withInput()->withErrors($validator->messages());
-                    }
+                //     if ($validator->fails()) {
+                //         return back()->withInput()->withErrors($validator->messages());
+                //     }
 
-                    // $this->validate($request, [
-                    //     'phone' => 'required|numeric|unique:restaurants',
-                    // ]);
+                //     Restaurant::find($restaurantId)->update(['email' => $request->email]);
+                // }
+
+                // if (auth()->guard('restaurant')->user()->phone != $request->phone) {
 
 
-                    Restaurant::find($restaurantId)->update(['phone' => $request->phone]);
-                }
+                //     $validator = Validator::make($request->all(), [
+                //         'phone' => 'required|numeric|unique:restaurants',
+
+                //     ], [
+                //         'phone.unique' => 'This Number Already Registered',
+                //         'phone.required' => 'Please Enter Number',
+
+                //     ]);
+
+                //     if ($validator->fails()) {
+                //         return back()->withInput()->withErrors($validator->messages());
+                //     }
+
+                //     // $this->validate($request, [
+                //     //     'phone' => 'required|numeric|unique:restaurants',
+                //     // ]);
+
+
+                //     Restaurant::find($restaurantId)->update(['phone' => $request->phone]);
+                // }
 
 
                 $isSaved = $result->update($inputs);
