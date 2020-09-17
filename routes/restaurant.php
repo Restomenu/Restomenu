@@ -1,6 +1,7 @@
 <?php
 
 Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant'], function () {
+    // Route::group(['domain' =>"restaurant.restomenu.local", 'namespace' => 'Restaurant'], function () {
     Route::get('home', 'DashboardController@index')->name('home');
     Route::get('lang/{locale}', 'DashboardController@lang')->name('lang');
     Route::get('categories/datatable', 'CategoryController@getDatatable')->name('categories-datatable');
@@ -25,8 +26,8 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant']
     Route::get('settings', 'SettingController@edit')->name('settings-edit');
     Route::post('settings', 'SettingController@update')->name('settings-update');
 
-    Route::get('restaurant-time', 'RestaurantTimeController@edit')->name('restaurant-time-edit');
-    Route::post('restaurant-time', 'RestaurantTimeController@update')->name('restaurant-time-update');
+    Route::get('restaurant-setting', 'RestaurantSettingController@edit')->name('restaurant-setting-edit');
+    Route::post('restaurant-setting', 'RestaurantSettingController@update')->name('restaurant-setting-update');
 
     Route::get('category-icons/datatable', 'CategoryIconController@getDatatable')->name('category-icons-datatable');
     Route::resource('category-icons', 'CategoryIconController');

@@ -94,14 +94,6 @@ function show_class($path) {
                     <span class="link-title">{{__('Settings')}}</span>
                 </a>
             </li>
-
-            <li class="nav-item {{ setActiveMenu('restaurant-time') }}">
-                <a href="{{route('restaurant.restaurant-time-edit')}}" class="nav-link">
-                    <i class="link-icon" data-feather="watch"></i>
-                    <span class="link-title">{{__('Restaurant Timings')}}</span>
-                </a>
-            </li>
-
         </ul>
     </div>
 </nav>

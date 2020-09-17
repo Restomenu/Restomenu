@@ -14,9 +14,9 @@ class Setting extends Model
     public function getLogoFullPathAttribute($value)
     {
         if ($value) {
-            return Storage::url(config("restomenu.path.storage_logo")) . $value;
+            return Storage::url(config("restomenu.path.storage_restaurant_images_root_dir") . "restaurant_" . $this->restaurant_id . '/' . config("restomenu.path.storage_logo")) . $value;
         } else if (isset($this->site_logo) && $this->site_logo) {
-            return Storage::url(config("restomenu.path.storage_logo")) . $this->site_logo;
+            return Storage::url(config("restomenu.path.storage_restaurant_images_root_dir") . "restaurant_" . $this->restaurant_id . '/' . config("restomenu.path.storage_logo")) . $this->site_logo;
         } else {
             return asset('admin/images/placeholder-image.png');
         }

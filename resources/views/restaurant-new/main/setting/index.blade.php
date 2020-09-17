@@ -132,7 +132,7 @@
                 </fieldset>
 
                 <div class="form-group row">
-                    <label class="col-form-label col-sm-2">{{__('Defualt Language')}}</label>
+                    <label class="col-form-label col-sm-2">{{__('Default Language')}}</label>
                     <div class="col-sm-6">
                         {{ Form::select('defualt_language', $selectedLanguage,  (isset($result) ? $result->defualt_language : null), ['id'=>'defualt_language',"class"=>"form-control"]) }}
 
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <fieldset class="form-group">
+                <!-- <fieldset class="form-group">
                     <legend class="scheduler-border">Change Password</legend>
 
                     <div class="form-group row">
@@ -243,7 +243,7 @@
                         <p class="text-danger">{{ $errors->first('tw_url') }}</p>
                         @endif
                     </div>
-                </div>
+                </div> -->
 
 
                 <div class="form-group row">
