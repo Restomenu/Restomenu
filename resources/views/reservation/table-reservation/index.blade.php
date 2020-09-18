@@ -881,9 +881,9 @@ $restaurant->setting->language_french > 1)
                 // form.resetForm();
                 $('#visitorForm').trigger("reset");
                 $('#visitorForm').find('.error').removeClass('error');
-                setTimeout(function(){
-                    location.reload();
-                },2000);
+                // setTimeout(function(){
+                //     location.reload();
+                // },2000);
             },
             error: function(xhr, status, error) {
                 if (xhr.status == 422) {

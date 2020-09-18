@@ -154,12 +154,45 @@
     }
 
     function fnShowSuccessNotif(message){
-        Toast.fire({
-            position: 'bottom-right',
-            icon: "success",
-            title: message
-        });
+        // Toast.fire({
+        //     position: 'bottom-right',
+        //     icon: "success",
+        //     title: message
+        // });
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": 0,
+            "extendedTimeOut": 0,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+            "tapToDismiss": false
+        }
+        toastr.info(`${message}`);
+        // toastr.info(`${message}`,'', {iconClass:"reservation-notif-toast"});
+        // <br /><button type="button" class="btn btn-secondary btn-xs clear">Yes</button>
     }
+ 
+    // toastr.info('message <br /><button type="button" class="btn clear">Yes</button>');
+    // toastr.info('message <br /><button type="button" class="btn clear">Yes</button>','',{iconClass:"reservation-notif-toast"});
+    // toastr["success"](`Clear itself?<br /><br /><button type="button" class="btn clear">Yes</button>`);
+
+    $('.clear').on('click', function () {
+        console.log($(this));
+        
+        $(this).closest('.toast').remove();
+    });
+
+            
     // @if(Auth::check())
         // var restaurantId = "{{auth()->guard('restaurant')->user()->id}}";
         

@@ -254,9 +254,14 @@ mix.copyDirectory(
     "public/restaurant-new/sounds"
 );
 
+mix.styles(
+    ["resources/assets/restaurant-new/plugins/toastr/toastr.min.css"],
+    "public/restaurant-new/css/toastr.css"
+);
+
 mix.combine(
     [
-        "resources/assets/restaurant-new/plugins/toastr/toastr.min.css",
+        // "resources/assets/restaurant-new/plugins/toastr/toastr.min.css",
         "resources/assets/restaurant-new/plugins/perfect-scrollbar/perfect-scrollbar.css",
         "resources/assets/restaurant-new/plugins/flag-icon-css/css/flag-icon.css",
         "resources/assets/restaurant-new/plugins/@mdi/css/materialdesignicons.css",

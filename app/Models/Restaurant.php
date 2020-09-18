@@ -6,6 +6,7 @@ use App\Notifications\RestaurantResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Notification;
 
 class Restaurant extends Authenticatable
 {
@@ -48,5 +49,17 @@ class Restaurant extends Authenticatable
     public function restaurantTime()
     {
         return $this->hasOne('App\Models\RestaurantTime');
+    }
+
+    public function totalNotificationCount()
+    {
+        $restaurantId = auth()->guard('restaurant')->user()->id;
+        return Notification::where('restaurant_id', $restaurantId)->where('is_read', '0')->count();
+    }
+
+    public function getAllNotificationData()
+    {
+        $restaurantId = auth()->guard('restaurant')->user()->id;
+        return Notification::where('restaurant_id', $restaurantId)->where('is_read', '0')->orderBy('id', 'desc')->get();
     }
 }

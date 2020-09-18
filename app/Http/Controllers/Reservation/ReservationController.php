@@ -11,15 +11,17 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use SpryngApiHttpPhp\Client;
 use SpryngApiHttpPhp\Exception\InvalidRequestException;
+use App\Models\Notification;
 use App;
 
 class ReservationController extends Controller
 {
-    public function __construct(Reservation $model, RestaurantRepository $restaurantRepository, Setting $settingModel)
+    public function __construct(Reservation $model, RestaurantRepository $restaurantRepository, Setting $settingModel, Notification $notificationModel)
     {
         $this->model = $model;
         $this->settingModel = $settingModel;
         $this->restaurantRepository = $restaurantRepository;
+        $this->notificationModel = $notificationModel;
 
         $this->statusCodes = config("restomenu.responseCodes");
     }
@@ -219,6 +221,16 @@ class ReservationController extends Controller
                             Log::info($e->getMessage());
                         }
                     }
+
+                    $reservation['appointment_date_formatted'] = Carbon::createFromFormat('Y-m-d', $reservation->appointment_date)->format('d-m-Y');
+
+                    $this->notificationModel->create([
+                        'restaurant_id' =>  $restaurant->id,
+                        'reservation_id' =>  $reservation->id,
+                        'notifcation_type' =>  'new_reservation',
+                        'notification_data' =>  json_encode($reservation),
+                    ]);
+
                     event(new \App\Events\ReservationEvent($restaurant, $reservation));
                     $data = [
                         'message' => __('Registration successful.'),

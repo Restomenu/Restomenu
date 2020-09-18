@@ -1,14 +1,166 @@
+@php
+$totalNotificationCount = auth()->guard('restaurant')->user()->totalNotificationCount();
+$notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData();
+@endphp
+
 <nav class="navbar">
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
         <ul class="navbar-nav">
+            <li class="nav-item dropdown nav-notifications">
+                <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i data-feather="bell"></i>
+                    
+                    <div class="indicator notification-indicator {{$totalNotificationCount === 0 ? 'd-none' : ''}}">
+                        <div class="circle"></div>
+                    </div>
+                    
+                </a>
+                <div class="dropdown-menu" aria-labelledby="notificationDropdown">
+                    <div class="dropdown-header d-flex align-items-center justify-content-between">
+                        <p class="mb-0 font-weight-medium">
+                            <span id="notification-count">{{$totalNotificationCount}}</span>
+                            New
+                            {{$totalNotificationCount > 1 ? 'Notifications' : 'Notification'}}
+                        </p>
+                        {{-- <a href="javascript:;" class="text-muted">Clear all</a> --}}
+                    </div>
+                    <div class="dropdown-body header-notification-dropdown">
+                    
+                        <a href="javascript:;" class="dropdown-item no-notification-section {{$totalNotificationCount === 0 ? '' : 'd-none'}}">
+                            {{-- <div class="icon">
+                                <i data-feather="user-plus"></i>
+                            </div> --}}
+                            <div class="content">
+                                <p>No new notification</p>
+                            </div>
+                        </a>                    
+
+                        <div class="notifications-list">
+                            @if ($totalNotificationCount)
+                            @foreach ($notificationsData as $notificationData)
+                            @php
+                            $notification = json_decode($notificationData->notification_data, true);
+
+                            $message = $notification['first_name'] .' '.$notification['last_name'] . ' made reservation for '.$notification['number_of_people'] . ($notification['number_of_people'] == 1 ? ' person' :' persons').' for date '.Carbon\Carbon::createFromFormat('Y-m-d',$notification['appointment_date'])->format('d-m-Y').' '.$notification['appointment_time'].'.';
+
+                            @endphp
+                            <div>
+                                <a href="{{route('restaurant.reservations.index')}}" class="dropdown-item">
+                                    <div class="icon">
+                                        <i data-feather="user-plus"></i>
+                                    </div>
+                                    <div class="content">
+                                        <p>{{$message}}</p>
+                                        {{-- <p><button class="btn btn-primary btn-xs">{{__('Accept')}}</button></p> --}}
+                                        {{-- <p class="sub-text text-muted">2 sec ago</p> --}}
+                                    </div>
+                                </a>
+                                {{-- <button class="btn btn-primary btn-xs"><i class='fa fa-edit'></i></button> --}}
+                            </div>
+
+                            @endforeach
+                            @endif
+                        </div>
+                        {{-- <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="user-plus"></i>
+                            </div>
+                            <div class="content">
+                                <p>New customer registered</p>
+                                <p class="sub-text text-muted">2 sec ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="user-plus"></i>
+                            </div>
+                            <div class="content">
+                                <p>New customer registered</p>
+                                <p class="sub-text text-muted">2 sec ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="user-plus"></i>
+                            </div>
+                            <div class="content">
+                                <p>New customer registered</p>
+                                <p class="sub-text text-muted">2 sec ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="user-plus"></i>
+                            </div>
+                            <div class="content">
+                                <p>New customer registered</p>
+                                <p class="sub-text text-muted">2 sec ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="user-plus"></i>
+                            </div>
+                            <div class="content">
+                                <p>New customer registered</p>
+                                <p class="sub-text text-muted">2 sec ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="gift"></i>
+                            </div>
+                            <div class="content">
+                                <p>New Order Recieved</p>
+                                <p class="sub-text text-muted">30 min ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="alert-circle"></i>
+                            </div>
+                            <div class="content">
+                                <p>Server Limit Reached!</p>
+                                <p class="sub-text text-muted">1 hrs ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="layers"></i>
+                            </div>
+                            <div class="content">
+                                <p>Apps are ready for update</p>
+                                <p class="sub-text text-muted">5 hrs ago</p>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="dropdown-item">
+                            <div class="icon">
+                                <i data-feather="download"></i>
+                            </div>
+                            <div class="content">
+                                <p>Download completed</p>
+                                <p class="sub-text text-muted">6 hrs ago</p>
+                            </div>
+                        </a> --}}
+                    </div>
+                    <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                        <a href="{{route('restaurant.reservations.index')}}">View all</a>
+                    </div>
+                </div>
+            </li>
+
+
             <li class="nav-item dropdown">
 
-                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     @if (app()->getLocale() == 'en')
-                    <i class="flag-icon flag-icon-us mt-1" title="us"></i> <span class="font-weight-medium ml-1 mr-1">English</span>
+                    <i class="flag-icon flag-icon-us mt-1" title="us"></i> <span
+                        class="font-weight-medium ml-1 mr-1">English</span>
 
                     @elseif (app()->getLocale() == 'fr')
                     <i class="flag-icon flag-icon-fr" title="fr"></i> <span class="ml-1"> Français </span></a>
@@ -44,7 +196,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="btn btn-light" href="{{ env('APP_URL').'/'.auth()->guard('restaurant')->user()->slug }}" target="_blank">
+                <a class="btn btn-light" href="{{ env('APP_URL').'/'.auth()->guard('restaurant')->user()->slug }}"
+                    target="_blank">
                     {{ __('See Live Menu') }}
                 </a>
             </li>
@@ -56,13 +209,16 @@
             </li>
 
             <li class="nav-item dropdown nav-profile">
-                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo)}}" alt="profile">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img src="{{asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo)}}"
+                        alt="profile">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     <div class="dropdown-header d-flex flex-column align-items-center">
                         <div class="figure mb-3">
-                            <img src="{{asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo)}}" alt="">
+                            <img src="{{asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo)}}"
+                                alt="">
                         </div>
                         <div class="info text-center">
                             <p class="name font-weight-bold mb-0">{{auth()->guard('restaurant')->user()->name}}</p>
@@ -79,7 +235,7 @@
                             </li> -->
                             <li class="nav-item">
                                 <a href="{{route('restaurant.restaurant-setting-edit')}}" class="nav-link">
-                                    <i data-feather="coffee" ></i>
+                                    <i data-feather="coffee"></i>
                                     <span>My Restaurant</span>
                                 </a>
                             </li>
@@ -93,11 +249,13 @@
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('restaurant.logout') }}" onclick="event.preventDefault();          document.getElementById('logout-form4').submit();">
+                                <a class="nav-link" href="{{ route('restaurant.logout') }}"
+                                    onclick="event.preventDefault();          document.getElementById('logout-form4').submit();">
                                     <i data-feather="log-out"></i>
                                     {{ __('Log out') }}
                                 </a>
-                                <form id="logout-form4" action="{{ route('restaurant.logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form4" action="{{ route('restaurant.logout') }}" method="POST"
+                                    style="display: none;">
                                     @csrf
                                 </form>
                             </li>
@@ -111,7 +269,8 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalTitle" aria-hidden="true">
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -125,7 +284,8 @@
             <form action="javascript:void(0);" method="post" id="feedbackForm">
                 <div class="modal-body">
                     <div class="form-group">
-                        <textarea class="form-control rm-text-input" name="comment" id="" rows="5" placeholder="@lang('Comment (required)')"></textarea>
+                        <textarea class="form-control rm-text-input" name="comment" id="" rows="5"
+                            placeholder="@lang('Comment (required)')"></textarea>
                     </div>
 
                     <input type="hidden" class="form-control" name="ratings" id="ratings">
@@ -135,7 +295,8 @@
                 </div>
                 <div class="modal-footer feedback-modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
-                    <button type="submit" class="btn btn-primary shadow-none btn-restomenu-primary feedback-submit-btn">@lang('Save')</button>
+                    <button type="submit"
+                        class="btn btn-primary shadow-none btn-restomenu-primary feedback-submit-btn">@lang('Save')</button>
                 </div>
             </form>
         </div>

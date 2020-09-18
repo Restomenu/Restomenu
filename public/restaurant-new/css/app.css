@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Overpass:300,400,600,700,800,900&display=swap);@-webkit-keyframes flash {
+@import url(https://fonts.googleapis.com/css?family=Overpass:300,400,600,700,800,900&display=swap);@charset "UTF-8";
+
+@-webkit-keyframes flash {
   0% {
     opacity: 1;
   }
@@ -26357,6 +26359,15 @@ label.error {
 
 .header-notification-dropdown {
   overflow-y: auto;
+}
+
+#toast-container > .reservation-notif-toast {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR…b0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=") !important;
+}
+
+/* this will set the toastr style */
+.reservation-notif-toast {
+  background-color: #10b759;
 }
 
 /*# sourceMappingURL=app.css.map*/

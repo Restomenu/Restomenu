@@ -358,7 +358,7 @@
                 searchable: true,
                 orderable: true,
                 render: function(appointment_status, type, visitor, meta) {
-                    console.log(visitor);
+                    // console.log(visitor);
 
                     var resultStr = '<div>';
                     if(appointment_status===0) {

@@ -46,7 +46,7 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant']
     Route::post('reservations/status-update', 'ReservationController@statusUpdate')->name('reservation-status-update');
 
     Route::resource('restaurant-feedbacks', 'RestaurantFeedbackController');
+
+    Route::get('get-notification-data', 'NotificationController@getNotificationData')->name('get-notification-data');
 });
-Route::group(['domain' => 'my.restomenu.local', 'namespace' => 'Restaurant'], function () {
-    
-});
+Route::group(['domain' => 'my.restomenu.local', 'namespace' => 'Restaurant'], function () { });

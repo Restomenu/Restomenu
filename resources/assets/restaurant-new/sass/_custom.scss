@@ -95,3 +95,12 @@ label.error {
 .header-notification-dropdown{
     overflow-y: auto;
 }
+
+#toast-container > .reservation-notif-toast {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR…b0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=")!important;
+}
+
+/* this will set the toastr style */
+.reservation-notif-toast {
+    background-color: #10b759;
+}

@@ -42,6 +42,7 @@
     "/restaurant/css/custom.css": "/restaurant/css/custom.css",
     "/restaurant/js/vendor.js": "/restaurant/js/vendor.js",
     "/errors/404.svg": "/errors/404.svg",
+    "/restaurant-new/css/toastr.css": "/restaurant-new/css/toastr.css",
     "/restaurant-new/css/vendor.css": "/restaurant-new/css/vendor.css",
     "/restaurant-new/js/vendor.js": "/restaurant-new/js/vendor.js",
     "/reservation/css/style.css": "/reservation/css/style.css",
