@@ -48,7 +48,8 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
                             $message = $notification['first_name'] .' '.$notification['last_name'] . ' made reservation for '.$notification['number_of_people'] . ($notification['number_of_people'] == 1 ? ' person' :' persons').' for date '.Carbon\Carbon::createFromFormat('Y-m-d',$notification['appointment_date'])->format('d-m-Y').' '.$notification['appointment_time'].'.';
 
                             @endphp
-                            <div>
+
+                            <div class="notification-{{$notificationData->id}}">
                                 <a href="{{route('restaurant.reservations.index')}}" class="dropdown-item">
                                     <div class="icon">
                                         <i data-feather="user-plus"></i>

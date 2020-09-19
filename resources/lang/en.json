@@ -234,5 +234,7 @@
     "Morning Status": "Morning Status",
     "Evening Status": "Evening Status",
     "COVID-19 Registrations": "COVID-19 Registrations",
-    "COVID-19 Registration": "COVID-19 Registration"
+    "COVID-19 Registration": "COVID-19 Registration",
+    "Please select status.": "Please select status.",
+    "Change Reservation Status": "Change Reservation Status"
 }

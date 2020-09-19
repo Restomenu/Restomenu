@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use App\Models\Visitor;
 use App\Models\Setting;
+use App\Models\Notification;
 use Illuminate\Support\Facades\View;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
@@ -16,13 +17,14 @@ use SpryngApiHttpPhp\Exception\InvalidRequestException;
 
 class ReservationController extends Controller
 {
-    public function __construct(Reservation $model,  Setting $settingModel)
+    public function __construct(Reservation $model,  Setting $settingModel, Notification $notificationModel)
     {
         $this->moduleName = "Reservation";
         $this->moduleRoute = url('reservations');
         $this->moduleView = "restaurant-new.main.reservation";
         $this->model = $model;
         $this->settingModel = $settingModel;
+        $this->notificationModel = $notificationModel;
 
         View::share('module_name', $this->moduleName);
         View::share('module_route', $this->moduleRoute);
@@ -52,19 +54,21 @@ class ReservationController extends Controller
             $result = $this->model->where('restaurant_id', $restaurantId);
         }
 
+        $result->orderBy('created_at', 'DESC');
+
         // $result->whereDate('checkin_at', Carbon::today());
         // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
         // $appointmentTime = Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
         return Datatables::of($result)
-        ->editColumn('appointment_date', function ($result) {
-            return Carbon::createFromFormat('Y-m-d', $result->appointment_date)->format('d-m-Y');
-        })
-        // ->editColumn('appointment_time', function ($result) {
-        //     return Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
-        // })
-        ->filterColumn('appointment_date', function ($query, $keyword) {
-            $query->whereRaw("DATE_FORMAT(str_to_date(reservations.appointment_date,'%Y-%m-%d'),'%d-%m-%Y') like ?", ["%$keyword%"]);
-        })
+            ->editColumn('appointment_date', function ($result) {
+                return Carbon::createFromFormat('Y-m-d', $result->appointment_date)->format('d-m-Y');
+            })
+            // ->editColumn('appointment_time', function ($result) {
+            //     return Carbon::createFromFormat('H:i', $result->appointment_time)->format('h:i A');
+            // })
+            ->filterColumn('appointment_date', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(str_to_date(reservations.appointment_date,'%Y-%m-%d'),'%d-%m-%Y') like ?", ["%$keyword%"]);
+            })
             ->addIndexColumn()->make(true);
     }
 
@@ -299,7 +303,20 @@ class ReservationController extends Controller
                     }
                 }
 
-                return response()->json(['message' => __('Status changed successfully.')]);
+                $viewData = [
+                    'message' => __('Status changed successfully.'),
+                ];
+
+                $notification = $this->notificationModel->where('reservation_id', $request->visitor_id)->first();
+
+                if ($notification && !$notification->is_read) {
+                    $isNotificationUpdate = $notification->update(['is_read' => '1']);
+                    if ($isNotificationUpdate) {
+                        $viewData['notification_id'] = $notification->id;
+                    }
+                }
+
+                return response()->json($viewData);
             } else {
                 $data = [
                     'message' => __("Something went wrong, please try again later.")

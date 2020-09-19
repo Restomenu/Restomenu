@@ -22,8 +22,7 @@
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="ml-auto">
-                            <a href="{{ $module_route."/create" }}"
-                                class="btn btn-sm btn-primary pull-right">{{__('Add')}}</a>
+                            <a href="{{ $module_route."/create" }}" class="btn btn-sm btn-primary pull-right">{{__('Add')}}</a>
                         </div>
                     </div>
                 </div>
@@ -33,14 +32,10 @@
                 <div class="text-center">
                     <div class="btn-group mb-3 select-visitor-type" role="group">
                         <button type="button" class="btn btn-secondary" data-type="all">{{__('All')}}</button>
-                        <button type="button" class="btn btn-outline-secondary"
-                            data-type="accept">{{__('Accept')}}</button>
-                        <button type="button" class="btn btn-outline-secondary"
-                            data-type="pending">{{__('Pending')}}</button>
-                        <button type="button" class="btn btn-outline-secondary"
-                            data-type="schedule">{{__('Schedule')}}</button>
-                        <button type="button" class="btn btn-outline-secondary"
-                            data-type="cancel">{{__('Cancel')}}</button>
+                        <button type="button" class="btn btn-outline-secondary" data-type="accept">{{__('Accept')}}</button>
+                        <button type="button" class="btn btn-outline-secondary" data-type="pending">{{__('Pending')}}</button>
+                        <button type="button" class="btn btn-outline-secondary" data-type="schedule">{{__('Schedule')}}</button>
+                        <button type="button" class="btn btn-outline-secondary" data-type="cancel">{{__('Cancel')}}</button>
                     </div>
                 </div>
 
@@ -73,7 +68,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">
-                    @lang('Change Customer Status')
+                    @lang('Change Reservation Status')
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -82,7 +77,7 @@
             <form action="javascript:void(0);" method="post" id="customerStatusForm">
                 <div class="modal-body p-4">
                     <div class="form-group row">
-                        <div class="col-12 col-sm-3">
+                        {{-- <div class="col-12 col-sm-3">
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="status" id="panding_btn"
@@ -90,12 +85,11 @@
                                     @lang('Pending')
                                     <i class="input-frame"></i></label>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-12 col-sm-3">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="accept_btn"
-                                        value="1">
+                                    <input type="radio" class="form-check-input" name="status" id="accept_btn" value="1">
                                     @lang('Accept')
                                     <i class="input-frame"></i></label>
                             </div>
@@ -103,8 +97,7 @@
                         <div class="col-12 col-sm-3">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="reject_btn"
-                                        value="-1">
+                                    <input type="radio" class="form-check-input" name="status" id="reject_btn" value="-1">
                                     @lang('Cancel')
                                     <i class="input-frame"></i></label>
                             </div>
@@ -112,31 +105,28 @@
                         <div class="col-12 col-sm-3">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="schedule_btn"
-                                        value="2">
+                                    <input type="radio" class="form-check-input" name="status" id="schedule_btn" value="2">
                                     @lang('Schedule')
                                     <i class="input-frame"></i></label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group row appointment_cancel_block d-none" >
+                    <div class="form-group row appointment_cancel_block d-none">
 
                         <div class="col-12 col-sm-12">
                             <div class="form-group">
                                 {{-- <label class="form-check-label"> --}}
-                                    <textarea rows="8" class="form-control" name="reservation_cancel_desc" id="reservation_cancel_desc"
-                                        ></textarea>
-                                   
-                                    {{-- <i class="input-frame"></i></label> --}}
+                                <textarea rows="8" class="form-control" name="reservation_cancel_desc" id="reservation_cancel_desc"></textarea>
+
+                                {{-- <i class="input-frame"></i></label> --}}
                             </div>
                         </div>
 
                         <div class="col-12 col-sm-12">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="full_today_btn"
-                                        value="1" >
+                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="full_today_btn" value="1">
                                     @lang('Full today')
                                     <i class="input-frame"></i></label>
                             </div>
@@ -144,8 +134,7 @@
                         <div class="col-12 col-sm-12">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="full_on_given_day_btn"
-                                        value="2">
+                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="full_on_given_day_btn" value="2">
                                     @lang('Full on given day')
                                     <i class="input-frame"></i></label>
                             </div>
@@ -153,8 +142,7 @@
                         <div class="col-12 col-sm-12">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="exceptionally_closed_today_btn"
-                                        value="3">
+                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="exceptionally_closed_today_btn" value="3">
                                     @lang('Exceptionally Closed today')
                                     <i class="input-frame"></i></label>
                             </div>
@@ -162,8 +150,7 @@
                         <div class="col-12 col-sm-12">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="exceptionally_closed_on_given_day_btn"
-                                        value="4">
+                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="exceptionally_closed_on_given_day_btn" value="4">
                                     @lang('Exceptionally Closed on
                                     given day')
                                     <i class="input-frame"></i></label>
@@ -172,8 +159,7 @@
                         <div class="col-12 col-sm-12">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="propose_other_time_btn"
-                                        value="5">
+                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="propose_other_time_btn" value="5">
                                     @lang('Propose other time')
                                     <i class="input-frame"></i></label>
                             </div>
@@ -181,8 +167,7 @@
                         <div class="col-12 col-sm-12">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="others_btn"
-                                        value="6">
+                                    <input type="radio" class="form-check-input" name="reservation_cancel_reason" id="others_btn" value="6">
                                     @lang('Others')
                                     <i class="input-frame"></i></label>
                             </div>
@@ -193,13 +178,12 @@
                         <label for="appointment_time">@lang('Appointment Time')</label>
                         <input type="text" class="form-control" name="appointment_time" id="appointment_time" />
                     </div>
-                    
+
                     <input type="hidden" class="form-control" name="visitor_id" id="visitor_id">
                 </div>
                 <div class="modal-footer feedback-modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
-                    <button type="button"
-                        class="btn btn-primary shadow-none btn-restomenu-primary status-submit-btn">@lang('Save')</button>
+                    <button type="button" class="btn btn-primary shadow-none btn-restomenu-primary status-submit-btn">@lang('Save')</button>
                 </div>
             </form>
         </div>
@@ -217,8 +201,7 @@
     var visitorTable = $("#visitors-table").DataTable({
         // "dom": '<"row" <"col-sm-12 mb-3"<"html5buttons"B>>> <"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
         "dom": '<"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
-        buttons: [
-            {
+        buttons: [{
                 extend: 'csv',
                 title: 'Customers',
                 exportOptions: {
@@ -241,7 +224,7 @@
                     columns: [0, 1, 2, 3, 4]
                 },
                 customize: function(doc) {
-                    doc.content[1].table.widths = ["16%", "16%","9%","13%","16%","15%","15%"];
+                    doc.content[1].table.widths = ["16%", "16%", "9%", "13%", "16%", "15%", "15%"];
                 },
             },
             {
@@ -269,24 +252,24 @@
         stateSave: true,
         pageLength: 25,
         "oLanguage": {
-            "sEmptyTable":     "{{__('No data available in table')}}",
-            "sInfo":           "{{__('Showing')}} _START_ {{__('to')}} _END_ {{__('of')}} _TOTAL_ {{__('entries')}}",
-            "sInfoEmpty":      "{{__('Showing')}} 0 {{__('to')}} 0 {{__('of')}} 0 {{__('entries')}}",
-            "sInfoFiltered":   "({{__('filtered from')}} _MAX_ {{__('total')}} {{__('entries')}})",
-            "sInfoPostFix":    "",
-            "sInfoThousands":  ",",
-            "sLengthMenu":     "{{__('Show')}} _MENU_ {{__('entries')}}",
+            "sEmptyTable": "{{__('No data available in table')}}",
+            "sInfo": "{{__('Showing')}} _START_ {{__('to')}} _END_ {{__('of')}} _TOTAL_ {{__('entries')}}",
+            "sInfoEmpty": "{{__('Showing')}} 0 {{__('to')}} 0 {{__('of')}} 0 {{__('entries')}}",
+            "sInfoFiltered": "({{__('filtered from')}} _MAX_ {{__('total')}} {{__('entries')}})",
+            "sInfoPostFix": "",
+            "sInfoThousands": ",",
+            "sLengthMenu": "{{__('Show')}} _MENU_ {{__('entries')}}",
             "sLoadingRecords": "{{__('Loading...')}})",
-            "sProcessing":     "{{__('Processing...')}}",
-            "sSearch":         "{{__('Search')}}:",
-            "sZeroRecords":    "{{__('No matching records found')}}",
+            "sProcessing": "{{__('Processing...')}}",
+            "sSearch": "{{__('Search')}}:",
+            "sZeroRecords": "{{__('No matching records found')}}",
             "oPaginate": {
-                "sFirst":    "{{__('First')}}",
-                "sLast":     "{{__('Last')}}",
-                "sNext":     "{{__('Next')}}",
+                "sFirst": "{{__('First')}}",
+                "sLast": "{{__('Last')}}",
+                "sNext": "{{__('Next')}}",
                 "sPrevious": "{{__('Previous')}}"
             },
-            
+
         },
         ajax: {
             "url": "{!! $module_route.'/datatable' !!}",
@@ -336,49 +319,26 @@
                 searchable: false,
                 width: '20%'
             },
-            // {
-            //     data: 'checkout_at',
-            //     name: 'checkout_at',
-            //     orderable: false,
-            //     searchable: false,
-            //     "render": function(data, type, full, meta) {
-            //         var resultStr = '';
-            //         if (!full.checkout_at) {
-            //             resultStr += "&nbsp;<a href='javascript:void(0);' class='checkOut btn btn-xs btn-danger ml-1' val='" + full.id + "'>@lang('Check Out')</a> ";
-
-            //             return resultStr;
-            //         } else if (full.checkout_at) {
-            //             return full.checkout_at;
-            //         }
-            //     }
-            // },
             {
                 data: 'appointment_status',
                 name: 'appointment_status',
                 searchable: true,
                 orderable: true,
                 render: function(appointment_status, type, visitor, meta) {
-                    // console.log(visitor);
 
                     var resultStr = '<div>';
-                    if(appointment_status===0) {
+                    if (appointment_status === 0) {
                         resultStr += `<a href="#" class="badge badge-primary">@lang('Pending')</a>`;
-                    }else if(appointment_status===1) {
+                    } else if (appointment_status === 1) {
                         resultStr += `<a href="#" class="badge badge-success">@lang('Accepted')</a>`;
-                    }else if(appointment_status===-1) {
+                    } else if (appointment_status === -1) {
                         resultStr += `<a href="#" class="badge badge-danger">@lang('Canceled')</a>`;
-                    }else if(appointment_status===2) {
+                    } else if (appointment_status === 2) {
                         resultStr += `<a href="#" class="badge badge-warning">@lang('Scheduled')</a>`;
                     }
 
-
-
-
-                    
-                    
-
                     resultStr += `<a class="btn btn-primary change-status-btn ml-2" href="#"  data-visitor-id="${visitor.id}" data-current-status="${visitor.appointment_status}" data-appointment-time="${visitor.appointment_time}" data-reservation-cancel-reason="${visitor.reservation_cancel_reason}" data-reservation-cancel-desc="${visitor.reservation_cancel_desc}" data-visitor-first-name="${visitor.first_name}" data-number-of-people="${visitor.number_of_people}" data-appointment-date="${visitor.appointment_date}"  data-appointment-time="${visitor.appointment_time}" data-locale="${visitor.locale}" ><i class='fa fa-edit'></i></a>`;
-                    
+
                     resultStr += "</div>";
 
                     return resultStr;
@@ -405,86 +365,13 @@
         ],
     });
 
-    //delete Record
-    // $(document).on('click', '.deleteRecord', function(event) {
-    //     var id = $(this).attr('val');
-    //     var deleteUrl = "{!!  $module_route  !!}/" + id;
-    //     var deleteMessage = "{{ __('You want to delete customer?') }}";
-    //     var isDelete = deleteRecordByAjax(deleteUrl, "{{$module_name}}", visitorTable, null, deleteMessage);
-    // });
-
-    $('.select-visitor-type button').click( function() {
+    $('.select-visitor-type button').click(function() {
         $(this).removeClass('btn-outline-secondary').addClass('btn-secondary').siblings().removeClass('btn-secondary').addClass('btn-outline-secondary');
 
         visitorsFilterValue = $(this).data('type');
-        
+
         visitorTable.draw(true);
     });
-
-
-    $(document).on('click', ".checkOut", function(e) {
-        e.preventDefault();
-        var id = $(this).attr('val');
-
-        var updateUrl = "{!!  url($module_route)  !!}/checkout/" + id;
-        var updateMessage = "{{ __('You want to checkout customer?') }}";
-
-        swalWithBootstrapButtons.fire({
-            title: "@lang('Are you sure?')",
-            text: updateMessage,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: 'ml-2',
-            confirmButtonText: "@lang('Yes, Checkout it!')",
-            cancelButtonText: "@lang('No, cancel!')",
-            reverseButtons: true,
-
-            preConfirm: function(result) {
-                if (result) {
-                    $.ajax({
-                        url: updateUrl,
-                        method: "POST",
-                        type: "JSON",
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}",
-                        },
-                        success: function(data, status, xhr) {
-                            visitorTable.draw();
-                            swalWithBootstrapButtons.fire("@lang('success!')", data.message, "success");
-                        },
-                        error: function(xhr, status, error) {
-                            ajaxError(xhr, status, error);
-                        },
-                    });
-                }
-            }
-        });
-    });
-
-    $(document).on("change", ".appointment_status", function () {
-      var value = $(this).val();
-      var customerId = $(this).data('customer-id');
-      changeStatusByAjax(value, customerId);      
-    });
-
-    function changeStatusByAjax(value, customerId) {
-        $.ajax({
-            url: "{{route('restaurant.reservation-status-update')}}",
-            method: "POST",
-            type: "JSON",
-            data: {status:value, customer_id:customerId},
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}",
-            },
-            success: function(data, status, xhr) {
-                visitorTable.draw();
-                fnToastSuccess(data.message);
-            },
-            error: function(xhr, status, error) {
-                ajaxError(xhr, status, error);
-            },
-        });
-    }
 
     $(document).on('click', ".change-status-btn", function(e) {
         var visitorId = $(this).data('visitor-id');
@@ -492,70 +379,65 @@
         var appointmentTime = $(this).data('appointment-time');
         var reservationCancelReason = $(this).data('reservation-cancel-reason');
         var reservationCancelDesc = $(this).data('reservation-cancel-desc');
-        var visitor_first_name=$(this).data('visitor-first-name');
-        var visitor_number_of_people=$(this).data('number-of-people');
-        var visitor_appointment_date=$(this).data('appointment-date');
-        var visitor_appointment_time=$(this).data('appointment-time');
-        var locale=$(this).data('locale');
-        
+        var visitor_first_name = $(this).data('visitor-first-name');
+        var visitor_number_of_people = $(this).data('number-of-people');
+        var visitor_appointment_date = $(this).data('appointment-date');
+        var visitor_appointment_time = $(this).data('appointment-time');
+        var locale = $(this).data('locale');
+
         $('input[type=radio][name=reservation_cancel_reason]').attr('data-visitor_number_of_people', visitor_number_of_people);
-        $('input[type=radio][name=reservation_cancel_reason]').attr('data-visitor_first_name', visitor_first_name);                     
-        $('input[type=radio][name=reservation_cancel_reason]').attr('data-visitor_appointment_time', visitor_appointment_time);                     
-        $('input[type=radio][name=reservation_cancel_reason]').attr('data-visitor_appointment_date', visitor_appointment_date);                     
-        $('input[type=radio][name=reservation_cancel_reason]').attr('data-locale', locale);                     
-        
-        if(currentStatus === 0) {
+        $('input[type=radio][name=reservation_cancel_reason]').attr('data-visitor_first_name', visitor_first_name);
+        $('input[type=radio][name=reservation_cancel_reason]').attr('data-visitor_appointment_time', visitor_appointment_time);
+        $('input[type=radio][name=reservation_cancel_reason]').attr('data-visitor_appointment_date', visitor_appointment_date);
+        $('input[type=radio][name=reservation_cancel_reason]').attr('data-locale', locale);
+
+        if (currentStatus === 0) {
             $('#panding_btn').prop("checked", true);
             $('.appointment_cancel_block').addClass('d-none');
             $('.appointment_time_block').addClass('d-none');
-            
-        } else if(currentStatus === 1) {
+
+        } else if (currentStatus === 1) {
             $('#accept_btn').prop("checked", true);
             $('.appointment_time_block').addClass('d-none');
             $('.appointment_cancel_block').addClass('d-none');
 
-        } else if(currentStatus === -1) {
+        } else if (currentStatus === -1) {
             $('#reject_btn').prop("checked", true);
             $('.appointment_time_block').addClass('d-none');
             $('.appointment_cancel_block').removeClass('d-none');
 
-
-
-
-        } else if(currentStatus === 2) {
+        } else if (currentStatus === 2) {
             $('#schedule_btn').prop("checked", true);
             $('.appointment_time_block').removeClass('d-none');
             $('.appointment_cancel_block').addClass('d-none');
 
-
         }
 
-        if(reservationCancelReason ===1){
+        if (reservationCancelReason === 1) {
             $('#full_today_btn').prop("checked", true);
             $('#reservation_cancel_desc').val(reservationCancelDesc);
-           
 
-        }else if(reservationCancelReason ===2){
+        } else if (reservationCancelReason === 2) {
             $('#full_on_given_day_btn').prop("checked", true);
-            $('#reservation_cancel_desc').val(' @lang('Full on given day')');
+            $('#reservation_cancel_desc').val("@lang('Full on given day ')");
 
-        }else if(reservationCancelReason ===3){
+        } else if (reservationCancelReason === 3) {
             $('#exceptionally_closed_today_btn').prop("checked", true);
             $('#reservation_cancel_desc').val(reservationCancelDesc);
 
-        }else if(reservationCancelReason ===4){
+        } else if (reservationCancelReason === 4) {
             $('#exceptionally_closed_on_given_day_btn').prop("checked", true);
             $('#reservation_cancel_desc').val(reservationCancelDesc);
 
-        }else if(reservationCancelReason ===5){
+        } else if (reservationCancelReason === 5) {
             $('#propose_other_time_btn').prop("checked", true);
             $('#reservation_cancel_desc').val(reservationCancelDesc);
 
-        }else{
+        } else {
             $('#others_btn').prop("checked", true);
             $('#reservation_cancel_desc').val(reservationCancelDesc);
         }
-        
+
         $('#statusModal #visitor_id').val(visitorId);
         $('#appointment_time').val(appointmentTime);
         $('#statusModal').modal('show');
@@ -570,13 +452,11 @@
             $('.appointment_cancel_block').addClass('d-none');
             $('.appointment_time_block').removeClass('d-none');
 
-        }else if(this.value == '-1'){
+        } else if (this.value == '-1') {
             $('.appointment_time_block').addClass('d-none');
-
             $('.appointment_cancel_block').removeClass('d-none');
 
-
-        }else{
+        } else {
             $('.appointment_cancel_block').addClass('d-none');
             $('.appointment_time_block').addClass('d-none');
         }
@@ -584,105 +464,86 @@
 
     $(document).on('change', "input[type=radio][name=reservation_cancel_reason]", function(e) {
         // data-visitor-first-name="${visitor.first_name}" data-number-of-people="${visitor.number_of_people}"  
-var visitor_first_name=$(this).data("visitor_first_name");
-var visitor_number_of_people=$(this).data("visitor_number_of_people");
-var appointmentTime=$(this).data("visitor_appointment_time");
-var appointmentDate=$(this).data("visitor_appointment_date"); 
-var locale=$(this).data("locale"); 
-var restaurant_name="{{auth()->guard('restaurant')->user()->name}}";
-var restaurant_phone="{{auth()->guard('restaurant')->user()->phone}}";
-
-
-
+        var visitor_first_name = $(this).data("visitor_first_name");
+        var visitor_number_of_people = $(this).data("visitor_number_of_people");
+        var appointmentTime = $(this).data("visitor_appointment_time");
+        var appointmentDate = $(this).data("visitor_appointment_date");
+        var locale = $(this).data("locale");
+        var restaurant_name = "{{auth()->guard('restaurant')->user()->name}}";
+        var restaurant_phone = "{{auth()->guard('restaurant')->user()->phone}}";
 
         if (this.value == '1') {
 
-                if (locale == 'en') {
-                    var message=`Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for  ${visitor_number_of_people} persons on ${appointmentDate} at ${appointmentTime} : We’re already fully booked. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
+            if (locale == 'en') {
+                var message = `Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for  ${visitor_number_of_people} persons on ${appointmentDate} at ${appointmentTime} : We’re already fully booked. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
 
-                }else if (locale == 'nl') {
-                    var message=`Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate} om ${appointmentTime}: wij zijn reeds volzet vandaag. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
-           
+            } else if (locale == 'nl') {
+                var message = `Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate} om ${appointmentTime}: wij zijn reeds volzet vandaag. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
 
-                }else if (locale == 'fr') {
-                    var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate} à  ${appointmentTime} : nous sommes déjà complet aujourd’hui. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
+            } else if (locale == 'fr') {
+                var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate} à  ${appointmentTime} : nous sommes déjà complet aujourd’hui. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
 
-                }
-                    $('#reservation_cancel_desc').val(message);
+            }
+            $('#reservation_cancel_desc').val(message);
 
-        }else if(this.value == '2'){
-        
+        } else if (this.value == '2') {
 
-               if (locale == 'en') {
-                     var message = `Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for ${visitor_number_of_people} on ${appointmentDate}  at ${appointmentTime} : We’re already fully booked on the given day. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
-                 
-                }
-                else if (locale == 'nl') {
-                    var message = `Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate}  om ${appointmentTime} : Wij zijn reeds volzet die dag. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
+            if (locale == 'en') {
+                var message = `Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for ${visitor_number_of_people} on ${appointmentDate}  at ${appointmentTime} : We’re already fully booked on the given day. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
 
-                }
-                else if (locale == 'fr') {
-                    var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate}  à ${appointmentTime} : nous sommes déjà complet ce jour-là. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
+            } else if (locale == 'nl') {
+                var message = `Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate}  om ${appointmentTime} : Wij zijn reeds volzet die dag. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
 
-                }
-                $('#reservation_cancel_desc').val(message);
+            } else if (locale == 'fr') {
+                var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate}  à ${appointmentTime} : nous sommes déjà complet ce jour-là. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
 
-        }else if(this.value == '3'){
+            }
+            $('#reservation_cancel_desc').val(message);
 
+        } else if (this.value == '3') {
 
-                if (locale == 'en') {
-                    var message = `Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for ${visitor_number_of_people} on ${appointmentDate} at ${appointmentTime} : We’re exceptionally closed today. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
-                    
-                }
-                else if (locale == 'nl') {
-                    var message = `Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate} om ${appointmentTime} : Wij zijn vandaag exceptioneel gesloten. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
+            if (locale == 'en') {
+                var message = `Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for ${visitor_number_of_people} on ${appointmentDate} at ${appointmentTime} : We’re exceptionally closed today. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
 
-                }
-                else if (locale == 'fr') {
-                    var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate} à ${appointmentTime} : nous sommes exceptionnellement fermé aujourd’hui. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
+            } else if (locale == 'nl') {
+                var message = `Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate} om ${appointmentTime} : Wij zijn vandaag exceptioneel gesloten. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
 
-                }
-                $('#reservation_cancel_desc').val(message);
+            } else if (locale == 'fr') {
+                var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate} à ${appointmentTime} : nous sommes exceptionnellement fermé aujourd’hui. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
 
-        }else if(this.value == '4'){
+            }
+            $('#reservation_cancel_desc').val(message);
 
+        } else if (this.value == '4') {
 
-                if (locale == 'en') {
-                     var message = `Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for ${visitor_number_of_people} persons on ${appointmentDate} at ${appointmentTime} : We’re exceptionally closed on the given date. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
-                 
-                }
-                else if (locale == 'nl') {
-                    var message = `Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate} om ${appointmentTime} : Wij zijn uitzonderlijk gesloten op ${appointmentDate}. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
+            if (locale == 'en') {
+                var message = `Hello ${visitor_first_name}, \nWe’re not able to confirm your reservation for ${visitor_number_of_people} persons on ${appointmentDate} at ${appointmentTime} : We’re exceptionally closed on the given date. \n\nOur sincere apologies, \nKind regards, \n${restaurant_name}`;
 
-                }
-                else if (locale == 'fr') {
-                    var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate} à ${appointmentTime} : nous sommes exceptionnellement fermé ce jour-là. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
+            } else if (locale == 'nl') {
+                var message = `Dag ${visitor_first_name}, \nWij zijn helaas niet in de mogelijkheid om de reservering te bevestigen voor ${visitor_number_of_people} personen op ${appointmentDate} om ${appointmentTime} : Wij zijn uitzonderlijk gesloten op ${appointmentDate}. \n\nOnze oprechte excuses voor het ongemak, \nVriendelijke groet \n${restaurant_name}`;
 
-                }
-                $('#reservation_cancel_desc').val(message);
+            } else if (locale == 'fr') {
+                var message = `Bonjour ${visitor_first_name}, \nNous ne pouvons malheureusement pas confirmer votre réservation pour ${visitor_number_of_people} personnes le ${appointmentDate} à ${appointmentTime} : nous sommes exceptionnellement fermé ce jour-là. \n\nToutes nos excuses pour le désagrément, \nCordialement, \n${restaurant_name}`;
 
-        }else if(this.value == '5'){
+            }
+            $('#reservation_cancel_desc').val(message);
 
-        
+        } else if (this.value == '5') {
 
-     
-                if (locale == 'en') {
-                    var message = `Hello ${visitor_first_name}, \nWe’re already fully booked on ${appointmentDate} at ${appointmentTime}. Although, we could propose other time for ${visitor_number_of_people} persons. If this hour fits your schedule, could you perhaps call us (${restaurant_phone}) as soon as possible to confirm the reservation. \n\nThanks in advance,\n${restaurant_name}`;
-                 
-                }
-                else if (locale == 'nl') {
-                    var message = `Dag ${visitor_first_name}, \nWij zijn reeds vol geboekt op ${appointmentDate} om ${appointmentTime}. Wij kunnen jou wel een tafel voor ${visitor_number_of_people} personen voorstellen om other time.Als dit uur jou ook past, kun je ons zo snel mogelijk opbellen en bevestigen op ${restaurant_phone}. \n\nBedankt op voorhand, \n${restaurant_name}`;
-                }
-                else if (locale == 'fr') {
-                    var message = `Bonjour ${visitor_first_name}, \nNous sommes déjà complet le ${appointmentDate} à ${appointmentTime}. mais pouvons vous proposer une table pour ${visitor_number_of_people} personnes à other time. Si cette heure vous convient, veuillez nous contacter au plus vite au ${restaurant_phone}. \n\nD’avance merci,\n${restaurant_name}`;
-                }
-                $('#reservation_cancel_desc').val(message);
+            if (locale == 'en') {
+                var message = `Hello ${visitor_first_name}, \nWe’re already fully booked on ${appointmentDate} at ${appointmentTime}. Although, we could propose other time for ${visitor_number_of_people} persons. If this hour fits your schedule, could you perhaps call us (${restaurant_phone}) as soon as possible to confirm the reservation. \n\nThanks in advance,\n${restaurant_name}`;
 
-        }else{
+            } else if (locale == 'nl') {
+                var message = `Dag ${visitor_first_name}, \nWij zijn reeds vol geboekt op ${appointmentDate} om ${appointmentTime}. Wij kunnen jou wel een tafel voor ${visitor_number_of_people} personen voorstellen om other time.Als dit uur jou ook past, kun je ons zo snel mogelijk opbellen en bevestigen op ${restaurant_phone}. \n\nBedankt op voorhand, \n${restaurant_name}`;
+            } else if (locale == 'fr') {
+                var message = `Bonjour ${visitor_first_name}, \nNous sommes déjà complet le ${appointmentDate} à ${appointmentTime}. mais pouvons vous proposer une table pour ${visitor_number_of_people} personnes à other time. Si cette heure vous convient, veuillez nous contacter au plus vite au ${restaurant_phone}. \n\nD’avance merci,\n${restaurant_name}`;
+            }
+            $('#reservation_cancel_desc').val(message);
+
+        } else {
             $('#reservation_cancel_desc').val('');
-
         }
-       
+
     });
 
     $(document).on('click', ".status-submit-btn", function(e) {
@@ -695,7 +556,7 @@ var restaurant_phone="{{auth()->guard('restaurant')->user()->phone}}";
         },
         rules: {
             status: {
-                required: false,
+                required: true,
             },
             appointment_time: {
                 required: true,
@@ -703,15 +564,15 @@ var restaurant_phone="{{auth()->guard('restaurant')->user()->phone}}";
         },
         messages: {
             status: {
-                required: "@lang('This field is required.')",
+                required: "@lang('Please select status.')",
             },
             appointment_time: {
                 required: "@lang('This field is required.')",
             }
         },
-        // errorPlacement: function(error, element) {
-        //     error.insertAfter(element);
-        // },
+        errorPlacement: function(error, element) {
+            error.insertAfter($(element).closest('.form-group'));
+        },
         submitHandler: function() {
             changeStatus();
         },
@@ -740,6 +601,23 @@ var restaurant_phone="{{auth()->guard('restaurant')->user()->phone}}";
                 $('.status-submit-btn').html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> @lang('Loading')...`);
             },
             success: function(data, status, xhr) {
+
+                if (data.notification_id) {
+
+                    var notificationCount = parseInt($('#notification-count').text());
+                    if (notificationCount) {
+                        notificationCount = notificationCount - 1;
+                        $('#notification-count').text(notificationCount);
+                        $('.notification-' + data.notification_id).addClass('d-none');
+
+                        if (notificationCount == 0) {
+                            $('.notification-indicator').addClass('d-none');
+                            $('.no-notification-section').removeClass('d-none');
+                        }
+
+                    }
+                }
+
                 $('#statusModal').modal('hide');
                 visitorTable.draw();
                 fnToastSuccess(data.message);
@@ -762,8 +640,12 @@ var restaurant_phone="{{auth()->guard('restaurant')->user()->phone}}";
         });
     }
 
-    setInterval(function() {
+    function socketEvent_NewReservationNotification() {
         visitorTable.draw(true);
-    }, 300000);
+    }
+
+    // setInterval(function() {
+    //     visitorTable.draw(true);
+    // }, 300000);
 </script>
 @endpush

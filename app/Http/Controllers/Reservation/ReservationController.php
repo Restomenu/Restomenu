@@ -224,14 +224,14 @@ class ReservationController extends Controller
 
                     $reservation['appointment_date_formatted'] = Carbon::createFromFormat('Y-m-d', $reservation->appointment_date)->format('d-m-Y');
 
-                    $this->notificationModel->create([
+                    $notification = $this->notificationModel->create([
                         'restaurant_id' =>  $restaurant->id,
                         'reservation_id' =>  $reservation->id,
                         'notifcation_type' =>  'new_reservation',
                         'notification_data' =>  json_encode($reservation),
                     ]);
 
-                    event(new \App\Events\ReservationEvent($restaurant, $reservation));
+                    event(new \App\Events\ReservationEvent($restaurant, $reservation, $notification));
                     $data = [
                         'message' => __('Registration successful.'),
                     ];
