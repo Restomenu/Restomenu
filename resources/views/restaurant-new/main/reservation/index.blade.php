@@ -419,7 +419,7 @@
 
         } else if (reservationCancelReason === 2) {
             $('#full_on_given_day_btn').prop("checked", true);
-            $('#reservation_cancel_desc').val("@lang('Full on given day ')");
+            $('#reservation_cancel_desc').val(reservationCancelDesc);
 
         } else if (reservationCancelReason === 3) {
             $('#exceptionally_closed_today_btn').prop("checked", true);

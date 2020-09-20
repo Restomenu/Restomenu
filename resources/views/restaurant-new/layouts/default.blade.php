@@ -41,7 +41,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="javascript:void(0);" method="post" id="customerStatusForm">
+                            <form action="javascript:void(0);" method="post" id="reservationStatusForm">
                                 <div class="modal-body p-4">
                                     <div class="form-group row">
                                         {{-- <div class="col-12 col-sm-3">
@@ -167,7 +167,7 @@
                                     <button type="button" class="btn btn-secondary"
                                         data-dismiss="modal">@lang('Close')</button>
                                     <button type="button"
-                                        class="btn btn-primary shadow-none btn-restomenu-primary status-submit-btn">@lang('Save')</button>
+                                        class="btn btn-primary shadow-none btn-restomenu-primary res-status-submit-btn">@lang('Save')</button>
                                 </div>
                             </form>
                         </div>
@@ -231,7 +231,11 @@
              
             fnShowSuccessNotif(message, notificationData);
         });
+
+        
     </script>
+
+    @include('restaurant-new.layouts.includes.notification')
 
 </body>
 
