@@ -12,7 +12,8 @@ use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use SpryngApiHttpPhp\Client;
+use App\Library\Spryng\Client;
+// use SpryngApiHttpPhp\Client;
 use SpryngApiHttpPhp\Exception\InvalidRequestException;
 
 class ReservationController extends Controller
@@ -291,10 +292,12 @@ class ReservationController extends Controller
 
                     try {
                         // TODO:uncomment
-                        $spryng->sms->send($customerPhoneNumber, $message, [
+                        $customerSmsResponse = $spryng->sms->send($customerPhoneNumber, $message, [
                             'route' => 'business',
                             'allowlong' => true,
                         ]);
+
+                        Log::info($customerSmsResponse);
 
                         $setting->available_sms_count = $availableSmsCount - 1;
                         $setting->save();

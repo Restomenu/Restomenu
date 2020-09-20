@@ -9,7 +9,8 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-use SpryngApiHttpPhp\Client;
+use App\Library\Spryng\Client;
+// use SpryngApiHttpPhp\Client;
 use SpryngApiHttpPhp\Exception\InvalidRequestException;
 use App\Models\Notification;
 use App;
@@ -205,15 +206,19 @@ class ReservationController extends Controller
                         // $balance = $spryng->sms->checkBalance();
 
                         try {
-                            $spryng->sms->send($restaurantPhoneNumber, $messageToRestaurant, [
+                            $restaurantSmsResponse = $spryng->sms->send($restaurantPhoneNumber, $messageToRestaurant, [
                                 'route' => 'business',
                                 'allowlong' => true,
                             ]);
 
-                            $spryng->sms->send($customerPhoneNumber, $messageToCustomer, [
+                            Log::info($restaurantSmsResponse);
+
+                            $customerSmsResponse = $spryng->sms->send($customerPhoneNumber, $messageToCustomer, [
                                 'route' => 'business',
                                 'allowlong' => true,
                             ]);
+
+                            Log::info($customerSmsResponse);
 
                             $setting->available_sms_count = $availableSmsCount - 2;
                             $setting->save();
