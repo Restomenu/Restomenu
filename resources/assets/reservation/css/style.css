@@ -224,6 +224,31 @@ h3 {
 .form-control:focus {
     border-color: var(--reservation-primary-color);
 }
+
+.rm-btn-primary {
+    color: #fff;
+    background-color: var(--reservation-primary-color);
+    border-color: var(--reservation-primary-color);
+}
+.rm-btn-primary:hover {
+    color: #fff;
+    background-color: var(--reservation-primary-color);
+    border-color: var(--reservation-primary-color);
+}
+.rm-btn-primary:focus,
+.rm-btn-primary.focus {
+    color: #fff;
+    background-color: var(--reservation-primary-color);
+    border-color: var(--reservation-primary-color);
+    box-shadow: none;
+}
+
+.rm-btn-primary:not(:disabled):not(.disabled):active, .rm-btn-primary:not(:disabled):not(.disabled).active, .show > .rm-btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: var(--reservation-primary-color);
+    border-color: var(--reservation-primary-color);
+}
+
 .form-control::-webkit-input-placeholder {
     color: #999;
     font-size: 13px;
@@ -625,7 +650,7 @@ textarea.form-control {
         margin-left: 11px;
     }
 
-    .time-row{
+    .time-row {
         font-size: 14px;
         margin-bottom: 10px;
     }
@@ -766,6 +791,6 @@ label.error {
     word-wrap: break-word;
 }
 
-.footer-restomenu-logo{
+.footer-restomenu-logo {
     width: 70px !important;
 }

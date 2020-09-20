@@ -37,6 +37,17 @@
     <img class="restaurant-logo-at-selection"
         src="{{asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath($restaurant->id).$restaurant->setting->site_logo)}}" />
 </div>
+<div class="text-center mb-4">
+
+    @if (app()->getLocale() == 'nl')
+    <a href="{{ route('menu-nl',['slug' => $restaurant->slug]) }}" target="_blank" class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1" aria-hidden="true"></i></a>
+    @elseif(app()->getLocale() == 'fr')
+    <a href="{{route('menu-fr',['slug' => $restaurant->slug])}}" target="_blank" class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1" aria-hidden="true"></i> </a>
+    @elseif(app()->getLocale() == 'en')
+    <a href="{{route('menu-en',['slug' => $restaurant->slug])}}" target="_blank" class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1" aria-hidden="true"></i> </a>
+    @endif
+
+</div>
 <div class="wrapper-container">
     <div class="wrapper">
         <form action="{{route('reservation.reservation-save',['slug' => $restaurant->slug])}}" method="post"
