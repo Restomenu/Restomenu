@@ -25,7 +25,7 @@
             tapToDismiss: false
         };
 
-        toastr.info(`${message} <br/> <div type="button" id="notif-change-status-btn" class="badge badge-warning mt-1 mr-2"><i class="fa fa-edit" aria-hidden="true"></i></div> <div type="button" class="badge badge-warning clear mt-1">${notificationConfirmTxt}</div> `, "@lang('New Reservation!')", {
+        toastr.info(`${message} <br/> <div type="button" id="notif-change-status-btn" class="btn btn-warning btn-xs mt-1 mr-2"><i class="fa fa-edit" aria-hidden="true"></i></div> <div type="button" class="btn btn-warning clear mt-1">${notificationConfirmTxt}</div> `, "@lang('New Reservation!')", {
             iconClass: "reservation-notif-toast"
         });
 
