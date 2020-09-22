@@ -77,7 +77,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('restaurant.auth.register');
+        return view('restaurant-new.auth.register');
     }
 
     /**

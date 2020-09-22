@@ -237,5 +237,28 @@
     "COVID-19 Registration": "COVID-19 Registration",
     "Please select status.": "Please select status.",
     "Change Reservation Status": "Change Reservation Status",
-    "Go To Menu": "Go To Menu"
+    "Go To Menu": "Go To Menu",
+
+    "Already a user?": "Already a user?",
+    "Sign in": "Sign in",
+    "Not a user?": "Not a user?",
+    "Sign up": "Sign up",
+
+    "Restaurant name": "Restaurant name",
+    "Restaurant contact number": "Restaurant contact number",
+    "Restaurant email": "Restaurant email",
+    "Restaurant website": "Restaurant website",
+    "Restaurant type": "Restaurant type",
+    "Select Restaurant Type": "Select Restaurant Type",
+    "Amount of employees": "Amount of employees",
+    "Facebook link": "Facebook link",
+    "Instagram link": "Instagram link",
+    "Restaurant logo": "Restaurant logo",
+    "Restaurant street": "Restaurant street",
+    "Restaurant house number": "Restaurant house number",
+    "Restaurant province": "Restaurant province",
+    "Restaurant country": "Restaurant country",
+    "VAT number": "VAT number",
+    "Registration": "Registration",
+    "Billing": "Billing"
 }

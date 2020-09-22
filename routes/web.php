@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 // use App\Repositories\AppSettingsRepository;
+// use App\Repositories\RestaurantRepository;
+// use App\Models\Restaurant;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,13 @@ Route::group(['domain' => env('MENU_DOMAIN'), 'prefix' => "/"], function () {
 
   Route::resource('/{slug}/menu-feedbacks', 'Front\FeedbackController');
   Route::post('/{slug}/menu-visitors', 'Front\VisitorController@store')->name('menu-visitor-save');
+
+  // Route::get('/{slug}/fire-event',  function ($slug) {
+  //   $restaurantRepo = new RestaurantRepository(new Restaurant);
+  //   $restaurant = $restaurantRepo->getRestaurantFromSlug($slug);
+  //   // dd($restaurant);
+  //   event(new \App\Events\ReservationEvent($restaurant));
+  // });
 
   // if (AppSettingsRepository::getSettings()['total-available-language'] > 1) {
 
@@ -117,9 +127,9 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'as' => 'restaurant.'], func
   Route::get('/login', 'RestaurantAuth\LoginController@showLoginForm')->name('show-login-form');
   Route::post('/login', 'RestaurantAuth\LoginController@login')->name('login');
   Route::post('/logout', 'RestaurantAuth\LoginController@logout')->name('logout');
+  Route::get('/register', 'RestaurantAuth\RegisterController@showRegistrationForm')->name('show-registration-form');
 
-  // Route::get('/register', 'RestaurantAuth\RegisterController@showRegistrationForm')->name('show-registration-form');
-  // Route::post('/register', 'RestaurantAuth\RegisterController@register');
+  Route::post('/register', 'RestaurantAuth\RegisterController@register')->name('register');
 
   Route::post('/password/email', 'RestaurantAuth\ForgotPasswordController@sendResetLinkEmail')->name('send-password-reset-link');
   Route::post('/password/reset', 'RestaurantAuth\ResetPasswordController@reset')->name('password-reset');

@@ -96,6 +96,8 @@
                                     <a href="{{ route('restaurant.password-reset-form') }}"><small>{{__('Forgot
                                             password?')}}</small></a>
 
+                                    <a href="{{route('restaurant.register')}}"
+                                        class="d-block mt-3 text-muted">{{__('Not a user?')}} {{__('Sign up')}}</a>
                                 </div>
                             </form>
                         </div>
