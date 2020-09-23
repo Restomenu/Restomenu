@@ -136,6 +136,9 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'as' => 'restaurant.'], func
   Route::get('/password/reset', 'RestaurantAuth\ForgotPasswordController@showLinkRequestForm')->name('password-reset-form');
   Route::get('/password/reset/{token}', 'RestaurantAuth\ResetPasswordController@showResetForm');
 
+  Route::get("checkUniqueEmail", "Restaurant\RestaurantSettingController@checkUniqueEmail")->name('restaurantsCheckUniqueEmail');
+  Route::get("checkUniqueSlug", "Restaurant\RestaurantSettingController@checkUniqueSlug")->name('restaurantsCheckUniqueSlug');
+
   // restaurant.impersonate.destroy
   Route::get('/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('impersonate.destroy');
 

@@ -127,13 +127,31 @@ label.error {
         padding: 0px !important;
 
         .content {
-            min-height: 35em !important;
+            border: none !important;
         }
     }
+
+    .wizard > .steps > ul > li {
+        width: 33.33%;
+    }
+}
+
+.wizard .content {
+    min-height: 100px !important;
+    margin: 0px !important;
+}
+.wizard .content > .body {
+    width: 100%;
+    overflow-x: hidden;
+    height: auto !important;
+    position: relative;
 }
 
 @media (max-width: 600px) {
     .wizard > .steps > ul > li {
+        width: 50%;
+    }
+    #registerForm .wizard > .steps > ul > li {
         width: 50%;
     }
 
@@ -156,26 +174,16 @@ label.error {
         margin: 0 0.5em 0.5em;
         width: auto;
     }
-
-    #registerForm {
-        .card-body {
-            .content {
-                min-height: 100vh !important;
-            }
-        }
-    }
 }
 
 @media (max-width: 480px) {
     .wizard > .steps > ul > li {
         width: 100%;
     }
-
-    #registerForm {
-        .card-body {
-            .content {
-                min-height: 100vh !important;
-            }
-        }
+    #registerForm .wizard > .steps > ul > li {
+        width: 100%;
+    }
+    .wizard .content > .body {
+        width: 100%;
     }
 }

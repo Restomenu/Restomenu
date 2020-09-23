@@ -5,20 +5,18 @@
 @section('content')
 <div class="page-content d-flex align-items-center justify-content-center">
     <div class="row w-100 mx-0 auth-page">
-        <div class="col-md-10 col-xl-10 mx-auto">
+        <div class="col-md-11 col-xl-10 mx-auto">
             <div class="card">
                 <div class="row">
-                    <div class="col-md-4 pr-md-0">
+                    <div class="col-lg-4 pr-lg-0">
                         <div class="auth-left-wrapper"
                             style="background-image: url({{ url('restaurant-new/images/food_219x452.jpg') }})">
                         </div>
                     </div>
-                    <div class="col-md-8 pl-md-0">
+                    <div class="col-lg-8 pl-lg-0 ">
                         <div class="auth-form-wrapper px-4 py-5">
                             <a href="#" class="noble-ui-logo d-block mb-2">Resto<span>Menu</span></a>
-                            <h5 class="text-muted font-weight-normal mb-4">
-                                {{__('Let\'s get to know your restaurant a little better, that way we can optimize our platform to your needs.')}}
-                            </h5>
+
                             <form class="forms-sample" role="form" method="POST"
                                 action="{{ route('restaurant.register') }}" id="registerForm"
                                 enctype="multipart/form-data">
@@ -29,7 +27,11 @@
 
                                     <h3>{{__('Registration')}}</h3>
 
-                                    <section>
+                                    <section class="px-0">
+
+                                        <h5 class="text-muted font-weight-normal mb-4">
+                                            {{__('Let\'s get to know your restaurant a little better, that way we can optimize our platform to your needs.')}}
+                                        </h5>
 
                                         <div class="row">
                                             <div class="col-12 col-sm-6">
@@ -103,7 +105,7 @@
                                                 <div class="form-group">
                                                     <label for="restaurant_type_id">{{__('Restaurant type')}}</label>
 
-                                                    {{ Form::select('restaurant_type_id', [], null, ['id'=>'restaurant_type_id',"class"=>"form-control". ($errors->first('restaurant_type_id') ? ' is-invalid':''),"placeholder"=>__('Select Restaurant Type')]) }}
+                                                    {{ Form::select('restaurant_type_id', ['1'=>'one','2'=>'two'], null, ['id'=>'restaurant_type_id',"class"=>"form-control". ($errors->first('restaurant_type_id') ? ' is-invalid':''),"placeholder"=>__('Select Restaurant Type')]) }}
 
                                                     @error('restaurant_type_id')
                                                     <span class="invalid-feedback text-left" role="alert">
@@ -192,7 +194,12 @@
                                     </section>
 
                                     <h3>{{__('Billing')}}</h3>
-                                    <section>
+                                    <section class="px-0">
+
+                                        <h5 class="text-muted font-weight-normal mb-4">
+                                            {{__("we're not going to let you wait in excitement for much longer, you're nearly there!")}}
+                                        </h5>
+
                                         <div class="row">
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
@@ -287,26 +294,23 @@
                                     </section>
 
                                     <h3>{{__('confirmation')}}</h3>
-                                    <section>
+                                    <section class="px-0">
                                         <div>Confirm!</div>
                                     </section>
 
-                                    {{-- <h3>{{__('Billing')}}</h3> --}}
-                                    {{-- <div class="mt-3">
-                                        <button type="submit"
-                                            class="btn btn-primary mr-2 mb-2 mb-md-0">{{__('Register')}}</button>
-                                    <a href="{{route('restaurant.login')}}"
-                                        class="d-block mt-3 text-muted">{{__('Already a user?')}}
-                                        {{__('Sign in')}}</a>
-                                </div> --}}
+                                </div>
+                            </form>
+                            <div class="mt-3">
+                                <a href="{{route('restaurant.login')}}"
+                                    class="d-block mt-3 text-muted">{{__('Already a user?')}}
+                                    {{__('Sign in')}}</a>
+                            </div>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
 
@@ -316,6 +320,119 @@
 <script>
     var form = $("#registerForm");
     form.validate({
+        normalizer: function(value) {
+            return $.trim(value);
+        },
+        rules: {
+            name: {
+                required: true,
+                maxlength: 191
+            },
+            phone:{
+                required: true,
+                digits: true,
+                maxlength: 191
+            },
+            email: {
+                required: true,
+                maxlength: 191,
+                remote: function() {
+                    return "{{ route('restaurant.restaurantsCheckUniqueEmail') }}";
+                }
+            },
+            slug:{
+                required: true,
+                maxlength: 191,
+                pattern: /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/,
+                remote: function() {
+                    return "{{ route('restaurant.restaurantsCheckUniqueSlug') }}";
+                }
+            },
+            restaurant_type_id:{
+                required: true,
+            },
+            amount_of_employees:{
+                required: true,
+                digits: true
+            },
+            fb_url:{
+                required: false,
+            },
+            ig_url:{
+                required: false,
+            },
+            site_logo:{
+                required: true,
+            },
+            province: {
+                required: true,
+            },
+            country:{
+                required: true,
+            },
+            VAT_number:{
+                required: true,
+            },
+            street: {
+                required: true,
+            },
+            house_number: {
+                required: true,
+            }
+        },
+        messages: {
+            name: {
+                required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')"
+            },
+            phone:{
+                required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')",
+                digits: "@lang('Please enter only digits.')",	
+            },
+            email: {
+                required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')",
+                remote: "@lang('Email already exists.')"
+            },
+            slug:{
+                required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')",
+                remote: "@lang('Slug already exist.')",
+                pattern: "@lang('The website may only contain letters, numbers and dashes.')",
+            },
+            restaurant_type_id:{
+                required: "@lang('This field is required.')",
+            },
+            amount_of_employees:{
+                required: "@lang('This field is required.')",
+                digits: "@lang('Please enter only digits.')",
+            },
+            fb_url:{
+                required: "@lang('This field is required.')",
+            },
+            ig_url:{
+                required: "@lang('This field is required.')",
+            },
+            site_logo:{
+                required: "@lang('This field is required.')",
+            },
+            province: {
+                required: "@lang('This field is required.')",
+            },
+            country:{
+                required: "@lang('This field is required.')",
+            },
+            VAT_number:{
+                required: "@lang('This field is required.')",
+            },
+            street: {
+                required: "@lang('This field is required.')",
+            },
+            house_number: {
+                required: "@lang('This field is required.')",
+            }
+        },
         errorPlacement: function(error, element) {
             // if (element.attr("name") == "city_id") {
             //     error.insertAfter($(element).next());
@@ -324,13 +441,25 @@
             // }
             error.insertAfter(element);
         },
+        errorElement: 'p',
+        errorClass: 'text-danger',
+        // highlight: function(element) {
+        //     $(element).addClass('is-invalid').removeClass('is-valid');
+        // },
+        // unhighlight: function(element) {
+        //     $(element).removeClass('is-invalid').addClass('is-valid');
+        // },
     });
 
     form.children("div").steps({
         headerTag: "h3",
         bodyTag: "section",
         enableAllSteps: true,
-        transitionEffect: "slideLeft",
+        // transitionEffect: "slideLeft",
+        labels: 
+        {
+            finish: "@lang('Registration')",
+        },
         onStepChanging: function (event, currentIndex, newIndex)
         {
             form.validate().settings.ignore = ":disabled,:hidden";
@@ -343,7 +472,6 @@
         },
         onFinished: function (event, currentIndex)
         {
-            // alert("Submitted!");
             form.submit();
         }
     });

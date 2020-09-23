@@ -319,6 +319,7 @@ mix.combine(
         "resources/assets/restaurant-new/plugins/jquery-steps/jquery.steps.min.js",
         "resources/assets/restaurant-new/plugins/jquery-tags-input/jquery.tagsinput.min.js",
         "resources/assets/restaurant-new/plugins/jquery-validation/jquery.validate.min.js",
+        "resources/assets/restaurant-new/plugins/jquery-validation/additional-methods.min.js",
         "resources/assets/restaurant-new/plugins/moment/moment.min.js",
         "resources/assets/restaurant-new/plugins/progressbar-js/progressbar.min.js",
         "resources/assets/restaurant-new/plugins/select2/select2.min.js",

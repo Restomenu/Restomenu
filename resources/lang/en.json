@@ -260,5 +260,6 @@
     "Restaurant country": "Restaurant country",
     "VAT number": "VAT number",
     "Registration": "Registration",
-    "Billing": "Billing"
+    "Billing": "Billing",
+    "The website may only contain letters, numbers and dashes.": "The website may only contain letters, numbers and dashes."
 }
