@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Library\Spryng\Client;
+use App\Library\CommonFunction;
 // use SpryngApiHttpPhp\Client;
 use SpryngApiHttpPhp\Exception\InvalidRequestException;
 use App\Models\Notification;
@@ -167,6 +168,11 @@ class ReservationController extends Controller
                 $inputs['appointment_date'] = Carbon::createFromFormat('d-m-Y', $request->appointment_date)->format('Y-m-d');
                 // $inputs['appointment_time'] = Carbon::createFromFormat('h:i A', $request->appointment_time)->format('H:i');
 
+                // add prefix to phone number
+                if (isset($request->phone) && $request->phone) {
+                    $customerPhoneNumber = CommonFunction::formatPhoneNumber($request->phone);
+                    $inputs['phone'] = $customerPhoneNumber;
+                }
 
                 $reservation = $this->model->create($inputs);
 
@@ -176,7 +182,6 @@ class ReservationController extends Controller
                     $isSmsEnabled = config("restomenu.sms.is_enabled");
                     $smsServiceStatus = $setting->sms_service_status;
                     $restaurantPhoneNumber = $restaurant->phone;
-                    $customerPhoneNumber = $request->phone;
                     $availableSmsCount = (int) $setting->available_sms_count;
 
                     if ($isSmsEnabled && $smsServiceStatus && $availableSmsCount && $availableSmsCount > 0 && $restaurantPhoneNumber) {
