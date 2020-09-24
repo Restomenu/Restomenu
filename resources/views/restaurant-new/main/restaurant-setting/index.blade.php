@@ -126,7 +126,8 @@
                     <div class="col-sm-12">
                         <div class="tr-btn-set">
                             {{-- <a href="{{ URL::previous() }}" class="btn btn-light mr-2">{{__('Cancel')}}</a> --}}
-                            <button class="btn btn-primary col-sm-4" id="submit_form_button" type="submit">{{__('Update')}}</button>
+                            <button class="btn btn-primary" id="submit_form_button"
+                                type="submit">{{__('Update')}}</button>
                         </div>
                     </div>
                 </div>
@@ -134,6 +135,50 @@
                 <br><br>
 
             </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="statusModal" role="dialog" aria-labelledby="feedbackModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    @lang('Change Restaurant Timings')
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {!! Form::model($restaurantTime, array('url' => route('restaurant.restaurant-setting-update'), 'method' =>
+            'POST',
+            "enctype"=>"multipart/form-data",'class'=>'form form-horizontal','id'=>'form_validate',
+            'autocomplete'=>'off')) !!}
+
+            <div class="card">
+
+                <div class="card-body" id="showData">
+
+                    @include('restaurant-new.main.restaurant-setting.modal')
+
+                </div>
+            </div>
+            <div class="modal-footer feedback-modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
+                <button type="button"
+                    class="btn btn-primary shadow-none btn-restomenu-primary status-submit-btn">@lang('Save')</button>
+            </div>
+            {!! Form::close() !!}
+            {{-- </form> --}}
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
             <div class="card-header">
                 <div class="custom-header d-flex pt-1 row">
                     <div class="col-12 col-sm-6">
@@ -175,7 +220,8 @@
                                 @endif
 
                                 <td>
-                                    <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="monday"><i class='fa fa-edit'></i></a></td>
+                                    <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="monday"><i
+                                            class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
@@ -193,7 +239,8 @@
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
-                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="tuesday"><i class='fa fa-edit'></i></a></td>
+                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="tuesday"><i
+                                            class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
@@ -214,7 +261,8 @@
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="wednesday"><i class='fa fa-edit'></i></a></td>
+                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="wednesday"><i
+                                            class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
@@ -233,7 +281,8 @@
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="thursday"><i class='fa fa-edit'></i></a></td>
+                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="thursday"><i
+                                            class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
@@ -252,7 +301,8 @@
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
 
-                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="friday"><i class='fa fa-edit'></i></a></td>
+                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="friday"><i
+                                            class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
@@ -270,7 +320,8 @@
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
-                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="saturday"><i class='fa fa-edit'></i></a></td>
+                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="saturday"><i
+                                            class='fa fa-edit'></i></a></td>
 
                             </tr>
                             <tr>
@@ -288,7 +339,8 @@
                                 @else
                                 <td class="text-center" colspan="2">@lang('Closed')</td>
                                 @endif
-                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="sunday"><i class='fa fa-edit'></i></a></td>
+                                <td> <a class="btn btn-primary change-status-btn ml-2" href="#" data-day="sunday"><i
+                                            class='fa fa-edit'></i></a></td>
 
                             </tr>
                         </tbody>
@@ -299,39 +351,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="statusModal" role="dialog" aria-labelledby="feedbackModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                    @lang('Change Restaurant Timings')
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {!! Form::model($restaurantTime, array('url' => route('restaurant.restaurant-setting-update'), 'method' =>
-            'POST',
-            "enctype"=>"multipart/form-data",'class'=>'form form-horizontal','id'=>'form_validate',
-            'autocomplete'=>'off')) !!}
-
-            <div class="card">
-
-                <div class="card-body" id="showData">
-
-                    @include('restaurant-new.main.restaurant-setting.modal')
-
-                </div>
-            </div>
-            <div class="modal-footer feedback-modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
-                <button type="button" class="btn btn-primary shadow-none btn-restomenu-primary status-submit-btn">@lang('Save')</button>
-            </div>
-            {!! Form::close() !!}
-            {{-- </form> --}}
-        </div>
-    </div>
-</div>
 
 @endsection
 @push('scripts')
