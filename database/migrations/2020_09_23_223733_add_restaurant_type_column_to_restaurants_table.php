@@ -14,13 +14,15 @@ class AddRestaurantTypeColumnToRestaurantsTable extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
+            $table->renameColumn('name', 'first_name');
+            $table->string('last_name')->after('name')->nullable();
             $table->foreignId('restaurant_type_id')->after('remember_token')->nullable()->references('id')->on('restaurant_types')->onDelete('no action');
-            $table->string('amount_of_employees')->after('restaurant_type_id')->nullable();
-            $table->foreignId('country_id')->after('amount_of_employees')->nullable()->references('id')->on('countries')->onDelete('no action');
-            $table->text('street')->after('country_id')->nullable();
-            $table->string('house_number')->after('street')->nullable();
-            $table->string('province')->after('house_number')->nullable();
+            $table->string('number_of_employees')->after('restaurant_type_id')->nullable();
+            $table->foreignId('city_id')->after('number_of_employees')->nullable()->references('id')->on('cities')->onDelete('no action');
+            $table->text('street_and_house_number')->after('city_id')->nullable();
+            $table->string('province')->after('street_and_house_number')->nullable();
             $table->string('VAT_number')->after('province')->nullable();
+            $table->string('phone_billing')->after('phone')->nullable();
         });
     }
 
@@ -34,17 +36,9 @@ class AddRestaurantTypeColumnToRestaurantsTable extends Migration
         Schema::table('restaurants', function (Blueprint $table) {
 
             $table->dropForeign(['restaurant_type_id']);
-            $table->dropColumn(['restaurant_type_id']);
-
-            $table->dropColumn('amount_of_employees');
-
-            $table->dropForeign(['country_id']);
-            $table->dropColumn('country_id');
-
-            $table->dropColumn('street');
-            $table->dropColumn('house_number');
-            $table->dropColumn('province');
-            $table->dropColumn('VAT_number');
+            $table->dropForeign(['city_id']);
+            $table->dropColumn(['last_name', 'restaurant_type_id', 'number_of_employees', 'city_id', 'street_and_house_number', 'province', 'VAT_number', 'phone_billing']);
+            $table->renameColumn('first_name', 'name');
         });
     }
 }

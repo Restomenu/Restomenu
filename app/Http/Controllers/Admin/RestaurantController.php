@@ -74,7 +74,7 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            // 'name' => 'required',
             'email' => 'required|unique:restaurants,email,NULL,id,deleted_at,NULL',
             'password' => 'required',
             'image' => 'required',
@@ -84,7 +84,7 @@ class RestaurantController extends Controller
         ]);
 
         try {
-            $inputs = $request->except('_token', 'image', 'color', 'password', 'available_sms_count');
+            $inputs = $request->except('_token', 'name', 'image', 'color', 'password', 'available_sms_count');
             $inputs['password'] = bcrypt($request->password);
             $isSaved = $this->model->create($inputs);
 

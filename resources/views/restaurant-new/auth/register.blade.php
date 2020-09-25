@@ -36,13 +36,13 @@
                                         <div class="row">
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="name">{{__('Restaurant name')}}</label>
+                                                    <label for="site_name">{{__('Restaurant name')}}</label>
                                                     <input type="text"
-                                                        class="form-control  @error('name') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant name')}}" name="name" autofocus
-                                                        autocomplete="name" value="{{ old('name') }}">
+                                                        class="form-control  @error('site_name') is-invalid @enderror"
+                                                        name="site_name" autofocus autocomplete="site_name"
+                                                        value="{{ old('site_name') }}">
 
-                                                    @error('name')
+                                                    @error('site_name')
                                                     <span class="invalid-feedback text-left" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -51,12 +51,17 @@
                                             </div>
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="phone">{{__('Restaurant contact number')}}</label>
-                                                    <input type="text"
-                                                        class="form-control  @error('phone') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant contact number')}}" name="phone"
-                                                        autofocus autocomplete="phone" value="{{ old('phone') }}">
 
+                                                    <label for="phone">{{__('Restaurant contact number')}}</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="">+32</span>
+                                                        </div>
+                                                        <input type="text" id="restaurantPhone"
+                                                            class="form-control  @error('phone') is-invalid @enderror"
+                                                            name="phone" autofocus autocomplete="phone"
+                                                            value="{{ old('phone') }}">
+                                                    </div>
                                                     @error('phone')
                                                     <span class="invalid-feedback text-left" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -67,29 +72,14 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="email">{{__('Restaurant email')}}</label>
-                                                    <input type="email"
-                                                        class="form-control  @error('email') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant email')}}" name="email" autofocus
-                                                        autocomplete="email" value="{{ old('email') }}">
-
-                                                    @error('email')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
 
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="slug">{{__('Restaurant website')}}</label>
                                                     <input type="text"
                                                         class="form-control  @error('slug') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant website')}}" name="slug" autofocus
-                                                        autocomplete="slug" value="{{ old('slug') }}">
+                                                        name="slug" autofocus autocomplete="slug"
+                                                        value="{{ old('slug') }}">
 
                                                     @error('slug')
                                                     <span class="invalid-feedback text-left" role="alert">
@@ -98,9 +88,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="restaurant_type_id">{{__('Restaurant type')}}</label>
@@ -114,19 +102,37 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
 
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
-                                                    <label
-                                                        for="amount_of_employees">{{__('Amount of employees')}}</label>
-                                                    <input type="text"
-                                                        class="form-control  @error('amount_of_employees') is-invalid @enderror"
-                                                        placeholder="{{__('Amount of employees')}}"
-                                                        name="amount_of_employees" autofocus
-                                                        autocomplete="amount_of_employees"
-                                                        value="{{ old('amount_of_employees') }}">
+                                                    <label for="number_of_employees">{{__('Employees')}}</label>
+                                                    <input type="number" id="number_of_employees"
+                                                        class="form-control  @error('number_of_employees') is-invalid @enderror"
+                                                        min="0" name="number_of_employees" autofocus
+                                                        autocomplete="number_of_employees"
+                                                        value="{{ old('number_of_employees') }}">
 
-                                                    @error('amount_of_employees')
+                                                    @error('number_of_employees')
+                                                    <span class="invalid-feedback text-left" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="fb_url">{{__('Facebook link')}}</label>
+
+                                                    <input type="text"
+                                                        class="form-control  @error('fb_url') is-invalid @enderror"
+                                                        name="fb_url" autofocus autocomplete="fb_url"
+                                                        value="{{ old('fb_url') }}">
+
+                                                    @error('fb_url')
                                                     <span class="invalid-feedback text-left" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -139,29 +145,12 @@
                                         <div class="row">
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="fb_url">{{__('Facebook link')}}</label>
-
-                                                    <input type="text"
-                                                        class="form-control  @error('fb_url') is-invalid @enderror"
-                                                        placeholder="{{__('Facebook link')}}" name="fb_url" autofocus
-                                                        autocomplete="fb_url" value="{{ old('fb_url') }}">
-
-                                                    @error('fb_url')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
                                                     <label for="ig_url">{{__('Instagram link')}}</label>
 
                                                     <input type="text"
                                                         class="form-control  @error('ig_url') is-invalid @enderror"
-                                                        placeholder="{{__('Instagram link')}}" name="ig_url" autofocus
-                                                        autocomplete="ig_url" value="{{ old('ig_url') }}">
+                                                        name="ig_url" autofocus autocomplete="ig_url"
+                                                        value="{{ old('ig_url') }}">
 
                                                     @error('ig_url')
                                                     <span class="invalid-feedback text-left" role="alert">
@@ -172,145 +161,189 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="site_logo">{{__('Restaurant logo')}}</label>
 
-                                                    <input type="file"
-                                                        class="form-control @error('site_logo') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant logo')}}" name="site_logo"
-                                                        autofocus autocomplete="ig_url" value="{{ old('site_logo') }}">
+                                        <input type="file" class="form-control @error('site_logo') is-invalid @enderror"
+                                            placeholder="{{__('Restaurant logo')}}" name="site_logo" autofocus
+                                            autocomplete="ig_url" value="{{ old('site_logo') }}">
 
-                                                    @error('site_logo')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </section>
-
-                                    <h3>{{__('Billing')}}</h3>
-                                    <section class="px-0">
-
-                                        <h5 class="text-muted font-weight-normal mb-4">
-                                            {{__("we're not going to let you wait in excitement for much longer, you're nearly there!")}}
-                                        </h5>
-
-                                        <div class="row">
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="street">{{__('Restaurant street')}}</label>
-
-                                                    <input type="text"
-                                                        class="form-control @error('street') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant street')}}" name="street"
-                                                        autofocus autocomplete="street" value="{{ old('street') }}">
-
-                                                    @error('street')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="house_number">{{__('Restaurant house number')}}</label>
-
-                                                    <input type="text"
-                                                        class="form-control @error('house_number') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant house number')}}"
-                                                        name="house_number" autofocus autocomplete="house_number"
-                                                        value="{{ old('house_number') }}">
-
-                                                    @error('house_number')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="province">{{__('Restaurant province')}}</label>
-
-                                                    <input type="text"
-                                                        class="form-control @error('province') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant province')}}" name="province"
-                                                        autofocus autocomplete="province" value="{{ old('province') }}">
-
-                                                    @error('province')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="country">{{__('Restaurant country')}}</label>
-
-                                                    <input type="text"
-                                                        class="form-control @error('country') is-invalid @enderror"
-                                                        placeholder="{{__('Restaurant country')}}" name="country"
-                                                        autofocus autocomplete="country" value="{{ old('country') }}">
-
-                                                    @error('country')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="VAT_number">{{__('VAT number')}}</label>
-
-                                                    <input type="text"
-                                                        class="form-control @error('VAT_number') is-invalid @enderror"
-                                                        placeholder="{{__('VAT number')}}" name="VAT_number" autofocus
-                                                        autocomplete="VAT_number" value="{{ old('VAT_number') }}">
-
-                                                    @error('VAT_number')
-                                                    <span class="invalid-feedback text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-
-                                    <h3>{{__('confirmation')}}</h3>
-                                    <section class="px-0">
-                                        <div>Confirm!</div>
-                                    </section>
-
+                                        @error('site_logo')
+                                        <span class="invalid-feedback text-left" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                 </div>
-                            </form>
-                            <div class="mt-3">
-                                <a href="{{route('restaurant.login')}}"
-                                    class="d-block mt-3 text-muted">{{__('Already a user?')}}
-                                    {{__('Sign in')}}</a>
+                        </div>
+                    </div> --}}
+
+                    </section>
+
+                    <h3>{{__('Billing')}}</h3>
+                    <section class="px-0">
+
+                        <h5 class="text-muted font-weight-normal mb-4">
+                            {{__("we're not going to let you wait in excitement for much longer, you're nearly there!")}}
+                        </h5>
+
+                        {{-- firstname --}}
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="first_name">{{__('First name')}}</label>
+
+                                    <input type="text" class="form-control @error('first_name') is-invalid @enderror"
+                                        name="first_name" autofocus autocomplete="first_name"
+                                        value="{{ old('first_name') }}">
+
+                                    @error('first_name')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="last_name">{{__('Last name')}}</label>
+
+                                    <input type="text" class="form-control @error('last_name') is-invalid @enderror"
+                                        name="last_name" autofocus autocomplete="last_name"
+                                        value="{{ old('last_name') }}">
+
+                                    @error('last_name')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="VAT_number">{{__('VAT number')}}</label>
+
+                                    <input type="text" class="form-control @error('VAT_number') is-invalid @enderror"
+                                        name="VAT_number" autofocus autocomplete="VAT_number"
+                                        value="{{ old('VAT_number') }}">
+
+                                    @error('VAT_number')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="street_and_house_number">{{__('Street and number')}}</label>
+
+                                    <input type="text"
+                                        class="form-control @error('street_and_house_number') is-invalid @enderror"
+                                        name="street_and_house_number" autofocus autocomplete="street_and_house_number"
+                                        value="{{ old('street_and_house_number') }}">
+
+                                    @error('street_and_house_number')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="country">{{__('City')}}</label>
+
+                                    {{ Form::select('city_id', $cities ?? ['1'=>'one','2'=>'two'], null, ['id'=>'city_id',"class"=>"form-control". ($errors->first('city_id') ? ' is-invalid':''),"placeholder"=>__('Select city')]) }}
+
+                                    @error('city_id')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="province">{{__('Province')}}</label>
+
+                                    <input type="text" class="form-control @error('province') is-invalid @enderror"
+                                        name="province" autofocus autocomplete="province" value="{{ old('province') }}">
+
+                                    @error('province')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="email">{{__('Restaurant email')}}</label>
+                                    <input type="email" class="form-control  @error('email') is-invalid @enderror"
+                                        name="email" autofocus autocomplete="email" value="{{ old('email') }}">
+
+                                    @error('email')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="phone_billing">{{__('Telephone number')}}</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">+32</span>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control  @error('phone_billing') is-invalid @enderror"
+                                            name="phone_billing" autofocus autocomplete="phone_billing"
+                                            value="{{ old('phone_billing') }}">
+                                    </div>
+
+                                    @error('phone_billing')
+                                    <span class="invalid-feedback text-left" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <h3>{{__('confirmation')}}</h3>
+                    <section class="px-0">
+                        <div>Confirm!</div>
+                    </section>
+
+                </div>
+                </form>
+                <div class="mt-3">
+                    <a href="{{route('restaurant.login')}}" class="d-block mt-3 text-muted">{{__('Already a user?')}}
+                        {{__('Sign in')}}</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 @endsection
 
@@ -318,20 +351,25 @@
 @push("scripts")
 
 <script>
+    jQuery.validator.addMethod("exactlength", function(value, element, param) {
+        return this.optional(element) || value.length == param;
+    }, $.validator.format("@lang('Please enter a valid phone number.')"));
+    
     var form = $("#registerForm");
     form.validate({
         normalizer: function(value) {
             return $.trim(value);
         },
         rules: {
-            name: {
+            site_name: {
                 required: true,
                 maxlength: 191
             },
             phone:{
                 required: true,
                 digits: true,
-                maxlength: 191
+                exactlength: 10,
+                maxlength: 191,
             },
             email: {
                 required: true,
@@ -351,44 +389,59 @@
             restaurant_type_id:{
                 required: true,
             },
-            amount_of_employees:{
+            number_of_employees:{
                 required: true,
                 digits: true
             },
             fb_url:{
                 required: false,
+                url: true,
+                maxlength: 191,
             },
             ig_url:{
                 required: false,
+                url: true,
+                maxlength: 191,
             },
-            site_logo:{
+            first_name:{
                 required: true,
+                maxlength: 191,
+            },
+            last_name:{
+                required: true,
+                maxlength: 191,
             },
             province: {
                 required: true,
+                maxlength: 191,
             },
-            country:{
+            city_id:{
                 required: true,
             },
             VAT_number:{
                 required: true,
+                maxlength: 191,
             },
-            street: {
+            street_and_house_number: {
                 required: true,
             },
-            house_number: {
+            phone_billing:{
                 required: true,
+                digits: true,
+                exactlength: 10,
+                maxlength: 191,
             }
         },
         messages: {
-            name: {
+            site_name: {
                 required: "@lang('This field is required.')",
                 maxlength: "@lang('Please enter no more than 191 characters.')"
             },
             phone:{
                 required: "@lang('This field is required.')",
                 maxlength: "@lang('Please enter no more than 191 characters.')",
-                digits: "@lang('Please enter only digits.')",	
+                digits: "@lang('Please enter a valid phone number.')",
+                number: "@lang('Please enter a valid phone number.')",	
             },
             email: {
                 required: "@lang('This field is required.')",
@@ -398,48 +451,61 @@
             slug:{
                 required: "@lang('This field is required.')",
                 maxlength: "@lang('Please enter no more than 191 characters.')",
-                remote: "@lang('Slug already exist.')",
+                remote: "@lang('Website already exists.')",
                 pattern: "@lang('The website may only contain letters, numbers and dashes.')",
             },
             restaurant_type_id:{
                 required: "@lang('This field is required.')",
             },
-            amount_of_employees:{
+            number_of_employees:{
                 required: "@lang('This field is required.')",
                 digits: "@lang('Please enter only digits.')",
             },
             fb_url:{
                 required: "@lang('This field is required.')",
+                url: "@lang('Please enter valid facebook link.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')"
             },
             ig_url:{
                 required: "@lang('This field is required.')",
+                url: "@lang('Please enter valid instagram link.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')"
             },
-            site_logo:{
+            first_name:{
                 required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')"
+            },
+            last_name:{
+                required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')"
             },
             province: {
                 required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')"
             },
-            country:{
+            city_id:{
                 required: "@lang('This field is required.')",
             },
             VAT_number:{
                 required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')"
             },
-            street: {
+            street_and_house_number: {
                 required: "@lang('This field is required.')",
             },
-            house_number: {
+            phone_billing:{
                 required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')",
+                digits: "@lang('Please enter a valid phone number.')",
+                number: "@lang('Please enter a valid phone number.')",	
             }
         },
         errorPlacement: function(error, element) {
-            // if (element.attr("name") == "city_id") {
-            //     error.insertAfter($(element).next());
-            // } else {
-            //     error.insertAfter(element);
-            // }
-            error.insertAfter(element);
+            if(element.attr("name") == "phone" || element.attr("name") == "phone_billing"){
+                error.insertAfter($(element).closest('.input-group'));
+            } else {
+				error.insertAfter(element);
+			}
         },
         errorElement: 'p',
         errorClass: 'text-danger',
@@ -462,19 +528,44 @@
         },
         onStepChanging: function (event, currentIndex, newIndex)
         {
+            console.log(currentIndex);
+            console.log(newIndex);
+            
             form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
+            if(newIndex == 2 && form.valid()){
+                form.submit();
+                return false
+            }
+
+            if(newIndex == 1){
+                $(".actions a:eq(1)").text("@lang('Register')");
+            }
+
+            if(currentIndex < newIndex){
+                return form.valid();
+            }
+            return true;
+
         },
         onFinishing: function (event, currentIndex)
         {
             form.validate().settings.ignore = ":disabled";
             return form.valid();
+
         },
         onFinished: function (event, currentIndex)
         {
             form.submit();
         }
     });
+
+    // $("#restaurantPhone,#number_of_employees").bind("keypress", function (e) {
+    //         var keyCode = e.which ? e.which : e.keyCode
+    //         if (!(keyCode >= 48 && keyCode <= 57)) {   
+    //         return false;
+    //     }
+    // });
+
 </script>
 
 @endpush

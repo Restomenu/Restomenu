@@ -469,7 +469,7 @@
         var appointmentTime = $(this).data("visitor_appointment_time");
         var appointmentDate = $(this).data("visitor_appointment_date");
         var locale = $(this).data("locale");
-        var restaurant_name = "{{auth()->guard('restaurant')->user()->name}}";
+        var restaurant_name = "{{auth()->guard('restaurant')->user()->setting->site_name}}";
         var restaurant_phone = "{{auth()->guard('restaurant')->user()->phone}}";
 
         if (this.value == '1') {

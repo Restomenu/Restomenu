@@ -26443,4 +26443,8 @@ label.error {
   }
 }
 
+.input-group-text {
+  color: #111 !important;
+}
+
 /*# sourceMappingURL=app.css.map*/

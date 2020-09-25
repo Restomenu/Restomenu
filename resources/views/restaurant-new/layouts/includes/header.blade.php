@@ -222,7 +222,7 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
                                 alt="">
                         </div>
                         <div class="info text-center">
-                            <p class="name font-weight-bold mb-0">{{auth()->guard('restaurant')->user()->name}}</p>
+                            <p class="name font-weight-bold mb-0">{{auth()->guard('restaurant')->user()->setting->site_name}}</p>
                             <p class="email text-muted mb-3">{{auth()->guard('restaurant')->user()->email}}</p>
                         </div>
                     </div>

@@ -858,7 +858,7 @@ $restaurant->setting->language_french > 1)
             phone: {
                 required: "@lang('This field is required.')",
                 number: "@lang('Please enter a valid phone number.')",
-                digits: "@lang('Please enter only digits.')"
+                digits: "@lang('Please enter a valid phone number.')"
             },
             is_terms_checked:{
                 required: "@lang('Please accept terms of service.')",
