@@ -9,11 +9,11 @@
 @endpush
 
 <div class="form-group row">
-    <label class="col-form-label col-sm-2">{{__('Name')}}</label>
+    <label class="col-form-label col-sm-2">{{__('Restaurant Name')}}</label>
     <div class="col-sm-6">
-        {{ Form::text('name', null, ['id' => 'name', 'class'=>"form-control"]) }}
-        @if($errors->has('name'))
-        <p class="text-danger">{{ $errors->first('name') }}</p>
+        {{ Form::text('site_name', (isset($result) && $result->setting->site_name) ? $result->setting->site_name : null, ['id' => 'name', 'class'=>"form-control"]) }}
+        @if($errors->has('site_name'))
+        <p class="text-danger">{{ $errors->first('site_name') }}</p>
         @endif
     </div>
 </div>
@@ -125,7 +125,7 @@
                 return $.trim(value);
             },
             rules: {
-                name: {
+                site_name: {
                     required: true,
                     maxlength: 191
                 },
@@ -197,7 +197,7 @@
                 }
             },
             messages: {
-			    name: {
+			    site_name: {
 				    required: "@lang('This field is required.')",
                     maxlength:"@lang('Please enter no more than 191 characters.')"
                 },

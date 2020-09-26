@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\RestaurantAuth;
 
-use App\Models\Restaurant;
 use Validator;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
+use App\Models\RestaurantType;
+use App\Models\City;
 use App\Models\Setting;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -29,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/thank-you';
 
     /**
      * Create a new controller instance.
@@ -39,6 +44,28 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('restaurant.guest');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        // dont't remove this
+        // return $request->wantsJson()
+        //             ? new Response('', 201)
+        //             : redirect($this->redirectPath());
+
+        return $request->wantsJson()
+            ? new Response('', 201)
+            : view('restaurant-new.auth.thank-you');
     }
 
     /**
@@ -59,7 +86,7 @@ class RegisterController extends Controller
                 'number_of_employees' => ['required', 'numeric', 'min:0'],
                 'first_name' => ['required', 'string', 'max:191'],
                 'last_name' => ['required', 'string', 'max:191'],
-                'email' => ['required', 'string', 'email', 'max:191', 'unique:restaurants'],
+                'email' => ['required', 'string', 'email', 'max:191', 'unique:restaurants,email,NULL,id,deleted_at,NULL'],
                 'street_and_house_number' => ['required', 'string', 'max:191'],
                 'city_id' => ['required', 'numeric', 'min:0'],
                 'province' => ['required', 'string', 'max:191'],
@@ -121,7 +148,6 @@ class RegisterController extends Controller
             'phone_billing' => $data['phone_billing'],
             'status' => 0
         ]);
-        dd($restaurant);
 
         if ($restaurant) {
 
@@ -154,7 +180,10 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('restaurant-new.auth.register');
+        // return view('restaurant-new.auth.thank-you');
+        $restaurantTypes = RestaurantType::where('status', 1)->pluck('name', 'id');
+        $cities = City::where('status', 1)->pluck('name', 'id');
+        return view('restaurant-new.auth.register', compact('restaurantTypes', 'cities'));
     }
 
     /**

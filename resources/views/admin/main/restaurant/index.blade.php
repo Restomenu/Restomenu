@@ -75,8 +75,8 @@
                 orderable: false,
             },
             {
-                data: 'name',
-                name: "name",
+                data: 'restaurant_name',
+                name: "settings.site_name",
                 defaultContent: "N/A",
             },
             {

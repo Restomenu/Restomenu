@@ -93,7 +93,7 @@
                                                 <div class="form-group">
                                                     <label for="restaurant_type_id">{{__('Restaurant type')}}</label>
 
-                                                    {{ Form::select('restaurant_type_id', ['1'=>'one','2'=>'two'], null, ['id'=>'restaurant_type_id',"class"=>"form-control". ($errors->first('restaurant_type_id') ? ' is-invalid':''),"placeholder"=>__('Select Restaurant Type')]) }}
+                                                    {{ Form::select('restaurant_type_id', $restaurantTypes ?? [], null, ['id'=>'restaurant_type_id',"class"=>"form-control". ($errors->first('restaurant_type_id') ? ' is-invalid':''),"placeholder"=>__('Select Restaurant Type')]) }}
 
                                                     @error('restaurant_type_id')
                                                     <span class="invalid-feedback text-left" role="alert">
@@ -527,10 +527,7 @@
             finish: "@lang('Registration')",
         },
         onStepChanging: function (event, currentIndex, newIndex)
-        {
-            console.log(currentIndex);
-            console.log(newIndex);
-            
+        {        
             form.validate().settings.ignore = ":disabled,:hidden";
             if(newIndex == 2 && form.valid()){
                 form.submit();

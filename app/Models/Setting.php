@@ -22,8 +22,8 @@ class Setting extends Model
         }
     }
 
-    public function user()
+    public function restaurant()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\Restaurant');
     }
 }

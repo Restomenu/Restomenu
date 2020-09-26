@@ -31,7 +31,7 @@ class RestaurantFeedbackController extends Controller
 
     public function getDatatable()
     {
-        $result = $this->model->leftjoin('restaurants', 'restaurants.id', '=', 'restaurant_feedbacks.restaurant_id')->select("restaurant_feedbacks.*", "restaurants.name as restaurant_name")->orderBy('id','desc')->get();
+        $result = $this->model->leftjoin('restaurants', 'restaurants.id', '=', 'restaurant_feedbacks.restaurant_id')->select("restaurant_feedbacks.*", "settings.site_name as restaurant_name")->leftjoin('settings', 'settings.restaurant_id', '=', 'restaurants.id')->orderBy('id', 'desc');
 
         return Datatables::of($result)->addIndexColumn()->make(true);
     }

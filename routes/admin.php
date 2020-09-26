@@ -49,6 +49,12 @@ Route::group(array('domain' => env('ADMIN_DOMAIN'), 'prefix' => '/', 'namespace'
     Route::get('restaurant-feedbacks/datatable', 'RestaurantFeedbackController@getDatatable')->name('restaurant-feedbacks-datatable');
     Route::resource('restaurant-feedbacks', 'RestaurantFeedbackController');
 
+    Route::get('restaurant-types/datatable', 'RestaurantTypeController@getDatatable')->name('restaurant-types-datatable');
+    Route::resource('restaurant-types', 'RestaurantTypeController');
+
+    Route::get('cities/datatable', 'CityController@getDatatable')->name('cities-datatable');
+    Route::resource('cities', 'CityController');
+
 
     // Route::get('/migrate', function () {
     //     Artisan::call('migrate');

@@ -26381,16 +26381,34 @@ label.error {
   cursor: pointer;
 }
 
-#registerForm .card-body {
+#registerForm .card-body,
+.thank-you-wrapper .card-body {
   padding: 0px !important;
 }
 
-#registerForm .card-body .content {
+#registerForm .card-body .content,
+.thank-you-wrapper .card-body .content {
   border: none !important;
 }
 
-#registerForm .wizard > .steps > ul > li {
+#registerForm .wizard > .steps > ul > li,
+.thank-you-wrapper .wizard > .steps > ul > li {
   width: 33.33%;
+}
+
+.thank-you-section {
+  padding-bottom: 0px;
+}
+
+.thank-you-section .thank-you-text-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 49vh;
+}
+
+.thank-you-section .thank-you-text-section .thank-you-description {
+  font-size: 15px;
 }
 
 .wizard .content {
@@ -26409,7 +26427,8 @@ label.error {
   .wizard > .steps > ul > li {
     width: 50%;
   }
-  #registerForm .wizard > .steps > ul > li {
+  #registerForm,
+  .thank-you-wrapper .wizard > .steps > ul > li {
     width: 50%;
   }
   .wizard > .steps a,
@@ -26435,7 +26454,8 @@ label.error {
   .wizard > .steps > ul > li {
     width: 100%;
   }
-  #registerForm .wizard > .steps > ul > li {
+  #registerForm,
+  .thank-you-wrapper .wizard > .steps > ul > li {
     width: 100%;
   }
   .wizard .content > .body {
