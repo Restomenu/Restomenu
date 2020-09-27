@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\View;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\RestaurantRepository;
+use App\Library\CommonFunction;
 use Illuminate\Support\Facades\Mail;
 
 // use App\Repositories\AppSettingsRepository;
@@ -99,6 +100,7 @@ class RestaurantController extends Controller
                 $settingInputs = [
                     "restaurant_id" => $isSaved->id,
                     "site_logo" => $fileName,
+                    'qr_code_menu' => CommonFunction::generateMenuQrCode($request->slug, $isSaved->id),
                     "site_name" => $request->site_name,
                     "available_sms_count" => (int) $request->available_sms_count,
                     "language_english" => 1,
@@ -220,6 +222,11 @@ class RestaurantController extends Controller
                         }
                         $setting->site_logo = $fileName;
                     }
+
+                    if ($request->slug && !$setting->qr_code_menu) {
+                        $setting->qr_code_menu = CommonFunction::generateMenuQrCode($request->slug, $id);
+                    }
+
                     $setting->site_name = $request->site_name;
                     $setting->menu_primary_color = $request->color;
                     $setting->available_sms_count = $request->available_sms_count;
