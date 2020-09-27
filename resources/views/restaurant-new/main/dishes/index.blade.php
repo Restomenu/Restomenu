@@ -93,7 +93,7 @@
             },
             // {
             //     data: 'description',
-            //     name: "description",
+            //     name: "dishes.description",
             //     defaultContent: "N/A",
             //     width: '10%'
             // },
