@@ -36,6 +36,11 @@ class RestaurantRepository extends BaseRepository
         return config("restomenu.path.storage_restaurant_images_root_dir") . "restaurant_" . $id . '/' . config("restomenu.path.storage_logo");
     }
 
+    public static function getQrCodePath($id)
+    {
+        return config("restomenu.path.storage_restaurant_images_root_dir") . "restaurant_" . $id . '/' . config("restomenu.path.storage_qr_code");
+    }
+
     public function store(array $inputs)
     { }
     public function update(array $inputs, $id)

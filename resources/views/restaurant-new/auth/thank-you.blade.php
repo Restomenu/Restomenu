@@ -43,7 +43,7 @@
                                         role="tabpanel" aria-labelledby="steps-uid-0-h-0" aria-hidden="false">
 
                                         <div class="thank-you-text-section">
-                                            <h2 class="text-muted font-weight-normal mb-3 thank-you-heading">
+                                            <h2 class="font-weight-normal mb-3 thank-you-heading">
                                                 Thank You.
                                             </h2>
                                             <h4 class="text-muted font-weight-normal mb-3 thank-you-heading">

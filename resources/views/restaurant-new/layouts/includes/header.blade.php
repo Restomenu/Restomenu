@@ -13,11 +13,11 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
                 <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="bell"></i>
-                    
+
                     <div class="indicator notification-indicator {{$totalNotificationCount === 0 ? 'd-none' : ''}}">
                         <div class="circle"></div>
                     </div>
-                    
+
                 </a>
                 <div class="dropdown-menu" aria-labelledby="notificationDropdown">
                     <div class="dropdown-header d-flex align-items-center justify-content-between">
@@ -29,15 +29,16 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
                         {{-- <a href="javascript:;" class="text-muted">Clear all</a> --}}
                     </div>
                     <div class="dropdown-body header-notification-dropdown">
-                    
-                        <a href="javascript:;" class="dropdown-item no-notification-section {{$totalNotificationCount === 0 ? '' : 'd-none'}}">
+
+                        <a href="javascript:;"
+                            class="dropdown-item no-notification-section {{$totalNotificationCount === 0 ? '' : 'd-none'}}">
                             {{-- <div class="icon">
                                 <i data-feather="user-plus"></i>
                             </div> --}}
                             <div class="content">
                                 <p>No new notification</p>
                             </div>
-                        </a>                    
+                        </a>
 
                         <div class="notifications-list">
                             @if ($totalNotificationCount)
@@ -45,7 +46,11 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
                             @php
                             $notification = json_decode($notificationData->notification_data, true);
 
-                            $message = $notification['first_name'] .' '.$notification['last_name'] . ' made reservation for '.$notification['number_of_people'] . ($notification['number_of_people'] == 1 ? ' person' :' persons').' for date '.Carbon\Carbon::createFromFormat('Y-m-d',$notification['appointment_date'])->format('d-m-Y').' '.$notification['appointment_time'].'.';
+                            $message = $notification['first_name'] .' '.$notification['last_name'] . ' made reservation
+                            for '.$notification['number_of_people'] . ($notification['number_of_people'] == 1 ? '
+                            person' :' persons').' for date
+                            '.Carbon\Carbon::createFromFormat('Y-m-d',$notification['appointment_date'])->format('d-m-Y').'
+                            '.$notification['appointment_time'].'.';
 
                             @endphp
 
@@ -56,7 +61,8 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
                                     </div>
                                     <div class="content">
                                         <p>{{$message}}</p>
-                                        {{-- <p><button class="btn btn-primary btn-xs">{{__('Accept')}}</button></p> --}}
+                                        {{-- <p><button class="btn btn-primary btn-xs">{{__('Accept')}}</button></p>
+                                        --}}
                                         {{-- <p class="sub-text text-muted">2 sec ago</p> --}}
                                     </div>
                                 </a>
@@ -212,17 +218,18 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
             <li class="nav-item dropdown nav-profile">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <img src="{{asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo)}}"
+                    <img src="{{ auth()->guard('restaurant')->user()->setting->site_logo ? asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo) : asset('admin/images/placeholder-image.png')}}"
                         alt="profile">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     <div class="dropdown-header d-flex flex-column align-items-center">
                         <div class="figure mb-3">
-                            <img src="{{asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo)}}"
+                            <img src="{{auth()->guard('restaurant')->user()->setting->site_logo ? asset('storage/'.app('App\Repositories\RestaurantRepository')->getImagePath(auth()->guard('restaurant')->user()->id).auth()->guard('restaurant')->user()->setting->site_logo) : asset('admin/images/placeholder-image.png') }}"
                                 alt="">
                         </div>
                         <div class="info text-center">
-                            <p class="name font-weight-bold mb-0">{{auth()->guard('restaurant')->user()->setting->site_name}}</p>
+                            <p class="name font-weight-bold mb-0">
+                                {{auth()->guard('restaurant')->user()->setting->site_name}}</p>
                             <p class="email text-muted mb-3">{{auth()->guard('restaurant')->user()->email}}</p>
                         </div>
                     </div>

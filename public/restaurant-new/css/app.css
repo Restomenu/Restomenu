@@ -26467,4 +26467,8 @@ label.error {
   color: #111 !important;
 }
 
+.rm-qr-img {
+  max-height: 400px;
+}
+
 /*# sourceMappingURL=app.css.map*/

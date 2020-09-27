@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Library\CommonFunction;
 use App\Models\Restaurant;
 use App\Models\RestaurantType;
 use App\Models\City;
@@ -156,6 +157,7 @@ class RegisterController extends Controller
                 'site_name' => $data['site_name'],
                 'fb_url' => $data['fb_url'],
                 'ig_url' => $data['ig_url'],
+                'qr_code_menu' => CommonFunction::generateMenuQrCode($data['slug'], $restaurant->id),
                 // "site_logo" => ,
                 "available_sms_count" => 0,
                 "language_english" => 1,
