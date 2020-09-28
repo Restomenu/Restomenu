@@ -35,7 +35,7 @@ return [
         ],
         "site_logo_path" => 'storage/site-logo/',
         "menu_qr_image_size" => 250,
-        "menu_qr_image_ext" => 'png',
+        "menu_qr_image_ext" => 'svg',
         "menu_qr_image_margin" => 2,
     ],
     "sms" => [
