@@ -148,7 +148,7 @@ label.error {
         // align-items: center;
         min-height: 49vh;
 
-        .thank-you-description{
+        .thank-you-description {
             font-size: 15px;
         }
     }
@@ -169,7 +169,9 @@ label.error {
     .wizard > .steps > ul > li {
         width: 50%;
     }
-    #registerForm,
+    #registerForm .wizard > .steps > ul > li {
+        width: 50%;
+    }
     .thank-you-wrapper .wizard > .steps > ul > li {
         width: 50%;
     }
@@ -199,7 +201,9 @@ label.error {
     .wizard > .steps > ul > li {
         width: 100%;
     }
-    #registerForm,
+    #registerForm .wizard > .steps > ul > li {
+        width: 100%;
+    }
     .thank-you-wrapper .wizard > .steps > ul > li {
         width: 100%;
     }
@@ -212,6 +216,6 @@ label.error {
     color: #111 !important;
 }
 
-.rm-qr-img{
+.rm-qr-img {
     max-height: 400px;
 }
