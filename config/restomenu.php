@@ -19,6 +19,7 @@ return [
         "storage_dish_img" => "dish/",
         "storage_combo_dish_img" => "combo-dish/",
         "storage_logo" => "site-logo/",
+        "storage_qr_code" => "qr-code/",
         "storage_icon" => "category-icons/",
         "storage_allergens_icons" => "allergens-icons/",
     ],
@@ -33,6 +34,9 @@ return [
             'Others', 'others', 'other', 'others', 'Divers', 'Autres'
         ],
         "site_logo_path" => 'storage/site-logo/',
+        "menu_qr_image_size" => 250,
+        "menu_qr_image_ext" => 'svg',
+        "menu_qr_image_margin" => 2,
     ],
     "sms" => [
         "is_enabled" => env('SMS_SERVICE_STATUS', 0),
@@ -49,7 +53,8 @@ return [
         "5" => 'Propose other time'
     ],
     "urls" => [
-        'restaurant_backend_url' => env('RESTAURANT_BACKEND_URL', "https://my.restomenu.be/")
+        'restaurant_backend_url' => env('RESTAURANT_BACKEND_URL', "https://my.restomenu.be/"),
+        'restaurant_menu_base_url' => env('RESTAURANT_MENU_BASE_URL', "https://menu.restomenu.be/"),
     ]
 
 ];

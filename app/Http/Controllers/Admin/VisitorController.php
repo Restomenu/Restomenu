@@ -30,7 +30,7 @@ class VisitorController extends Controller
 
     public function getDatatable()
     {
-        $result = $this->model->leftjoin('restaurants', 'restaurants.id', '=', 'visitors.restaurant_id')->select("visitors.*", "restaurants.name as restaurant_name")->orderBy('checkin_at', 'desc')->get();
+        $result = $this->model->leftjoin('restaurants', 'restaurants.id', '=', 'visitors.restaurant_id')->leftjoin('settings', 'settings.restaurant_id', '=', 'restaurants.id')->select("visitors.*", "settings.site_name as restaurant_name")->orderBy('checkin_at', 'desc');
 
         return Datatables::of($result)->addIndexColumn()->make(true);
     }

@@ -52,6 +52,11 @@
     Route::get('translation/datatable', 'TranslationController@getDatatable')->name('restaurant-datatable');
     // Route::post('visitors/checkout/{id}', 'TranslationController@editCheckout')->name('visitors-checkout');
     Route::resource('translation', 'TranslationController');
+    Route::get('restaurant-types/datatable', 'RestaurantTypeController@getDatatable')->name('restaurant-types-datatable');
+    Route::resource('restaurant-types', 'RestaurantTypeController');
+
+    Route::get('cities/datatable', 'CityController@getDatatable')->name('cities-datatable');
+    Route::resource('cities', 'CityController');
 
 
     // Route::get('/migrate', function () {

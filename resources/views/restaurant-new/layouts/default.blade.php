@@ -223,7 +223,7 @@
                 numberOfPeople: e.number_of_people,
                 appointmentDate: e.appointment_date,
                 appointmentTime : e.appointment_time,
-                restaurantName : "{{auth()->guard('restaurant')->user()->name}}",
+                restaurantName : "{{auth()->guard('restaurant')->user()->setting->site_name}}",
                 restaurantPhone: "{{auth()->guard('restaurant')->user()->phone}}",
                 locale: e.locale,
                 reservationId: e.reservationData.id

@@ -105,7 +105,7 @@
             // },
             {
                 data: 'restaurant_name',
-                name: "restaurant_name",
+                name: "settings.site_name",
                 defaultContent: "N/A",
                 width: '10%'
             },

@@ -16,9 +16,8 @@ function setActiveMenu($route)
                 <div class="dropdown profile-element">
                     <img alt="image" width="100"
                         src="{{asset(config("restomenu.constants.site_logo_path").auth()->guard('restaurant')->user()->setting->site_logo)}}" />
-
                     <a href="javascript:void(0)">
-                        <span class="block m-t-xs font-bold">{{ Auth::guard('restaurant')->user()->name }}</span>
+                        <span class="block m-t-xs font-bold">{{ auth()->guard('restaurant')->user()->setting->site_name }}</span>
                         <!-- <span class="text-muted text-xs block">Admin<b class="caret"></b></span> -->
                     </a>
 

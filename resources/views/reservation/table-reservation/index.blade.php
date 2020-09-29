@@ -40,11 +40,17 @@
 <div class="text-center mb-4">
 
     @if (app()->getLocale() == 'nl')
-    <a href="{{ route('menu-nl',['slug' => $restaurant->slug]) }}" target="_blank" class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1" aria-hidden="true"></i></a>
+    <a href="{{ route('menu-nl',['slug' => $restaurant->slug]) }}" target="_blank"
+        class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1"
+            aria-hidden="true"></i></a>
     @elseif(app()->getLocale() == 'fr')
-    <a href="{{route('menu-fr',['slug' => $restaurant->slug])}}" target="_blank" class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1" aria-hidden="true"></i> </a>
+    <a href="{{route('menu-fr',['slug' => $restaurant->slug])}}" target="_blank"
+        class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1"
+            aria-hidden="true"></i> </a>
     @elseif(app()->getLocale() == 'en')
-    <a href="{{route('menu-en',['slug' => $restaurant->slug])}}" target="_blank" class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1" aria-hidden="true"></i> </a>
+    <a href="{{route('menu-en',['slug' => $restaurant->slug])}}" target="_blank"
+        class="btn btn-primary rm-btn-primary">@lang('Go To Menu') <i class="fa fa-external-link ml-1"
+            aria-hidden="true"></i> </a>
     @endif
 
 </div>
@@ -344,8 +350,13 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone"
-                            placeholder="@lang('Phone number')">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="">+32</span>
+                            </div>
+                            <input type="text" class="form-control rm-text-input shadow-none" name="phone" id="phone"
+                                placeholder="@lang('Phone number')">
+                        </div>
                     </div>
 
                     <div class="checkbox">
@@ -734,6 +745,10 @@ $restaurant->setting->language_french > 1)
         $('#total-people-confirm-text').text(totalPeople);
     });
 
+    jQuery.validator.addMethod("exactlength", function(value, element, param) {
+        return this.optional(element) || value.length == param;
+    }, $.validator.format("@lang('Please enter a valid phone number.')"));
+
     var submitform = true;
     var reservationTimeCheckUrl = '{{ route("reservation.reservation-time-check", ":slug") }}';
     reservationTimeCheckUrl = reservationTimeCheckUrl.replace(':slug', "{{$restaurant->slug}}");
@@ -800,7 +815,8 @@ $restaurant->setting->language_french > 1)
             phone: {
                 required: true,
                 number: true,
-                digits: true
+                digits: true,
+                exactlength: 10
             },
             is_terms_checked:{
                 required: true,
@@ -842,7 +858,7 @@ $restaurant->setting->language_french > 1)
             phone: {
                 required: "@lang('This field is required.')",
                 number: "@lang('Please enter a valid phone number.')",
-                digits: "@lang('Please enter only digits.')"
+                digits: "@lang('Please enter a valid phone number.')"
             },
             is_terms_checked:{
                 required: "@lang('Please accept terms of service.')",
@@ -854,7 +870,7 @@ $restaurant->setting->language_french > 1)
         errorPlacement: function(error, element) {
 			if (element.attr("name") == "is_terms_checked" || element.attr("name") == "have_covid") {
 				error.insertAfter($(element).closest('.checkbox'));
-			}else if(element.attr("name") == "appointment_date" || element.attr("name") == "appointment_time"){
+			}else if(element.attr("name") == "appointment_date" || element.attr("name") == "appointment_time" || element.attr("name") == "phone"){
                 error.insertAfter($(element).closest('.input-group'));
             } else {
 				error.insertAfter(element);

@@ -57,24 +57,25 @@ class DishController extends Controller
         $datatable = Datatables::of($result);
 
         if ($sessionLangauge == 'en') { } elseif ($sessionLangauge == 'nl') {
-            $datatable->filterColumn('name', function ($query, $keyword) {
-                $sql = "name_dutch like ?";
+            $datatable->filterColumn('dishes.name', function ($query, $keyword) {
+                $sql = "dishes.name_dutch like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
             });
-            $datatable->filterColumn('description', function ($query, $keyword) {
-                $sql = "description_dutch like ?";
+            $datatable->filterColumn('dishes.description', function ($query, $keyword) {
+                $sql = "dishes.description_dutch like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
             });
         } elseif ($sessionLangauge == 'fr') {
-            $datatable->filterColumn('name', function ($query, $keyword) {
-                $sql = "name_french like ?";
+            $datatable->filterColumn('dishes.name', function ($query, $keyword) {
+                $sql = "dishes.name_french like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
             });
-            $datatable->filterColumn('description', function ($query, $keyword) {
-                $sql = "description_french like ?";
+            $datatable->filterColumn('dishes.description', function ($query, $keyword) {
+                $sql = "dishes.description_french like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
             });
         }
+
         return $datatable->addIndexColumn()->make(true);
 
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountriesTable extends Migration
+class AddQrCodeMenuToSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->tinyInteger('status')->default(1)->comment('0: inactive, 1:active');
-            $table->timestamps();
+        Schema::table('settings', function (Blueprint $table) {
+            $table->string('qr_code_menu')->after('site_logo')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::table('settings', function (Blueprint $table) {
+            $table->dropColumn('qr_code_menu');
+        });
     }
 }

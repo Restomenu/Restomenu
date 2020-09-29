@@ -1,6 +1,6 @@
 <script>
     var notificationConfirmTxt = "{{__('Ok')}}";
-    var restaurant_name = "{{auth()->guard('restaurant')->user()->name}}";
+    var restaurant_name = "{{auth()->guard('restaurant')->user()->setting->site_name}}";
     var restaurant_phone = "{{auth()->guard('restaurant')->user()->phone}}";
     var reservationStatusUpdateUrl = "{{route('restaurant.reservation-status-update')}}";
     var currentNotifBtn;

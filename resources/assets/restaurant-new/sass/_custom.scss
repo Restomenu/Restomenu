@@ -122,7 +122,8 @@ label.error {
     cursor: pointer;
 }
 
-#registerForm {
+#registerForm,
+.thank-you-wrapper {
     .card-body {
         padding: 0px !important;
 
@@ -133,6 +134,23 @@ label.error {
 
     .wizard > .steps > ul > li {
         width: 33.33%;
+    }
+}
+
+.thank-you-section {
+    // min-height: 450px;
+    padding-bottom: 0px;
+
+    .thank-you-text-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
+        min-height: 49vh;
+
+        .thank-you-description {
+            font-size: 15px;
+        }
     }
 }
 
@@ -152,6 +170,9 @@ label.error {
         width: 50%;
     }
     #registerForm .wizard > .steps > ul > li {
+        width: 50%;
+    }
+    .thank-you-wrapper .wizard > .steps > ul > li {
         width: 50%;
     }
 
@@ -183,7 +204,18 @@ label.error {
     #registerForm .wizard > .steps > ul > li {
         width: 100%;
     }
+    .thank-you-wrapper .wizard > .steps > ul > li {
+        width: 100%;
+    }
     .wizard .content > .body {
         width: 100%;
     }
+}
+
+.input-group-text {
+    color: #111 !important;
+}
+
+.rm-qr-img {
+    max-height: 400px;
 }

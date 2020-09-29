@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\View;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\RestaurantRepository;
+use App\Library\CommonFunction;
 use Illuminate\Support\Facades\Mail;
 
 // use App\Repositories\AppSettingsRepository;
@@ -50,7 +51,7 @@ class RestaurantController extends Controller
 
     public function getDatatable()
     {
-        $result = $this->model->all();
+        $result = $this->model->leftjoin('settings', 'settings.restaurant_id', '=', 'restaurants.id')->select('restaurants.*', 'settings.site_name as restaurant_name');
 
         return Datatables::of($result)->addIndexColumn()->make(true);
     }
@@ -74,7 +75,7 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'site_name' => 'required',
             'email' => 'required|unique:restaurants,email,NULL,id,deleted_at,NULL',
             'password' => 'required',
             'image' => 'required',
@@ -84,7 +85,7 @@ class RestaurantController extends Controller
         ]);
 
         try {
-            $inputs = $request->except('_token', 'image', 'color', 'password', 'available_sms_count');
+            $inputs = $request->except('_token', 'site_name', 'image', 'color', 'password', 'available_sms_count');
             $inputs['password'] = bcrypt($request->password);
             $isSaved = $this->model->create($inputs);
 
@@ -99,7 +100,8 @@ class RestaurantController extends Controller
                 $settingInputs = [
                     "restaurant_id" => $isSaved->id,
                     "site_logo" => $fileName,
-                    "site_name" => $request->name,
+                    'qr_code_menu' => CommonFunction::generateMenuQrCode($request->slug, $isSaved->id),
+                    "site_name" => $request->site_name,
                     "available_sms_count" => (int) $request->available_sms_count,
                     "language_english" => 1,
                     "language_dutch" => 1,
@@ -111,11 +113,13 @@ class RestaurantController extends Controller
                     "menu_primary_color" => $request->color,
                 ];
 
+                // dd($settingInputs);
+
                 $this->settingModel->create($settingInputs);
                 $data = [
                     "name" => $isSaved->name
                 ];
-                Mail::to($isSaved->email)->queue(new RestaurantRegister($data));
+                // Mail::to($isSaved->email)->queue(new RestaurantRegister($data));
 
                 return redirect($this->moduleRoute)->with("success", __($this->moduleName . ' Added Successfully.'));
             }
@@ -184,7 +188,7 @@ class RestaurantController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'site_name' => 'required',
             'email' => 'required|unique:restaurants,email,' . $id . ',id,deleted_at,NULL',
             'slug' => 'required|unique:restaurants,slug,' . $id . ',id,deleted_at,NULL',
             'color' => 'required',
@@ -196,7 +200,7 @@ class RestaurantController extends Controller
             $setting = $this->settingModel->where('restaurant_id', $id)->first();
 
             if ($result) {
-                $inputs = $request->except('_token', 'image', 'color', 'password', 'available_sms_count');
+                $inputs = $request->except('_token', 'site_name', 'image', 'color', 'password', 'available_sms_count');
 
                 if ($request->password) {
                     $inputs['password'] = bcrypt($request->password);
@@ -218,7 +222,12 @@ class RestaurantController extends Controller
                         }
                         $setting->site_logo = $fileName;
                     }
-                    $setting->site_name = $request->name;
+
+                    if ($request->slug && !$setting->qr_code_menu) {
+                        $setting->qr_code_menu = CommonFunction::generateMenuQrCode($request->slug, $id);
+                    }
+
+                    $setting->site_name = $request->site_name;
                     $setting->menu_primary_color = $request->color;
                     $setting->available_sms_count = $request->available_sms_count;
                     $setting->save();
