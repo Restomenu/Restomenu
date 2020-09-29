@@ -8,6 +8,7 @@ use App\Models\Dish;
 use App\Models\Category;
 use App\Models\Allergens;
 use App\Models\DishAllergens;
+use App\Models\Translation;
 use Illuminate\Support\Facades\View;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Storage;
@@ -15,13 +16,15 @@ use App\Repositories\DishRepository;
 
 class DishController extends Controller
 {
-    public function __construct(Dish $model, Category $categoryModel, DishAllergens $dishAllergensModel, Allergens $allergensModel, DishRepository $dishRepository)
+    public function __construct(Dish $model, Category $categoryModel, Translation $translationModel, DishAllergens $dishAllergensModel, Allergens $allergensModel, DishRepository $dishRepository)
     {
         $this->moduleName = "Dish";
         $this->moduleRoute = url('dishes');
         $this->moduleView = "restaurant-new.main.dishes";
         $this->model = $model;
         $this->categoryModel = $categoryModel;
+        $this->translationModel = $translationModel;
+        
         $this->dishAllergensModel = $dishAllergensModel;
         $this->allergensModel = $allergensModel;
         $this->dishRepository = $dishRepository;
@@ -164,10 +167,10 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->allergens_icons[0]);
+        // dd($request->all());
 
         try {
-            $inputs = $request->except('_token', 'allergens_icons');
+            $inputs = $request->except('_token', 'allergens_icons','nlCheck','frCheck','enCheck');
             $inputs['restaurant_id'] = auth()->guard('restaurant')->user()->id;
 
             if ($request->hasFile('image')) {
@@ -191,6 +194,22 @@ class DishController extends Controller
                         $dishAllergens->allergen_id = $request->allergens_icons[$i];
                         $dishAllergens->save();
                     }
+                }
+
+                if($request->exists('nlCheck') || $request->exists('enCheck') || $request->exists('frCheck')){
+                    $translation = new Translation();
+                    $translation->dish_id = $isSaved->id;
+                    $translation->restaurant_id = auth()->guard('restaurant')->user()->id;
+                    if($request->exists('nlCheck') && $request->nlCheck == "on" ){
+                        $translation->nl = 1;
+                    }
+                    if($request->exists('enCheck') && $request->enCheck == "on" ){
+                        $translation->en = 1;
+                    }
+                    if($request->exists('frCheck') && $request->frCheck == "on"){
+                        $translation->fr = 1;
+                    }
+                    $translation->save();
                 }
                 return redirect($this->moduleRoute)->with("success", __($this->moduleName . ' Added Successfully.'));
             }
@@ -226,6 +245,10 @@ class DishController extends Controller
         $allergensList = DishAllergens::where('dish_id', $id)->pluck('allergen_id')->toArray();
 
         $result = $this->model->where('restaurant_id', $restaurantId)->find($id);
+        $translation = $this->translationModel->where('restaurant_id', $restaurantId)
+        ->where('dish_id', $id)->first();
+        
+        
         if ($result) {
             $sessionLangauge = session()->get('locale');
             if ($sessionLangauge == 'en') {
@@ -236,7 +259,7 @@ class DishController extends Controller
                 $categories = $this->categoryModel->where('restaurant_id', $restaurantId)->pluck('name_french', 'id')->toArray();
             }
 
-            return view("restaurant-new.main.general.edit", compact('result', 'categories', 'allergens', 'allergensList'));
+            return view("restaurant-new.main.general.edit", compact('result', 'categories', 'allergens', 'allergensList','translation'));
 
             // return view("restaurant.main.general.edit", compact("result", 'categories'));
         }

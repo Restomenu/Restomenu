@@ -53,6 +53,9 @@
         <div class="col-12 col-sm-4">
             <div class="form-group">
                 <div class="row">
+                    <!-- {{ Form::checkbox('enCheck', isset($translation)? $translation->en : null,false,['id'=>"enCheck"])}} -->
+                    <!-- {{ Form::checkbox('enCheck', 'value', true)}} -->
+                    <!-- <label class="col-sm-8">{{__('English Name Translation')}}</label> -->
                     <label class="col-sm-12">{{__('English Name')}}</label>
                     <div class="col-sm-12">
                         {{ Form::text('name', null, ['id' => 'name', 'class'=>"form-control"]) }}
@@ -69,6 +72,9 @@
         <div class="col-12 col-sm-4">
             <div class="form-group">
                 <div class="row">
+                    <!-- {{ Form::checkbox('nlCheck', null,isset($translation) && $translation->nl == 1 ?  true:false,['id'=>"nlCheck"])}} -->
+                    <!-- <label class="col-sm-8">{{__('Dutch Name Translation')}}</label> -->
+                    <!-- <br> -->
                     <label class="col-sm-12">{{__('Dutch Name')}}</label>
                     <div class="col-sm-12">
                         {{ Form::text('name_dutch', null, ['id' => 'name_dutch', 'class'=>"form-control"]) }}
@@ -85,6 +91,8 @@
         <div class="col-12 col-sm-4">
             <div class="form-group">
                 <div class="row">
+                    <!-- {{ Form::checkbox('frCheck',null,isset($translation) && $translation->fr == 1 ?  true:false,['id'=>"frCheck"])}} -->
+                    <!-- <label class="col-sm-8">{{__('French Name Translation')}}</label> -->
                     <label class="col-sm-12">{{__('French Name')}}</label>
                     <div class="col-sm-12">
                         {{ Form::text('name_french', null, ['id' => 'name_french', 'class'=>"form-control"]) }}
@@ -242,8 +250,7 @@
                 @foreach ($allergens as $icon)
 
                 @isset($result)
-                <option data-img-src="{{$icon->icons_full_path}}" value="{{$icon->id}}"
-                    {{in_array($icon->id, $allergensList)? 'selected' : ''}}>{{$icon->icon}}</option>
+                <option data-img-src="{{$icon->icons_full_path}}" value="{{$icon->id}}" {{in_array($icon->id, $allergensList)? 'selected' : ''}}>{{$icon->icon}}</option>
 
                 @else
 
@@ -367,6 +374,158 @@
         readURL(this);
     });
 
+    if ($('#enCheck').is(':checked')) {
+        $('#name').prop('disabled', true)
+        $('#description').prop('disabled', true)
+    }
+    if ($('#frCheck').is(':checked')) {
+        $('#name_french').prop('disabled', true)
+        $('#description_french').prop('disabled', true)
+    }
+    if ($('#nlCheck').is(':checked')) {
+        $('#name_dutch').prop('disabled', true)
+        $('#description_dutch').prop('disabled', true)
+    }
+
+    $(document).on('change', '#enCheck', function() {
+        if ($('#enCheck').is(':checked')) {
+            if ($('#frCheck').length == 0 && $('#nlCheck').length == 0) {
+                $('#enCheck').prop('checked', false)
+                alert("atlist one field is required")
+            } else if ($('#frCheck').length > 0 || $('#nlCheck').length > 0) {
+                if ($('#nlCheck').length > 0) {
+                    if ($('#frCheck').length > 0) {
+                        if ($('#nlCheck').is(':checked') && $('#frCheck').is(':checked')) {
+                            $('#enCheck').prop('checked', false)
+                            alert("atlist one field is required");
+                        } else {
+                            $('#name').prop('disabled', true)
+                            $('#description').prop('disabled', true)
+                        }
+                    } else {
+                        $('#enCheck').prop('checked', false)
+                        alert("atlist one field is required");
+                    }
+
+                } else if ($('#frCheck').length > 0) {
+                    if ($('#nlCheck').length > 0) {
+                        alert("nlCheck");
+                        if ($('#nlCheck').is(':checked') && $('#frCheck').is(':checked')) {
+                            $('#enCheck').prop('checked', false)
+                            alert("atlist one field is required");
+                        } else {
+                            $('#name').prop('disabled', true)
+                            $('#description').prop('disabled', true)
+                        }
+                    } else {
+                        $('#enCheck').prop('checked', false)
+                        alert("atlist one field is required");
+                    }
+                } else {
+                    $('#name').prop('disabled', true)
+                    $('#description').prop('disabled', true)
+                }
+            }
+        } else {
+            $('#name').prop('disabled', false)
+            $('#description').prop('disabled', false)
+        }
+    });
+
+    $(document).on('change', '#frCheck', function() {
+        if ($('#frCheck').is(':checked')) {
+            if ($('#enCheck').length == 0 && $('#nlCheck').length == 0) {
+                $('#frCheck').prop('checked', false)
+                alert("atlist one field is required")
+            } else if ($('#enCheck').length > 0 || $('#nlCheck').length > 0) {
+                if ($('#nlCheck').length > 0) {
+                    if ($('#enCheck').length > 0) {
+                        if ($('#nlCheck').is(':checked') && $('#enCheck').is(':checked')) {
+                            $('#frCheck').prop('checked', false)
+                            alert("atlist one field is required");
+                        } else {
+                            $('#name_french').prop('disabled', true)
+                            $('#description_french').prop('disabled', true)
+                        }
+                    } else {
+                        $('#frCheck').prop('checked', false)
+                        alert("atlist one field is required");
+                    }
+
+                } else if ($('#enCheck').length > 0) {
+                    if ($('#nlCheck').length > 0) {
+                        alert("nlCheck");
+
+                        if ($('#nlCheck').is(':checked') && $('#enCheck').is(':checked')) {
+                            $('#frCheck').prop('checked', false)
+                            alert("atlist one field is required");
+                        } else {
+                            $('#name_french').prop('disabled', true)
+                            $('#description_french').prop('disabled', true)
+                        }
+                    } else {
+                        $('#frCheck').prop('checked', false)
+                        alert("atlist one field is required");
+                    }
+                }
+            }
+
+        }else {
+            $('#name_french').prop('disabled', false)
+            $('#description_french').prop('disabled', false)
+        }
+
+
+    });
+
+    $(document).on('change', '#nlCheck', function() {
+        if ($('#nlCheck').is(':checked')) {
+            if ($('#frCheck').length == 0 && $('#enCheck').length == 0) {
+                $('#nlCheck').prop('checked', false)
+                alert("atlist one field is required")
+            } else if ($('#frCheck').length > 0 || $('#enCheck').length > 0) {
+                if ($('#enCheck').length > 0) {
+                    if ($('#frCheck').length > 0) {
+                        if ($('#enCheck').is(':checked') && $('#frCheck').is(':checked')) {
+                            $('#nlCheck').prop('checked', false)
+                            alert("atlist one field is required");
+                        } else {
+                           
+                            $('#name_dutch').prop('disabled', true)
+                            $('#description_dutch').prop('disabled', true)
+                        }
+                    } else {
+                        $('#nlCheck').prop('checked', false)
+                        alert("atlist one field is required");
+                    }
+
+                } else if ($('#frCheck').length > 0) {
+                    if ($('#enCheck').length > 0) {
+                        alert("enCheck");
+
+                        if ($('#enCheck').is(':checked') && $('#frCheck').is(':checked')) {
+                            $('#nlCheck').prop('checked', false)
+                            alert("atlist one field is required");
+                        } else {
+                          
+
+                            $('#name_dutch').prop('disabled', true)
+                            $('#description_dutch').prop('disabled', true)
+                        }
+                    } else {
+                        $('#nlCheck').prop('checked', false)
+                        alert("atlist one field is required");
+                    }
+                }
+            }
+
+        } else {
+            $('#name_dutch').prop('disabled', false)
+            $('#description_dutch').prop('disabled', false)
+        }
+
+
+    });
     @include('restaurant-new.main.general.jquery-steps')
     $(".select-icon").imagepicker();
 </script>

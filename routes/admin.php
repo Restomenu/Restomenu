@@ -1,7 +1,7 @@
 <?php
 
 // Route::group(['namespace' => 'Admin'], function () {
-Route::group(array('domain' => env('ADMIN_DOMAIN'), 'prefix' => '/', 'namespace' => 'Admin'), function () {
+    Route::group(array('domain' => env('ADMIN_DOMAIN'), 'prefix' => '/', 'namespace' => 'Admin'), function () {
     // Route::group(array('domain' => 'admin.restomenu.local', 'prefix' => '/', 'namespace' => 'Admin'), function () {
 
 
@@ -48,6 +48,10 @@ Route::group(array('domain' => env('ADMIN_DOMAIN'), 'prefix' => '/', 'namespace'
 
     Route::get('restaurant-feedbacks/datatable', 'RestaurantFeedbackController@getDatatable')->name('restaurant-feedbacks-datatable');
     Route::resource('restaurant-feedbacks', 'RestaurantFeedbackController');
+
+    Route::get('translation/datatable', 'TranslationController@getDatatable')->name('restaurant-datatable');
+    // Route::post('visitors/checkout/{id}', 'TranslationController@editCheckout')->name('visitors-checkout');
+    Route::resource('translation', 'TranslationController');
 
 
     // Route::get('/migrate', function () {

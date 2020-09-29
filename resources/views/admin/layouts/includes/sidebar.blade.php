@@ -83,7 +83,14 @@ function setActiveMenu($route)
                     <span class="nav-label">{{__('Restaurant Feedbacks')}}</span>
                 </a>
             </li>
+            <!-- <li class="{{ setActiveMenu("restaurant-feedbacks") }}">
+                <a href="{{route('translation.index')}}">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span class="nav-label">{{__('Restaurant Translations')}}</span>
+                </a>
+            </li> -->
 
+            
             {{-- <li class="{{ setActiveMenu("categories") }}">
             <a href="{{route('categories.index')}}">
                 <i class="fa fa-list"></i>
