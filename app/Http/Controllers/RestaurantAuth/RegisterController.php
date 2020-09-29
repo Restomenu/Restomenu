@@ -82,9 +82,9 @@ class RegisterController extends Controller
             [
                 'site_name' => ['required', 'string', 'max:191'],
                 'phone' => ['required', 'digits:10'],
-                'slug' => ['required', 'string', 'max:191', 'regex:/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/'],
+                'website_url' => ['max:191'],
                 'restaurant_type_id' => ['required', 'numeric', 'min:0'],
-                'number_of_employees' => ['required', 'numeric', 'min:0'],
+                'number_of_employees' => ['required'],
                 'first_name' => ['required', 'string', 'max:191'],
                 'last_name' => ['required', 'string', 'max:191'],
                 'email' => ['required', 'string', 'email', 'max:191', 'unique:restaurants,email,NULL,id,deleted_at,NULL'],
@@ -93,19 +93,18 @@ class RegisterController extends Controller
                 'province' => ['required', 'string', 'max:191'],
                 'VAT_number' => ['required', 'string', 'max:191'],
                 'phone_billing' => ['required', 'digits:10'],
+                'email_billing' => ['required', 'string', 'email', 'max:191', 'unique:restaurants,email_billing,NULL,id,deleted_at,NULL'],
             ],
             [
                 'site_name.required' => 'This field is required.',
                 'site_name.max' => 'Please enter no more than 191 characters.',
                 'phone.required' => 'This field is required.',
                 'phone.digits' => 'Please enter a valid phone number.',
-                'slug.required' => 'This field is required.',
-                'slug.regex' => 'The website may only contain letters, numbers and dashes.',
-                'slug.max' => 'Please enter no more than 191 characters.',
+                'website_url.max' => 'Please enter no more than 191 characters.',
                 'restaurant_type_id.required' => 'This field is required.',
                 'restaurant_type_id.numeric' => 'This field is invalid.',
                 'number_of_employees.required' => 'This field is required.',
-                'number_of_employees.numeric' => 'This field is invalid.',
+                // 'number_of_employees.numeric' => 'This field is invalid.',
                 'first_name.required' => 'This field is required.',
                 'first_name.max' => 'Please enter no more than 191 characters.',
                 'last_name.required' => 'This field is required.',
@@ -122,6 +121,9 @@ class RegisterController extends Controller
                 'VAT_number.max' => 'Please enter no more than 191 characters.',
                 'phone_billing.required' => 'This field is required.',
                 'phone_billing.digits' => 'Please enter a valid phone number.',
+
+                'email_billing.required' =>  'This field is required.',
+                'email_billing.email' => 'This field is invalid.',
             ]
         );
     }
@@ -134,9 +136,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $restaurant = new Restaurant();
+        $slug = CommonFunction::generateSlug($data['site_name'], $restaurant);
+
         $restaurant = Restaurant::create([
             'phone' => $data['phone'],
-            'slug' => $data['slug'],
+            'slug' => $slug,
             'restaurant_type_id' => $data['restaurant_type_id'],
             'number_of_employees' => $data['number_of_employees'],
             'first_name' => $data['first_name'],
@@ -146,6 +151,7 @@ class RegisterController extends Controller
             'city_id' => $data['city_id'],
             'province' => $data['province'],
             'email' => $data['email'],
+            'email_billing' => $data['email_billing'],
             'phone_billing' => $data['phone_billing'],
             'status' => 0
         ]);
@@ -157,7 +163,8 @@ class RegisterController extends Controller
                 'site_name' => $data['site_name'],
                 'fb_url' => $data['fb_url'],
                 'ig_url' => $data['ig_url'],
-                'qr_code_menu' => CommonFunction::generateMenuQrCode($data['slug'], $restaurant->id),
+                'website_url' => $data['website_url'],
+                'qr_code_menu' => CommonFunction::generateMenuQrCode($slug, $restaurant->id),
                 // "site_logo" => ,
                 "available_sms_count" => 0,
                 "language_english" => 1,

@@ -55,10 +55,9 @@
                                                 incorrectly.
                                             </div>
                                             <div class="mt-3">
-                                                <a href="{{env('RESTOMENU_URL')}}" class="btn btn-outline-primary">Go to
-                                                    homepage</a>
+                                                <a href="{{config('restomenu.urls.restaurant_url')}}"
+                                                    class="btn btn-outline-primary">{{__('Back to login')}}</a>
                                             </div>
-
                                         </div>
 
                                     </section>

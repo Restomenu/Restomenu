@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="languageDropdownBlock">
+<div class="languageDropdownBlock mt-2">
     <ul class="navbar-nav">
         <li class="nav-item dropdown">
 

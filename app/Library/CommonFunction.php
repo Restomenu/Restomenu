@@ -34,4 +34,11 @@ class CommonFunction extends Controller
         Storage::put($qrCodeUploadPath, $qrCode);
         return $qrCodeName;
     }
+
+    public static function generateSlug($slugStr, $model)
+    {
+        $slug = str_slug($slugStr);
+        $slugCount = count($model->whereRaw("slug REGEXP '^{$slug}(-[0-9]+)?$' ")->get());
+        return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
+    }
 }
