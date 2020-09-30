@@ -179,9 +179,6 @@
 
 @push('scripts')
 <script>
-    setInterval(function() {
-        location.reload();
-    }, 300000);
 
     $('.refresh-btn').on('click',function () {
         location.reload();

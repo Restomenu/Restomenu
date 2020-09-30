@@ -77,13 +77,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        if ($data['restaurant_type_other']) {
+            $data['restaurant_type_id'] = null;
+        }
+
         return Validator::make(
             $data,
             [
                 'site_name' => ['required', 'string', 'max:191'],
                 'phone' => ['required', 'digits:10'],
                 'website_url' => ['max:191'],
-                'restaurant_type_id' => ['required', 'numeric', 'min:0'],
+                'restaurant_type_id' => ['sometimes', 'nullable', 'numeric', 'min:0'],
+                'restaurant_type_other' => ['sometimes', 'nullable', 'string', 'max:191'],
                 'number_of_employees' => ['required'],
                 'first_name' => ['required', 'string', 'max:191'],
                 'last_name' => ['required', 'string', 'max:191'],
@@ -139,10 +144,15 @@ class RegisterController extends Controller
         $restaurant = new Restaurant();
         $slug = CommonFunction::generateSlug($data['site_name'], $restaurant);
 
+        if ($data['restaurant_type_other']) {
+            $data['restaurant_type_id'] = null;
+        }
+
         $restaurant = Restaurant::create([
             'phone' => $data['phone'],
             'slug' => $slug,
             'restaurant_type_id' => $data['restaurant_type_id'],
+            'restaurant_type_other' => $data['restaurant_type_other'],
             'number_of_employees' => $data['number_of_employees'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -191,6 +201,7 @@ class RegisterController extends Controller
     {
         // return view('restaurant-new.auth.thank-you');
         $restaurantTypes = RestaurantType::where('status', 1)->pluck('name', 'id');
+        $restaurantTypes['0'] = __('Other');
         $cities = City::where('status', 1)->pluck('name', 'id');
         return view('restaurant-new.auth.register', compact('restaurantTypes', 'cities'));
     }

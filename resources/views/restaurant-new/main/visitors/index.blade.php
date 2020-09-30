@@ -262,8 +262,5 @@
         });
     });
 
-    setInterval(function() {
-        visitorTable.draw(true);
-    }, 300000);
 </script>
 @endpush

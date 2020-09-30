@@ -152,6 +152,12 @@
 
                                                     {{ Form::select('restaurant_type_id', $restaurantTypes ?? [], null, ['id'=>'restaurant_type_id',"class"=>"form-control". ($errors->first('restaurant_type_id') ? ' is-invalid':''),"placeholder"=>__('Select Restaurant Type')]) }}
 
+                                                    <input type="text" id="restaurant_type_other"
+                                                        class="form-control mt-3 d-none @error('restaurant_type_other') is-invalid @enderror"
+                                                        name="restaurant_type_other" autofocus
+                                                        autocomplete="restaurant_type_other"
+                                                        value="{{ old('restaurant_type_other') }}">
+
                                                     @error('restaurant_type_id')
                                                     <span class="invalid-feedback text-left" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -457,6 +463,10 @@
             restaurant_type_id:{
                 required: true,
             },
+            restaurant_type_other:{
+                required: true,
+                maxlength: 191,
+            },
             number_of_employees:{
                 required: true,
             },
@@ -523,6 +533,10 @@
             },
             restaurant_type_id:{
                 required: "@lang('This field is required.')",
+            },
+            restaurant_type_other:{
+                required: "@lang('This field is required.')",
+                maxlength: "@lang('Please enter no more than 191 characters.')",
             },
             number_of_employees:{
                 required: "@lang('This field is required.')",
@@ -625,6 +639,15 @@
         {
             form.submit();
         }
+    });
+
+    $('#restaurant_type_id').change(function(){
+        console.log($(this).val());
+        if($(this).val() == '0'){
+            $('#restaurant_type_other').removeClass('d-none');
+        }else{
+            $('#restaurant_type_other').addClass('d-none');
+        } 
     });
 
     // $("#restaurantPhone,#number_of_employees").bind("keypress", function (e) {

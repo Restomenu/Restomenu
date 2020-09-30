@@ -205,7 +205,7 @@ $notificationsData = auth()->guard('restaurant')->user()->getAllNotificationData
             <li class="nav-item">
                 <a class="btn btn-light" href="{{ env('APP_URL').'/'.auth()->guard('restaurant')->user()->slug }}"
                     target="_blank">
-                    {{ __('See Live Menu') }}
+                    {{ __('Menu') }}
                 </a>
             </li>
 

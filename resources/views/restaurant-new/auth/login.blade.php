@@ -93,11 +93,16 @@
                                 <div class="mt-3">
                                     <button type="submit"
                                         class="btn btn-primary mr-2 mb-2 mb-md-0">{{__('Login')}}</button>
-                                    <a href="{{ route('restaurant.password-reset-form') }}"><small>{{__('Forgot
-                                            password?')}}</small></a>
-
                                     <a href="{{route('restaurant.register')}}"
-                                        class="d-block mt-3 text-muted">{{__('Not a user?')}} {{__('Sign up')}}</a>
+                                        class="btn btn-outline-primary mr-2 mb-2 mb-md-0">{{__('Sign up')}}</a>
+                                    <br>
+                                    <div class="mt-2">
+                                        <a href="{{ route('restaurant.password-reset-form') }}"><small>{{__('Forgot
+                                            password?')}}</small></a>
+                                    </div>
+
+                                    {{-- <a href="{{route('restaurant.register')}}"
+                                    class="d-block mt-3 text-muted">{{__('Not a user?')}} {{__('Sign up')}}</a> --}}
                                 </div>
                             </form>
                         </div>
