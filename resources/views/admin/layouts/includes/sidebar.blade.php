@@ -97,7 +97,7 @@ function setActiveMenu($route)
             </li>
             <li class="{{ setActiveMenu("cities") }}">
                 <a href="{{route('cities.index')}}">
-                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <span class="nav-label">{{__('Cities')}}</span>
                 </a>
             </li>

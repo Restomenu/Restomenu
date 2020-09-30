@@ -26475,4 +26475,15 @@ label.error {
   max-height: 400px;
 }
 
+.flex-start-card {
+  align-items: flex-start !important;
+}
+
+.qr-right-card {
+  color: #727cf5;
+  margin-bottom: 0;
+  font-size: 0.965rem;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=app.css.map*/
