@@ -37,6 +37,8 @@ return [
         "menu_qr_image_size" => 250,
         "menu_qr_image_ext" => 'svg',
         "menu_qr_image_margin" => 2,
+
+        "support_email" => 'support@restomenu.be',
     ],
     "sms" => [
         "is_enabled" => env('SMS_SERVICE_STATUS', 0),
