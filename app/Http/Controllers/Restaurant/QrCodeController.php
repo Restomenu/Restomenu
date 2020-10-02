@@ -36,4 +36,9 @@ class QrCodeController extends Controller
 
         return Storage::download($qrCodePath);
     }
+
+    public function print()
+    {
+        return view("$this->moduleView.print");
+    }
 }

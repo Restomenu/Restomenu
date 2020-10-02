@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Overpass:300,400,600,700,800);.print-qr-banner-block {
+  border: 1px solid black;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  text-align: center;
+  border-radius: 6px;
+  padding: 45px 30px 20px;
+  margin: 100px auto;
+  font-family: "Overpass", sans-serif;
+  position: relative;
+}
+
+.print-qr-banner-block .logo {
+  max-width: 100px;
+  max-height: 100px;
+  position: absolute;
+  top: -30px;
+  left: 156px;
+  background-color: #fff;
+}
+
+.print-qr-banner-block .qr-main-image {
+  max-width: 175px;
+}
+
+.print-qr-banner-block .scan-me-1 {
+  margin: 25px 0px;
+}
+
+.print-qr-banner-block .scan-me-2 {
+  margin: 25px 0px;
+}
+
+.print-qr-banner-block .scan-me-3 {
+  margin: 25px 0px;
+}
+
+.print-qr-banner-block .link-block {
+  margin: 35px 0px 18px;
+}
+
+.print-qr-banner-block .link-block .not-work-text {
+  font-size: 16px;
+  margin: 10px 0px;
+}
+
+.print-qr-banner-block .link-block .menu-link-block {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=qr_banner.css.map*/

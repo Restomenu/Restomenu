@@ -26476,7 +26476,7 @@ label.error {
 }
 
 .rm-qr-img-medium {
-  max-height: 140px;
+  max-height: 173px;
 }
 
 .flex-start-card {
@@ -26534,9 +26534,22 @@ label.error {
 
 .fancy-qr-main-block .phones-block {
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 30px 20px 30px 0px;
+}
+
+@media (max-width: 768px) {
+  .fancy-qr-main-block .phones-block {
+    padding: 20px 20px 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .fancy-qr-main-block .phones-block {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .fancy-qr-main-block .phones-block .image-steps-block {
@@ -26570,6 +26583,10 @@ label.error {
   font-size: 12px;
 }
 
+.fancy-qr-main-block .phones-block .image-steps-block .phones-text .or-block {
+  color: #fff;
+}
+
 @media (max-width: 576px) {
   .fancy-qr-main-block .phones-block .image-steps-block .phones-text {
     font-size: 15px;
@@ -26580,18 +26597,6 @@ label.error {
 .fancy-qr-main-block .phones-block .image-steps-block .phones-text .step-img {
   max-width: 40px;
   margin-right: 6px;
-}
-
-@media (max-width: 768px) {
-  .fancy-qr-main-block .phones-block {
-    padding: 20px 0px;
-  }
-}
-
-@media (max-width: 576px) {
-  .fancy-qr-main-block .phones-block {
-    flex-direction: column;
-  }
 }
 
 /*# sourceMappingURL=app.css.map*/
