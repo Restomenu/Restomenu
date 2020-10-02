@@ -26515,12 +26515,12 @@ label.error {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   padding: 20px 30px;
 }
 
 .fancy-qr-main-block .qr-block .rm-qr-img-large {
   max-height: 170px;
+  max-width: 170px;
   border-radius: 15px;
   box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
 }
@@ -26536,7 +26536,6 @@ label.error {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
   width: 100%;
 }
 
