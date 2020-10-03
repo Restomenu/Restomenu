@@ -58,6 +58,7 @@ return [
         'restaurant_backend_url' => env('RESTAURANT_BACKEND_URL', "https://my.restomenu.be/"),
         'restaurant_menu_base_url' => env('RESTAURANT_MENU_BASE_URL', "https://menu.restomenu.be/"),
         'restaurant_url' => env('RESTAURANT_URL', "https://my.restomenu.be/"),
+        'scanner_url' => env('SCANNER_URL', "scanner.restomenu.be"),
     ]
 
 ];

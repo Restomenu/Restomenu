@@ -12180,6 +12180,17 @@ module.exports = yeast;
 
 /***/ }),
 
+/***/ "./resources/assets/restaurant-new/sass/qr_banner.scss":
+/*!*************************************************************!*\
+  !*** ./resources/assets/restaurant-new/sass/qr_banner.scss ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/restaurant/scss/app.scss":
 /*!***************************************************!*\
   !*** ./resources/assets/restaurant/scss/app.scss ***!
@@ -12220,9 +12231,9 @@ if (typeof io !== "undefined") {
 /***/ }),
 
 /***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/echo.js ./resources/assets/front/sass/app.scss ./resources/assets/admin/scss/app.scss ./resources/assets/restaurant/scss/app.scss ./resources/assets/restaurant-new/sass/app.scss ./resources/assets/reservation/sass/app.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/echo.js ./resources/assets/front/sass/app.scss ./resources/assets/admin/scss/app.scss ./resources/assets/restaurant/scss/app.scss ./resources/assets/restaurant-new/sass/app.scss ./resources/assets/restaurant-new/sass/qr_banner.scss ./resources/assets/reservation/sass/app.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12231,6 +12242,7 @@ __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/fr
 __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/admin/scss/app.scss */"./resources/assets/admin/scss/app.scss");
 __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/restaurant/scss/app.scss */"./resources/assets/restaurant/scss/app.scss");
 __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/restaurant-new/sass/app.scss */"./resources/assets/restaurant-new/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/restaurant-new/sass/qr_banner.scss */"./resources/assets/restaurant-new/sass/qr_banner.scss");
 module.exports = __webpack_require__(/*! /opt/lampp/htdocs/personal/Restomenu/resources/assets/reservation/sass/app.scss */"./resources/assets/reservation/sass/app.scss");
 
 

@@ -1,0 +1,57 @@
+.print-qr-banner-block {
+  border: 1px solid black;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  z-index: 1;
+  text-align: center;
+  border-radius: 6px;
+  padding: 25px 30px 15px;
+  margin: 0px auto;
+  margin-top: 30px !important;
+  font-family: "Overpass", sans-serif;
+}
+
+.print-qr-banner-block .logo {
+  max-width: 100px;
+  max-height: 100px;
+  z-index: 2;
+  left: 156px;
+  background-color: #fff;
+}
+
+.print-qr-banner-block .logo::after {
+  content: "here";
+}
+
+.print-qr-banner-block .qr-main-image {
+  max-width: 175px;
+}
+
+.print-qr-banner-block .scan-me-1 {
+  margin: 10px 0px;
+}
+
+.print-qr-banner-block .scan-me-2 {
+  margin: 10px 0px;
+}
+
+.print-qr-banner-block .scan-me-3 {
+  margin: 10px 0px;
+}
+
+.print-qr-banner-block .link-block {
+  margin: 23px 0px 10px;
+}
+
+.print-qr-banner-block .link-block .not-work-text {
+  font-size: 12px;
+  margin: 10px 0px;
+}
+
+.print-qr-banner-block .link-block .menu-link-block {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=qr_banner.css.map*/
