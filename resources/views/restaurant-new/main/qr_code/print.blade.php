@@ -9,8 +9,7 @@
 </head>
 <body>
     
-</body>
-</html>
+
 
 <div class="print-qr-banner-block">    
 
@@ -36,3 +35,6 @@
         </div>
     </div>
 </div>
+
+</body>
+</html>
