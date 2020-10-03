@@ -4,6 +4,14 @@
 
 @section('content')
 
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+    <div>
+        <h4 class="mb-3 mb-md-0">
+            @lang('Your restaurant QR-code')
+        </h4>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-9 grid-margin stretch-card">
         <div class="card fancy-qr-main-block">
@@ -97,7 +105,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                        <a href="{{route('restaurant.qr-code.print')}}" class="d-flex justify-content-between text-primary">
+                        <a href="{{route('restaurant.qr-code.print')}}" class="d-flex justify-content-between text-primary" target="_blank">
                                 <i class="link-icon" data-feather="printer"></i>
                                 <div class="qr-right-card ml-2"> @lang('Print your own stickers')</div>
                             </a>
