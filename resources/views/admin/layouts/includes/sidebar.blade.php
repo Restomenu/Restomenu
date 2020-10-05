@@ -74,7 +74,7 @@ function setActiveMenu($route)
             <li class="{{ setActiveMenu("visitors") }}">
                 <a href="{{route('visitors.index')}}">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    <span class="nav-label">{{__('Customers')}}</span>
+                    <span class="nav-label">{{__('COVID-19 Registrations')}}</span>
                 </a>
             </li>
             <li class="{{ setActiveMenu("restaurant-feedbacks") }}">
