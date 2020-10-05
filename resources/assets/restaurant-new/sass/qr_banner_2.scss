@@ -1,0 +1,46 @@
+.pdf-wrapper {
+    // .main-block {
+    //     border: 1px solid black;
+    //     padding: 20px;
+
+    //     &.c1r1 {
+    //         margin-right: 10px;
+    //     }
+
+    //     .inner-block {
+    //         border: 1px solid black;
+    //     }
+    // }
+
+    .main-table {
+        // border: 1px solid black;
+        td {
+            // border: 1px solid black;
+            font-family: "Overpass", sans-serif;
+            font-size: 23px;
+            font-weight: bold;
+            
+            &.tb {
+                padding: 9px;
+                text-align: center; 
+                // background-color: red;
+                color: #fff;
+
+                &.scanner{
+                    padding: 13.5px;
+                    font-size: 18px;
+                }
+            }
+            &.lr {
+                padding:16px;
+                // background-color: red;
+                color: #fff;
+            }
+        }
+
+        // .row-color {
+        //     background-color: red;
+        //     color: white;
+        // }
+    }
+}

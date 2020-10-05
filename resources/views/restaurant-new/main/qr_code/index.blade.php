@@ -27,7 +27,7 @@
                         alt="Scan Qr Code">
                     <div class="phones-text mt-3">
                         <div>
-                            <img src="{{ asset('restaurant-new/images/littledot1.png') }}" alt="step 1"
+                            <img src="{{ asset('restaurant-new/images/nbr1.png') }}" alt="step 1"
                                 class="step-img">
                         </div>
                         <div>
@@ -55,7 +55,7 @@
                         alt="Validate QR Code" class="step-img">
                     <div class="phones-text mt-3">
                         <div>
-                            <img src="{{ asset('restaurant-new/images/littledot2.png') }}" alt="step 1"
+                            <img src="{{ asset('restaurant-new/images/nbr2.png') }}" alt="step 1"
                                 class="step-img">
                         </div>
                         <div>
@@ -70,7 +70,7 @@
                         alt="Select Language" class="step-img">
                     <div class="phones-text mt-3">
                         <div>
-                            <img src="{{ asset('restaurant-new/images/littledot3.png') }}" alt="step 1"
+                            <img src="{{ asset('restaurant-new/images/nbr3.png') }}" alt="step 1"
                                 class="step-img">
                         </div>
                         <div>

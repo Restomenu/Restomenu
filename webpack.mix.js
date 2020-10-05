@@ -221,6 +221,10 @@ mix.js("resources/assets/restaurant-new/js/app.js", "public/restaurant-new/js")
         "resources/assets/restaurant-new/sass/qr_banner.scss",
         "public/restaurant-new/css"
     )
+    .sass(
+        "resources/assets/restaurant-new/sass/qr_banner_2.scss",
+        "public/restaurant-new/css"
+    )
     .sourceMaps(true, "source-maps");
 
 mix.copyDirectory(

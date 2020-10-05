@@ -37,7 +37,7 @@ class QrCodeController extends Controller
         // return Storage::download($qrCodePath);
 
         $fileName = auth()->guard('restaurant')->user()->setting->site_name . '.pdf';
-        $pdf = $this->generatePDF();
+        $pdf = $this->generatePDF2();
         $pdf->Output($fileName, 'D');
     }
 
@@ -89,7 +89,7 @@ class QrCodeController extends Controller
         // return $mpdf->download('event_qrcode.pdf');
 
         $fileName = auth()->guard('restaurant')->user()->setting->site_name . '.pdf';
-        $pdf = $this->generatePDF();
+        $pdf = $this->generatePDF2();
         $pdf->Output($fileName, 'I');
     }
 
@@ -123,6 +123,38 @@ class QrCodeController extends Controller
 
         $stylesheet = '';
         $stylesheet .= file_get_contents(public_path('/restaurant-new/css/qr_banner.css'));
+        $mpdf->use_kwt = true;
+        $mpdf->AddPage();
+        $mpdf->SetDisplayMode('fullwidth');
+        $mpdf->WriteHTML($stylesheet, 1);
+        $mpdf->WriteHTML($html);
+
+        return $mpdf;
+    }
+
+    public function generatePDF2()
+    {
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4',
+            'mode' => 'utf-8',
+            // 'format' => [90, 160],
+            // 'format' => [110, 197],
+            'margin_left' => 0,
+            'margin_right' => 0,
+            'margin_top' => 0,
+            'margin_bottom' => 0,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            'autoArabic' => true,
+        ]);
+        $path = "$this->moduleView.print_2";
+        $viewPath = str_replace('.', '/', $path);
+        // dd($viewPath);
+        // $html = View::make("$this->moduleView.print")->render();;
+        $html = View::make($path)->render();
+
+        $stylesheet = '';
+        $stylesheet .= file_get_contents(public_path('/restaurant-new/css/qr_banner_2.css'));
         $mpdf->use_kwt = true;
         $mpdf->AddPage();
         $mpdf->SetDisplayMode('fullwidth');
