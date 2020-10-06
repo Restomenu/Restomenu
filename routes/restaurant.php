@@ -52,5 +52,10 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'namespace' => 'Restaurant']
     Route::get('qr-code', 'QrCodeController@index')->name('qr-code.index');
     Route::get('qr-code/download', 'QrCodeController@download')->name('qr-code.download');
     Route::get('qr-code/print', 'QrCodeController@print')->name('qr-code.print');
+
+    // Route::get('qr-code-order', 'QrCodeOrderController@index')->name('qr-code.index');
+    Route::get('qr-code-order/datatable', 'QrCodeOrderController@getDatatable')->name('qr-code-order-datatable');
+
+    Route::resource('qr-code-order', 'QrCodeOrderController');
 });
 Route::group(['domain' => 'my.restomenu.local', 'namespace' => 'Restaurant'], function () { });

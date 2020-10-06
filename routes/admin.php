@@ -57,7 +57,9 @@
 
     Route::get('cities/datatable', 'CityController@getDatatable')->name('cities-datatable');
     Route::resource('cities', 'CityController');
+    Route::get('qr-code-order/datatable', 'QrCodeOrderController@getDatatable')->name('qr-code-order-datatable');
 
+    Route::resource('qr-code-order', 'QrCodeOrderController');
 
     // Route::get('/migrate', function () {
     //     Artisan::call('migrate');
