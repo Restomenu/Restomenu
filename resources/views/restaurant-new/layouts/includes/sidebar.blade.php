@@ -4,17 +4,39 @@ function setActiveMenu($route)
 {
     return (Request::is($route) || Request::is($route . '/*')) ? 'active' : '';
 }
+// function setShowMenu($route)
+// {
+//     return (Request::is($route) || Request::is($route . '/*')) ? 'show' : '';
+// }
 
-function active_class($path, $active = 'active') {
-  return call_user_func_array('Request::is', (array)$path) ? $active : '';
+// function set_active($route)
+// {
+//     if (is_array($route)) {
+//         return in_array(Request::path(), $route) ? 'active' : '';
+//     }
+//     return Request::path() == $route ? 'active' : '';
+// }
+// function set_show($route)
+// {
+//     if (is_array($route)) {
+//         return in_array(Request::path(), $route) ? 'show' : '';
+//     }
+//     return Request::path() == $route ? 'show' : '';
+// }
+
+function active_class($path, $active = 'active')
+{
+    return call_user_func_array('Request::is', (array) $path) ? $active : '';
 }
 
-function is_active_route($path) {
-  return call_user_func_array('Request::is', (array)$path) ? 'true' : 'false';
+function is_active_route($path)
+{
+    return call_user_func_array('Request::is', (array) $path) ? 'true' : 'false';
 }
 
-function show_class($path) {
-  return call_user_func_array('Request::is', (array)$path) ? 'show' : '';
+function show_class($path)
+{
+    return call_user_func_array('Request::is', (array) $path) ? 'show' : '';
 }
 ?>
 
@@ -37,6 +59,27 @@ function show_class($path) {
                     <span class="link-title">{{__('Dashboard')}}</span>
                 </a>
             </li>
+
+            {{-- <li class="nav-item {{ active_class(['dishes','dishes/*','categories','categories/*','combo-dishes','combo-dishes/*']) }}">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="smartphone"></i>
+                    <span class="link-title">{{__('Digital Menu')}}</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse {{ show_class(['dishes','dishes/*','categories','categories/*','combo-dishes','combo-dishes/*']) }}" id="emails" style="">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{route('restaurant.dishes.index')}}" class="nav-link {{ active_class(['dishes','dishes/*']) }}">{{__('Dishes')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('restaurant.categories.index')}}" class="nav-link {{ active_class(['categories','categories/*']) }}">{{__('Categories')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('restaurant.combo-dishes.index')}}" class="nav-link {{ active_class(['combo-dishes','combo-dishes/*']) }}">{{__('Combo Dishes')}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </li> --}}
 
             <li class="nav-item {{ setActiveMenu('categories') }}">
                 <a href="{{route('restaurant.categories.index')}}" class="nav-link">

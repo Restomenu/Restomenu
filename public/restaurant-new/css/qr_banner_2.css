@@ -1,0 +1,23 @@
+.pdf-wrapper .main-table td {
+  font-family: "Overpass", sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.pdf-wrapper .main-table td.tb {
+  padding: 7.5px;
+  text-align: center;
+  color: #fff;
+}
+
+.pdf-wrapper .main-table td.tb.scanner {
+  padding: 12.5px;
+  font-size: 18px;
+}
+
+.pdf-wrapper .main-table td.lr {
+  padding: 15px;
+  color: #fff;
+}
+
+/*# sourceMappingURL=qr_banner_2.css.map*/
