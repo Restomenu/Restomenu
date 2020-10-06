@@ -17,14 +17,30 @@
         <table style="margin-top:30px" class="main-table">
             <tr>
                 <td>
+                    <table width="100%" style="margin: 19px;border-collapse: collapse;">
+                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb">
+                                SCAN ME</td>
+                        </tr>
+                        <tr>
+                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
+                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
+                        </tr>
+                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
                     <table width="100%" style="margin: 20px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -33,30 +49,14 @@
                     </table>
                 </td>
                 <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <table width="100%" style="margin: 20px;border-collapse: collapse;">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
-                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
-                        </tr>
-                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb">
-                                SCAN ME</td>
-                        </tr>
-                        <tr>
-                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -67,14 +67,30 @@
             </tr>
             <tr>
                 <td>
+                    <table width="100%" style="margin: 19px;border-collapse: collapse;">
+                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb">
+                                SCAN ME</td>
+                        </tr>
+                        <tr>
+                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
+                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
+                        </tr>
+                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
                     <table width="100%" style="margin: 20px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -83,30 +99,14 @@
                     </table>
                 </td>
                 <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <table width="100%" style="margin: 20px;border-collapse: collapse;">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
-                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
-                        </tr>
-                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb">
-                                SCAN ME</td>
-                        </tr>
-                        <tr>
-                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -117,14 +117,30 @@
             </tr>
             <tr>
                 <td>
+                    <table width="100%" style="margin: 19px;border-collapse: collapse;">
+                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb">
+                                SCAN ME</td>
+                        </tr>
+                        <tr>
+                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
+                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
+                        </tr>
+                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
                     <table width="100%" style="margin: 20px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -133,30 +149,14 @@
                     </table>
                 </td>
                 <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <table width="100%" style="margin: 20px;border-collapse: collapse;">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
-                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
-                        </tr>
-                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb">
-                                SCAN ME</td>
-                        </tr>
-                        <tr>
-                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -167,14 +167,30 @@
             </tr>
             <tr>
                 <td>
+                    <table width="100%" style="margin: 19px;border-collapse: collapse;">
+                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb">
+                                SCAN ME</td>
+                        </tr>
+                        <tr>
+                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
+                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
+                        </tr>
+                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
                     <table width="100%" style="margin: 20px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -183,30 +199,14 @@
                     </table>
                 </td>
                 <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
+                    <table width="100%" style="margin: 20px;border-collapse: collapse;">
+                    <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
                             <td colspan="3" class="tb">
                                 SCAN ME</td>
                         </tr>
                         <tr>
                             <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
-                            <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
-                        </tr>
-                        <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb scanner">{{config('restomenu.urls.scanner_url')}}</td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <table width="100%" style="margin: 18px;border-collapse: collapse;">
-                        <tr class="row-color" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
-                            <td colspan="3" class="tb">
-                                SCAN ME</td>
-                        </tr>
-                        <tr>
-                            <td text-rotate="90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCAN MIJ</td>
-                            <td style="text-align:center"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 235px;"></td>
+                            <td style="text-align:center;padding:1px"><img src="{{auth()->guard('restaurant')->user()->setting->qr_code_menu_full_path}}" alt="" style="max-width: 210px;"></td>
                             <td text-rotate="-90" class="lr" style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">SCANNEZ-MOI</td>
                         </tr>
                         <tr style="background-color: {{auth()->guard('restaurant')->user()->setting->menu_primary_color ?? '#CACC2D'}};">
@@ -215,7 +215,6 @@
                     </table>
                 </td>
             </tr>
-
         </table>
 
     </div>

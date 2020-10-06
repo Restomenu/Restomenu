@@ -17,22 +17,22 @@
         td {
             // border: 1px solid black;
             font-family: "Overpass", sans-serif;
-            font-size: 23px;
+            font-size: 22px;
             font-weight: bold;
             
             &.tb {
-                padding: 9px;
+                padding: 7.5px;
                 text-align: center; 
                 // background-color: red;
                 color: #fff;
 
                 &.scanner{
-                    padding: 13.5px;
+                    padding: 12.5px;
                     font-size: 18px;
                 }
             }
             &.lr {
-                padding:16px;
+                padding:15px;
                 // background-color: red;
                 color: #fff;
             }
