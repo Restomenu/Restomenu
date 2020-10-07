@@ -80,7 +80,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapRestaurantRoutes()
     {
         Route::group([
-            'middleware' => ['web', 'restaurant'],
+            'middleware' => ['web', 'restaurant', 'auth:restaurant', 'verified:restaurant.verification.notice'],
             'domain' => 'restaurant.' . env('APP_DOMAIN'),
             'as' => 'restaurant.',
             'namespace' => $this->namespace,

@@ -39,6 +39,7 @@ return [
         "menu_qr_image_margin" => 2,
 
         "support_email" => 'support@restomenu.be',
+        "admin_email" => 'info@restomenu.be',
     ],
     "sms" => [
         "is_enabled" => env('SMS_SERVICE_STATUS', 0),
@@ -59,6 +60,7 @@ return [
         'restaurant_menu_base_url' => env('RESTAURANT_MENU_BASE_URL', "https://menu.restomenu.be/"),
         'restaurant_url' => env('RESTAURANT_URL', "https://my.restomenu.be/"),
         'scanner_url' => env('SCANNER_URL', "scanner.restomenu.be"),
+        'restomenu_url' => env('RESTOMENU_URL', "https://www.restomenu.be/"),
     ],
     "price" => [
         'sticker_price' => 1.5,

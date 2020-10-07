@@ -72,13 +72,28 @@ class LoginController extends Controller
         return ['email' => $request->{$this->username()}, 'password' => $request->password, 'status' => 1];
     }
 
+    // protected function sendLoginResponse(Request $request)
+    // {
+    //     $request->session()->regenerate();
+
+    //     $this->clearLoginAttempts($request);
+
+    //     return $this->authenticated($request, $this->guard()->user()) ?: redirect()->to($this->redirectPath());
+    // }
+
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
 
-        return $this->authenticated($request, $this->guard()->user()) ?: redirect()->to($this->redirectPath());
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 204)
+            : redirect()->to($this->redirectPath());
     }
 
     protected function authenticated(Request $request, $user)

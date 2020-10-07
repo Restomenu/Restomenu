@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Notifications\RestaurantResetPassword;
+use App\Notifications\RestaurantVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Notification;
 
-class Restaurant extends Authenticatable
+class Restaurant extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, SoftDeletes;
 
@@ -37,6 +39,11 @@ class Restaurant extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new RestaurantResetPassword($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new RestaurantVerifyEmail);
     }
 
     public function setting()

@@ -136,6 +136,11 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'as' => 'restaurant.'], func
   Route::get('/password/reset', 'RestaurantAuth\ForgotPasswordController@showLinkRequestForm')->name('password-reset-form');
   Route::get('/password/reset/{token}', 'RestaurantAuth\ResetPasswordController@showResetForm');
 
+  // Email verification
+  Route::get('email/verify', 'RestaurantAuth\VerificationController@show')->name('verification.notice');
+  Route::get('email/verify/{id}', 'RestaurantAuth\VerificationController@verify')->name('verification.verify');
+  Route::get('email/resend', 'RestaurantAuth\VerificationController@resend')->name('verification.resend');
+
   Route::get("checkUniqueEmail", "Restaurant\RestaurantSettingController@checkUniqueEmail")->name('restaurantsCheckUniqueEmail');
   Route::get("checkUniqueSlug", "Restaurant\RestaurantSettingController@checkUniqueSlug")->name('restaurantsCheckUniqueSlug');
 
@@ -146,6 +151,7 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'as' => 'restaurant.'], func
 
   // Route::get('/test/forgot-password-mail', 'Test\TestController@forgotPasswordMail');
   // Route::get('/test/restaurant-register-mail', 'Test\TestController@restaurantRegisterMail');
+  // Route::get('/test/test-mail', 'Test\TestController@testMail');
 });
 
 Route::group(['domain' => env('RESERVATION_DOMAIN'), 'as' => 'reservation.'], function () {

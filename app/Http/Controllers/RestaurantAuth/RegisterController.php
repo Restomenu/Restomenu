@@ -14,6 +14,8 @@ use App\Models\Setting;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewRestaurantMailToAdmin;
 
 class RegisterController extends Controller
 {
@@ -51,7 +53,10 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        $user = $this->create($request->all());
+        event(new Registered($user));
+
+        Mail::to(config("restomenu.constants.admin_email"))->send(new NewRestaurantMailToAdmin($user));
 
         // $this->guard()->login($user);
 

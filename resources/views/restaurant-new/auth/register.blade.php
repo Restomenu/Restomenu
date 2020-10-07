@@ -412,7 +412,7 @@
                 </div>
                 </form>
                 <div class="mt-3">
-                    <a href="{{route('restaurant.login')}}" class="d-block mt-3 text-muted">{{__('Already a user?')}}
+                    <a href="{{route('restaurant.login')}}" class="mt-3 text-muted">{{__('Already a user?')}}
                         {{__('Sign in')}}</a>
                 </div>
             </div>

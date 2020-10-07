@@ -18,6 +18,11 @@
                         <div class="auth-form-wrapper px-4 py-5">
                             <a href="#" class="noble-ui-logo d-block mb-2">Resto<span>Menu</span></a>
                             <h5 class="text-muted font-weight-normal mb-4">Enter Your Email Address </h5>
+                            @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                            @endif
                             <form class="form-horizontal" role="form" method="POST"
                             action="{{ route('restaurant.send-password-reset-link') }}">
                             {{ csrf_field() }}
