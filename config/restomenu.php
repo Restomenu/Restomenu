@@ -62,7 +62,7 @@ return [
     ],
     "price" => [
         'sticker_price' => 1.5,
-        'shipping_price' => 7,
+        'shipping_price' => 7.5,
     ]
 
 ];

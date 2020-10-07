@@ -44,9 +44,8 @@ class QrCodeOrderController extends Controller
     }
     public function getDatatable()
     {
-        // dd('hello');
-        // $restaurantId = auth()->guard('restaurant')->user()->id;
-        $result = $this->model->get();
+        // $result =$this->model->with('restaurant')->get();
+        $result = $this->model->leftjoin('restaurants', 'restaurants.id', '=', 'qr_code_orders.restaurant_id')->leftjoin('settings', 'settings.restaurant_id', '=', 'restaurants.id')->select("qr_code_orders.*", "settings.site_name as restaurant_name","restaurants.email as restaurant_email")->get();
 
         return Datatables::of($result)->addIndexColumn()->make(true);
     }

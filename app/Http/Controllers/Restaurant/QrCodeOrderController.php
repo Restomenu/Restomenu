@@ -73,7 +73,7 @@ class QrCodeOrderController extends Controller
             $inputs = $request->except('_token','total_cost','sticker_cost','shipping_cost');
             $shipping_cost=config('restomenu.price.shipping_price');
             $sticker_cost=config('restomenu.price.sticker_price');
-            $total_cost= (($request->quantity * $sticker_cost ) + intval($shipping_cost));
+            $total_cost= (($request->quantity * $sticker_cost ) + floatval($shipping_cost));
             $inputs['restaurant_id'] = auth()->guard('restaurant')->user()->id;
             $inputs['total_cost'] = $total_cost;
             $inputs['shipping_cost'] = $shipping_cost;

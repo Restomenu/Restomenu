@@ -91,7 +91,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <a href="{{route('restaurant.qr-code-order.index')}}" class="d-flex justify-content-between text-primary">
+                            <a href="{{route('restaurant.qr-code-order.create')}}" class="d-flex justify-content-between text-primary">
                                 <i class="link-icon" data-feather="package"></i>
                                 <div class="qr-right-card ml-2"> @lang('Order QR-code stickers')</div>
                             </a>
