@@ -21,6 +21,8 @@
                             <thead>
                                 <tr>
                                     <th class="rm-cat-no-column">{{__('No.')}}</th>
+                                    <th>{{__('Restaurant Name')}}</th>
+                                    <th>{{__('Email')}}</th>
                                     <th>{{__('Quantity')}}</th>
                                 <th>{{__('Shipping Cost')}}</th>
                                 <th>{{__('Sticker Cost')}}</th>
@@ -76,6 +78,18 @@
                 searchable: false,
                 orderable: false,
             },
+            
+            {
+                data: 'restaurant_name',
+                name: 'restaurant_name',
+                defaultContent: "N/A",
+            },
+            {
+                data: 'restaurant_email',
+                name: 'restaurant_email',
+                defaultContent: "N/A",
+            },
+            
             {
                 data: 'quantity',
                 name: "quantity",

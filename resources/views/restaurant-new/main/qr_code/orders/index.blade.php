@@ -128,7 +128,7 @@
             "sInfoFiltered": "({{__('filtered from')}} _MAX_ {{__('total')}} {{__('entries')}})",
             "sInfoPostFix": "",
             "sInfoThousands": ",",
-            "sLengthMenu": "{{__('Show')}} _Orders_ {{__('entries')}}",
+            "sLengthMenu": "{{__('Show')}} _qr_ {{__('entries')}}",
             "sLoadingRecords": "{{__('Loading...')}})",
             "sProcessing": "{{__('Processing...')}}",
             "sSearch": "{{__('Search')}}:",
