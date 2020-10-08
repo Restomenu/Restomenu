@@ -69,53 +69,7 @@
 <script>
     var visitorsFilterValue = null;
     var visitorTable = $("#visitors-table").DataTable({
-        // "dom": '<"row" <"col-sm-12 mb-3"<"html5buttons"B>>> <"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
         "dom": '<"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
-        buttons: [{
-                extend: 'csv',
-                title: 'Customers',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
-                }
-            },
-            {
-                extend: 'excel',
-                title: 'Customers',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
-                }
-            },
-            {
-                extend: 'pdf',
-                title: 'Customers',
-                orientation: 'landscape',
-                pageSize: 'A4',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
-                },
-                customize: function(doc) {
-                    doc.content[1].table.widths = ["16%", "16%", "9%", "13%", "16%", "15%", "15%"];
-                },
-            },
-            {
-                extend: 'print',
-                title: 'Customers',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
-                },
-                customize: function(win) {
-                    $(win.document.body).find('h1').css('text-align', 'center');
-                    $(win.document.body).find('table')
-                        .addClass('compact')
-                        .css('font-size', 'inherit')
-                        .css('border-spacing', '0px').find('.td').css('padding', '0px');
-                }
-            },
-        ],
-        lengthMenu: [
-            [25, 50, 100, -1],
-            [25, 50, 100, "All"]
-        ],
         processing: true,
         serverSide: true,
         responsive: true,
@@ -128,7 +82,7 @@
             "sInfoFiltered": "({{__('filtered from')}} _MAX_ {{__('total')}} {{__('entries')}})",
             "sInfoPostFix": "",
             "sInfoThousands": ",",
-            "sLengthMenu": "{{__('Show')}} _qr_ {{__('entries')}}",
+            "sLengthMenu": "{{__('Show')}} _MENU_ {{__('entries')}}",
             "sLoadingRecords": "{{__('Loading...')}})",
             "sProcessing": "{{__('Processing...')}}",
             "sSearch": "{{__('Search')}}:",
