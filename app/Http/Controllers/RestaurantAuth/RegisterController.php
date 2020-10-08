@@ -168,7 +168,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'email_billing' => $data['email_billing'],
             'phone_billing' => $data['phone_billing'],
-            'status' => 0
+            'status' => 1
         ]);
 
         if ($restaurant) {

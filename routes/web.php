@@ -134,7 +134,8 @@ Route::group(['domain' => env('RESTAURANT_DOMAIN'), 'as' => 'restaurant.'], func
   Route::post('/password/email', 'RestaurantAuth\ForgotPasswordController@sendResetLinkEmail')->name('send-password-reset-link');
   Route::post('/password/reset', 'RestaurantAuth\ResetPasswordController@reset')->name('password-reset');
   Route::get('/password/reset', 'RestaurantAuth\ForgotPasswordController@showLinkRequestForm')->name('password-reset-form');
-  Route::get('/password/reset/{token}', 'RestaurantAuth\ResetPasswordController@showResetForm');
+  Route::get('/password/reset/{token}', 'RestaurantAuth\ResetPasswordController@showResetForm')->name('password.reset.link');
+  Route::get('/password/create/{token}', 'RestaurantAuth\ResetPasswordController@showCreateForm')->name('password.create.link');
 
   // Email verification
   Route::get('email/verify', 'RestaurantAuth\VerificationController@show')->name('verification.notice');

@@ -7,6 +7,9 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Str;
+use Illuminate\Auth\Events\PasswordReset;
 
 class ResetPasswordController extends Controller
 {
@@ -55,6 +58,32 @@ class ResetPasswordController extends Controller
         return view('restaurant-new.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
+    }
+
+    public function showCreateForm(Request $request, $token = null)
+    {
+        return view('restaurant-new.auth.passwords.create')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
+
+    protected function resetPassword($user, $password)
+    {
+        $this->setUserPassword($user, $password);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+
+        if (!$user->hasVerifiedEmail()) {
+            if ($user->markEmailAsVerified()) {
+                event(new Verified($user));
+            }
+        }
+
+        // $this->guard()->login($user);
     }
 
     /**

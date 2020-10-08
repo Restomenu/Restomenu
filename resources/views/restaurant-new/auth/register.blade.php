@@ -404,7 +404,7 @@
 
                     </section>
 
-                    <h3>{{__('confirmation')}}</h3>
+                    <h3>{{__('Confirmation')}}</h3>
                     <section class="px-0">
                         <div>Confirm!</div>
                     </section>

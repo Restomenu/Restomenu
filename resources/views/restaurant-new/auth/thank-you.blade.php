@@ -25,19 +25,19 @@
                                                 id="steps-uid-0-t-0" href="javascript:;"
                                                 aria-controls="steps-uid-0-p-0"><span
                                                     class="current-info audible">current
-                                                    step: </span><span class="number">1.</span> Registration</a></li>
+                                                    step: </span><span class="number">1.</span> {{__('Registration')}}</a></li>
                                         <li role="tab" aria-disabled="false"><a id="steps-uid-0-t-1" href="javascript:;"
                                                 aria-controls="steps-uid-0-p-1"><span class="number">2.</span>
-                                                Billing</a>
+                                                {{__('Billing')}}</a>
                                         </li>
                                         <li role="tab" aria-disabled="false" class="last current"><a
                                                 id="steps-uid-0-t-2" href="javascript:;"
                                                 aria-controls="steps-uid-0-p-2"><span class="number">3.</span>
-                                                confirmation</a></li>
+                                                {{__('Confirmation')}}</a></li>
                                     </ul>
                                 </div>
                                 <div class="content clearfix">
-                                    <h3 id="steps-uid-0-h-0" tabindex="-1" class="title current">Registration</h3>
+                                    <h3 id="steps-uid-0-h-0" tabindex="-1" class="title current">{{__('Registration')}}</h3>
 
                                     <section class="px-0 body current thank-you-section" id="steps-uid-0-p-0"
                                         role="tabpanel" aria-labelledby="steps-uid-0-h-0" aria-hidden="false">

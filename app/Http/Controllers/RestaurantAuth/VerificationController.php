@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class VerificationController extends Controller
 {
@@ -68,13 +70,30 @@ class VerificationController extends Controller
 		if (!hash_equals((string) $request->query('hash'), sha1($user->getEmailForVerification()))) {
 			throw new AuthorizationException;
 		}
+
 		if ($user->hasVerifiedEmail()) {
 			return redirect($this->redirectPath());
 		}
 
-		if ($user->markEmailAsVerified()) {
-			event(new Verified($user));
-		}
+		// if ($user->markEmailAsVerified()) {
+		// 	event(new Verified($user));
+		// }
+
+		// for password reset start
+		$token = app('auth.password.broker')->createToken($user);
+
+		DB::table(config('auth.passwords.restaurants.table'))->insert([
+			'email' => $user->email,
+			'token' => Hash::make($token)
+		]);
+
+		$url = url(route('restaurant.password.create.link', [
+			'token' => $token,
+			'email' => $user->email,
+		], false));
+
+		return redirect($url);
+		// for password reset end
 
 		return redirect($this->redirectPath())->with('verified', true)->with('success', 'Your email has been verified');
 	}

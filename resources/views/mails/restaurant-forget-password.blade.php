@@ -330,7 +330,7 @@
 								<!-- main-icon -->
 								<tr>
 									<td class="editable-img" align="center">
-										<a href="{{url('/password/reset', $token)}}" target="__blank">
+										<a href="{{$url}}" target="__blank">
 											<img editable="true" mc:edit="image105"
 												src="{{ asset('mails/circle-icon-locked.png') }}"
 												style="display:block; line-height:0; font-size:0; border:0;" border="0"
@@ -384,7 +384,7 @@
 																style="font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
 																<div class="editable-text">
 																	<span class="text_container">
-																		<a href="{{url('/password/reset', $token)}}"
+																		<a href="{{$url}}"
 																			class="text_color_ffffff"
 																			style="text-decoration: none; color: #ffffff;"
 																			target="__blank">Account

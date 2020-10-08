@@ -1,6 +1,6 @@
 @extends('restaurant-new.layouts.auth')
 
-@section('title','Reset Password')
+@section('title','Create Password')
 
 @section('content')
 
@@ -17,7 +17,7 @@
                     <div class="col-md-8 pl-md-0">
                         <div class="auth-form-wrapper px-4 py-5">
                             <a href="#" class="noble-ui-logo d-block mb-2">Resto<span>Menu</span></a>
-                            <h5 class="text-muted font-weight-normal mb-4">Reset Your Password.</h5>
+                            <h5 class="text-muted font-weight-normal mb-4">Create Your Password.</h5>
                             <form class="form-horizontal" role="form" method="POST"
                                 action="{{ route('restaurant.password-reset') }}">
                                 {{-- {{ csrf_field() }} --}}
@@ -64,7 +64,7 @@
                                
                                
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0">Reset Password</button>
+                                    <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0">Create Password</button>
                                     
                                 </div>
                             </form>

@@ -48,8 +48,15 @@ class RestaurantResetPassword extends Notification
         //     ->action('Reset Password', url('/password/reset', $this->token))
         //     ->line('If you did not request a password reset, no further action is required.');
 
-            return (new MailMessage)->view(
-                'mails.restaurant-forget-password', ['token' => $this->token]
-            );
+
+        $url = url(route('restaurant.password.reset.link', [
+            'token' => $this->token,
+            'email' => $notifiable->getEmailForPasswordReset(),
+        ], false));
+
+        return (new MailMessage)->view(
+            'mails.restaurant-forget-password',
+            ['url' => $url]
+        );
     }
 }
