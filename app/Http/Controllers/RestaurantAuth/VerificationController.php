@@ -10,6 +10,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
 class VerificationController extends Controller
 {
@@ -80,12 +81,21 @@ class VerificationController extends Controller
 		// }
 
 		// for password reset start
-		$token = app('auth.password.broker')->createToken($user);
+		// $token = app('auth.password.broker')->createToken($user);
+		// $exists = app('auth.password.broker')->tokenExists($user, $token);
 
-		DB::table(config('auth.passwords.restaurants.table'))->insert([
-			'email' => $user->email,
-			'token' => Hash::make($token)
-		]);
+
+		$token = Password::broker('restaurants')->createToken($user);
+
+		// DB::table(config('auth.passwords.restaurants.table'))->insert([
+		// 	'email' => $user->email,
+		// 	'token' => Hash::make($token)
+		// ]);
+		// if (!$exists) {
+		// }
+		// else {
+		// 	DB::table(config('auth.passwords.restaurants.table'))->where('email', $user->email)->update(['token' => Hash::make($token)]);
+		// }
 
 		$url = url(route('restaurant.password.create.link', [
 			'token' => $token,
