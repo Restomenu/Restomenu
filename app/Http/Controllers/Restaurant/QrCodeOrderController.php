@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Log;
 use App\Library\Spryng\Client;
 // use SpryngApiHttpPhp\Client;
 use SpryngApiHttpPhp\Exception\InvalidRequestException;
+use App\Mail\NewQrCodeOrder;
+use Mail;
 
 class QrCodeOrderController extends Controller
 {
-    
+
     public function __construct(QrCodeOrder $model)
     {
-        
+
         $this->moduleName = "Qr Code Order";
         $this->moduleRoute = url('qr-code-order');
         $this->moduleView = "restaurant-new.main.qr_code.orders";
@@ -30,7 +32,7 @@ class QrCodeOrderController extends Controller
         View::share('module_route', $this->moduleRoute);
         View::share('moduleView', $this->moduleView);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -39,11 +41,9 @@ class QrCodeOrderController extends Controller
     public function index()
     {
         return view("$this->moduleView.index");
-        
     }
     public function getDatatable()
     {
-        // dd('hello');
         $restaurantId = auth()->guard('restaurant')->user()->id;
         $result = $this->model->where('restaurant_id', $restaurantId);
 
@@ -57,7 +57,6 @@ class QrCodeOrderController extends Controller
     public function create()
     {
         return view("restaurant-new.main.general.create-simple");
-        
     }
 
     /**
@@ -68,12 +67,11 @@ class QrCodeOrderController extends Controller
      */
     public function store(Request $request)
     {
-        
         try {
-            $inputs = $request->except('_token','total_cost','sticker_cost','shipping_cost');
-            $shipping_cost=config('restomenu.price.shipping_price');
-            $sticker_cost=config('restomenu.price.sticker_price');
-            $total_cost= (($request->quantity * $sticker_cost ) + floatval($shipping_cost));
+            $inputs = $request->except('_token', 'total_cost', 'sticker_cost', 'shipping_cost');
+            $shipping_cost = config('restomenu.price.shipping_price');
+            $sticker_cost = config('restomenu.price.sticker_price');
+            $total_cost = (($request->quantity * $sticker_cost) + floatval($shipping_cost));
             $inputs['restaurant_id'] = auth()->guard('restaurant')->user()->id;
             $inputs['total_cost'] = $total_cost;
             $inputs['shipping_cost'] = $shipping_cost;
@@ -82,6 +80,9 @@ class QrCodeOrderController extends Controller
             $isSaved = $this->model->create($inputs);
 
             if ($isSaved) {
+                Mail::to(
+                    config('restomenu.constants.admin_email')
+                )->send(new NewQrCodeOrder($isSaved));
                 return redirect($this->moduleRoute)->with("success", __($this->moduleName . ' Added Successfully.'));
             }
             return redirect($this->moduleRoute)->with("error", __("Something went wrong, please try again later."));

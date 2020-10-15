@@ -30,7 +30,7 @@
 <div class="row">
     <div class="col-12 col-sm-12">
         <div class="form-group row">
-            <label class="col-sm-3">{{__('Delivery Pastcode')}}</label>
+            <label class="col-sm-3">{{__('Delivery Postcode')}}</label>
             <div class="col-sm-6">
                 {{ Form::text('postcode', null, ['id' => 'postcode', 'class'=>"form-control"]) }}
                 @if($errors->has('postcode'))

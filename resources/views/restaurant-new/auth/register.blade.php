@@ -66,7 +66,7 @@
                                     <section class="px-0">
 
                                         <h5 class="text-muted font-weight-normal mb-4">
-                                            {{__('Let\'s get to know your restaurant a little better, that way we can optimize our platform to your needs.')}}
+                                            {{__("Let's get to know your restaurant a little better, that way we can optimize our platform to your needs.")}}
                                         </h5>
 
                                         <div class="row">

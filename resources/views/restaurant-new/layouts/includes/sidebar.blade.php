@@ -143,6 +143,12 @@ function show_class($path)
                     <span class="link-title">{{__('Qr Code')}}</span>
                 </a>
             </li>
+            <li class="nav-item {{ setActiveMenu('qr-code-order') }}">
+                <a href="{{route('restaurant.qr-code-order.index')}}" class="nav-link">
+                    <i class="link-icon" data-feather="package"></i>
+                    <span class="link-title">{{__('Qr Code Orders')}}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

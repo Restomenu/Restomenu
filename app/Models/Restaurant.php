@@ -56,6 +56,11 @@ class Restaurant extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Models\RestaurantTime');
     }
 
+    public function QrCodeOrders()
+    {
+        return $this->hasMany('App\Models\QrCodeOrder');
+    }
+
     public function totalNotificationCount()
     {
         $restaurantId = auth()->guard('restaurant')->user()->id;

@@ -280,5 +280,17 @@
     "Activate": "Activeren",
     "Show webpage": "Webversie",
     "Unsubscribe": "Uitschrijven",
-    "Confirmation": "Confirmation"
+    "Confirmation": "Confirmation",
+    "Thank You.": "Thank You.",
+    "You're all set. Your activation e-mail is underway.": "You're all set. Your activation e-mail is underway.",
+    "You will recieve an activation e-mail to confirm your e-mail. Make sure to check your spammail, sometimes our mailmonkey tends to deliver it incorrectly.": "You will recieve an activation e-mail to confirm your e-mail. Make sure to check your spammail, sometimes our mailmonkey tends to deliver it incorrectly.",
+    "Let's get to know your restaurant a little better, that way we can optimize our platform to your needs.": "Let's get to know your restaurant a little better, that way we can optimize our platform to your needs.",
+    "we're not going to let you wait in excitement for much longer, you're nearly there!": "we're not going to let you wait in excitement for much longer, you're nearly there!",
+    "Qr Code Orders": "Qr Code Orders",
+    "Delivery Street & nbr": "Delivery Street & nbr",
+    "Delivery Postcode": "Delivery Postcode",
+    "Country": "Country",
+    "Sticker Cost": "Sticker Cost",
+    "Shipping Cost": "Shipping Cost",
+    "Total Cost": "Total Cost"
 }

@@ -50,9 +50,7 @@
                                                 You're all set. Your activation e-mail is underway.
                                             </h4>
                                             <div class="text-muted thank-you-description">
-                                                You will recieve an activation e-mail to confirm your e-mail. Make sure
-                                                to check your spammail, sometimes our mailmonkey tends to deliver it
-                                                incorrectly.
+                                                You will recieve an activation e-mail to confirm your e-mail. Make sure to check your spammail, sometimes our mailmonkey tends to deliver it incorrectly.
                                             </div>
                                             <div class="mt-3">
                                                 <a href="{{config('restomenu.urls.restaurant_url')}}"

@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class QrCodeOrder extends Model
 {
     protected $table = 'qr_code_orders';
-    protected $guarded = ['id'];   
-    
+    protected $guarded = ['id'];
+
     public function restaurant()
     {
-        return $this->hasMany('App\Models\Restaurant','id');
+        return $this->belongsTo('App\Models\Restaurant', 'restaurant_id');
     }
 }
