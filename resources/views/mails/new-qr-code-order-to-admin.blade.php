@@ -325,9 +325,9 @@
                                             Postcode : {{$postcode}} <br>
                                             City : {{$city}}<br>
                                             Country : {{$country}}<br>
-                                            Total cost : {{$total_cost}} <br>
-                                            Shipping cost : {{$shipping_cost}} <br>
-                                            Sticker cost : {{$sticker_cost}} <br>
+                                            Total cost : {{'€'.$total_cost}} <br>
+                                            Shipping cost : {{'€'.$shipping_cost}} <br>
+                                            Sticker cost : {{'€'.$sticker_cost}} <br>
                                         </div>
                                     </td>
                                 </tr><!-- END email details -->
